@@ -5,7 +5,7 @@
           \********************************************************************************************************************************************************************************************************************/
         /*! no static exports found */
         /***/ (function (module, exports) {
-            module.exports = [[module.i, "/* You can add global styles to this file, and also import other style files */\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9zdHlsZXMubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSw4RUFBOEUiLCJmaWxlIjoic3JjL3N0eWxlcy5sZXNzIn0= */", '', '']];
+            module.exports = [[module.i, "body {\n  font-family: 'Lato', sans-serif;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9EOi9wcm9qZWN0cy9zdHVkZW50cy9zcmMvc3R5bGVzLmxlc3MiLCJzcmMvc3R5bGVzLmxlc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSwrQkFBQTtBQ0NGIiwiZmlsZSI6InNyYy9zdHlsZXMubGVzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHl7XG4gIGZvbnQtZmFtaWx5OiAnTGF0bycsIHNhbnMtc2VyaWY7XG59XG4iLCJib2R5IHtcbiAgZm9udC1mYW1pbHk6ICdMYXRvJywgc2Fucy1zZXJpZjtcbn1cbiJdfQ== */", '', '']];
             /***/ 
         }),
         /***/ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js": 
