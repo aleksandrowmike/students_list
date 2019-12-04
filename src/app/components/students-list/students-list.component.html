@@ -1,0 +1,50 @@
+<table class="students-list">
+  <tr>
+    <th>ID
+      <span class="students-list__filter" (click)="sortID('ASC')">&#9650;</span>
+      <span class="students-list__filter" (click)="sortID('DESC')">&#9660;</span>
+    </th>
+    <th>
+      First name
+      <span class="students-list__filter" (click)="sortFirstName('ASC')">&#9650;</span>
+      <span class="students-list__filter" (click)="sortFirstName('DESC')">&#9660;</span><br>
+      <input #search class="students-list__input" type="text" placeholder="Search by name" (keyup)="applySearch(search.value)">
+    </th>
+    <th>Last name
+      <span class="students-list__filter" (click)="sortLastName('ASC')">&#9650;</span>
+      <span class="students-list__filter" (click)="sortLastName('DESC')">&#9660;</span>
+    </th>
+    <th>Middle name
+      <span class="students-list__filter" (click)="sortMiddleName('ASC')">&#9650;</span>
+      <span class="students-list__filter" (click)="sortMiddleName('DESC')">&#9660;</span>
+    </th>
+    <th>
+      Date of Birth
+      <span class="students-list__filter" (click)="sortBirth('ASC')">&#9650;</span>
+      <span class="students-list__filter" (click)="sortBirth('DESC')">&#9660;</span>
+      <br>
+      <input #date class="students-list__input" type="date" (keyup.enter)="dateFilter(date.value)">
+    </th>
+    <th>
+      Average score
+      <span class="students-list__filter" (click)="sortScore('ASC')">&#9650;</span>
+      <span class="students-list__filter" (click)="sortScore('DESC')">&#9660;</span>
+      <br>
+      <input class="students-list__input" #score type="number" min="1" max="5" placeholder="Filter by score" (keyup)="scoreFilter(score.value)">
+    </th>
+    <th>Action</th>
+  </tr>
+  <tr #elStudents *ngFor="let student of students" [class.red]="student.accent ? false: true" [class.accent]="student.firstName === selectedStudents">
+    <td>{{ student.id }}</td>
+    <td>{{ student.firstName }}</td>
+    <td>{{ student.lastName }}</td>
+    <td>{{ student.middleName }}</td>
+    <td>{{ student.birth | date }}</td>
+    <td>{{ student.score }}</td>
+    <td>
+      <button (click)="accentuation(student)">Accent</button>
+      <button class="students-list__button" (click)="delete(student)">Delete</button>
+    </td>
+  </tr>
+</table>
+
