@@ -20,17 +20,6 @@
             webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
             /***/ 
         }),
-        /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/modal/modal.component.html": 
-        /*!*********************************************************************************************!*\
-          !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/modal/modal.component.html ***!
-          \*********************************************************************************************/
-        /*! exports provided: default */
-        /***/ (function (module, __webpack_exports__, __webpack_require__) {
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"students-modal\">\n  <div class=\"students-modal-body\">\n    <ng-content></ng-content>\n  </div>\n</div>\n<div class=\"students-modal-background\"></div>\n");
-            /***/ 
-        }),
         /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/students-list/students-list.component.html": 
         /*!*************************************************************************************************************!*\
           !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/students-list/students-list.component.html ***!
@@ -353,88 +342,6 @@
             }
             /***/ 
         }),
-        /***/ "./src/app/components/modal/modal.component.less": 
-        /*!*******************************************************!*\
-          !*** ./src/app/components/modal/modal.component.less ***!
-          \*******************************************************/
-        /*! exports provided: default */
-        /***/ (function (module, __webpack_exports__, __webpack_require__) {
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvbW9kYWwvbW9kYWwuY29tcG9uZW50Lmxlc3MifQ== */");
-            /***/ 
-        }),
-        /***/ "./src/app/components/modal/modal.component.ts": 
-        /*!*****************************************************!*\
-          !*** ./src/app/components/modal/modal.component.ts ***!
-          \*****************************************************/
-        /*! exports provided: ModalComponent */
-        /***/ (function (module, __webpack_exports__, __webpack_require__) {
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalComponent", function () { return ModalComponent; });
-            /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-            /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-            /* harmony import */ var _services_modal_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/modal.service */ "./src/app/services/modal.service.ts");
-            var ModalComponent = /** @class */ (function () {
-                function ModalComponent(modalService, el) {
-                    this.modalService = modalService;
-                    this.el = el;
-                    this.element = el.nativeElement;
-                }
-                ModalComponent.prototype.ngOnInit = function () {
-                    // tslint:disable-next-line:no-this-assignment
-                    var modal = this;
-                    // ensure id attribute exists
-                    if (!this.id) {
-                        console.error("modal must have an id");
-                        return;
-                    }
-                    // move element to bottom of page (just before </body>) so it can be displayed above everything else
-                    document.body.appendChild(this.element);
-                    // close modal on background click
-                    // tslint:disable-next-line:no-any
-                    this.element.addEventListener("click", function (e) {
-                        if (e.target.className === "students-modal") {
-                            modal.close();
-                        }
-                    });
-                    // add self (this modal instance) to the modal service so it's accessible from controllers
-                    this.modalService.add(this);
-                };
-                // remove self from modal service when component is destroyed
-                ModalComponent.prototype.ngOnDestroy = function () {
-                    this.modalService.remove(this.id);
-                    this.element.remove();
-                };
-                // open modal
-                ModalComponent.prototype.open = function () {
-                    this.element.style.display = "block";
-                    document.body.classList.add("students-modal-open");
-                };
-                // close modal
-                ModalComponent.prototype.close = function () {
-                    this.element.style.display = "none";
-                    document.body.classList.remove("students-modal-open");
-                };
-                return ModalComponent;
-            }());
-            ModalComponent.ctorParameters = function () { return [
-                { type: _services_modal_service__WEBPACK_IMPORTED_MODULE_2__["ModalService"] },
-                { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"] }
-            ]; };
-            tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-                Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
-            ], ModalComponent.prototype, "id", void 0);
-            ModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-                Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-                    selector: "students-modal",
-                    template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./modal.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/modal/modal.component.html")).default,
-                    styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./modal.component.less */ "./src/app/components/modal/modal.component.less")).default]
-                })
-            ], ModalComponent);
-            /***/ 
-        }),
         /***/ "./src/app/components/students-list/students-list.component.less": 
         /*!***********************************************************************!*\
           !*** ./src/app/components/students-list/students-list.component.less ***!
@@ -677,52 +584,6 @@
             ];
             /***/ 
         }),
-        /***/ "./src/app/services/modal.service.ts": 
-        /*!*******************************************!*\
-          !*** ./src/app/services/modal.service.ts ***!
-          \*******************************************/
-        /*! exports provided: ModalService */
-        /***/ (function (module, __webpack_exports__, __webpack_require__) {
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalService", function () { return ModalService; });
-            /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-            /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-            var ModalService = /** @class */ (function () {
-                function ModalService() {
-                    // tslint:disable-next-line:no-any
-                    this.modals = [];
-                }
-                // tslint:disable-next-line:no-any
-                ModalService.prototype.add = function (modal) {
-                    // add modal to array of active modals
-                    this.modals.push(modal);
-                };
-                ModalService.prototype.remove = function (id) {
-                    // remove modal from array of active modals
-                    this.modals = this.modals.filter(function (x) { return x.id !== id; });
-                };
-                ModalService.prototype.open = function (id) {
-                    // open modal specified by id
-                    // tslint:disable-next-line:no-any
-                    var modal = this.modals.filter(function (x) { return x.id === id; })[0];
-                    modal.open();
-                };
-                ModalService.prototype.close = function (id) {
-                    // close modal specified by id
-                    // tslint:disable-next-line:no-any
-                    var modal = this.modals.filter(function (x) { return x.id === id; })[0];
-                    modal.close();
-                };
-                return ModalService;
-            }());
-            ModalService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-                Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-                    providedIn: "root"
-                })
-            ], ModalService);
-            /***/ 
-        }),
         /***/ "./src/app/students.module.ts": 
         /*!************************************!*\
           !*** ./src/app/students.module.ts ***!
@@ -736,9 +597,8 @@
             /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
             /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
             /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
-            /* harmony import */ var _components_modal_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/modal/modal.component */ "./src/app/components/modal/modal.component.ts");
-            /* harmony import */ var _components_students_list_students_list_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/students-list/students-list.component */ "./src/app/components/students-list/students-list.component.ts");
-            /* harmony import */ var _components_students_root_students_root_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/students-root/students-root.component */ "./src/app/components/students-root/students-root.component.ts");
+            /* harmony import */ var _components_students_list_students_list_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/students-list/students-list.component */ "./src/app/components/students-list/students-list.component.ts");
+            /* harmony import */ var _components_students_root_students_root_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/students-root/students-root.component */ "./src/app/components/students-root/students-root.component.ts");
             var StudentsModule = /** @class */ (function () {
                 function StudentsModule() {
                 }
@@ -747,16 +607,15 @@
             StudentsModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                 Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
                     declarations: [
-                        _components_students_root_students_root_component__WEBPACK_IMPORTED_MODULE_6__["StudentsRootComponent"],
-                        _components_students_list_students_list_component__WEBPACK_IMPORTED_MODULE_5__["StudentsListComponent"],
-                        _components_modal_modal_component__WEBPACK_IMPORTED_MODULE_4__["ModalComponent"],
+                        _components_students_root_students_root_component__WEBPACK_IMPORTED_MODULE_5__["StudentsRootComponent"],
+                        _components_students_list_students_list_component__WEBPACK_IMPORTED_MODULE_4__["StudentsListComponent"],
                     ],
                     imports: [
                         _angular_platform_browser__WEBPACK_IMPORTED_MODULE_3__["BrowserModule"],
                         _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                     ],
                     providers: [],
-                    bootstrap: [_components_students_root_students_root_component__WEBPACK_IMPORTED_MODULE_6__["StudentsRootComponent"]]
+                    bootstrap: [_components_students_root_students_root_component__WEBPACK_IMPORTED_MODULE_5__["StudentsRootComponent"]]
                 })
             ], StudentsModule);
             /***/ 
