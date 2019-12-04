@@ -11,6 +11,10 @@ export class StudentsListComponent implements OnInit {
   public students: Students[] = StudentsMock;
   public selectedStudents: string;
   public accentStudents: Students[];
+  public isFilter: boolean = false;
+  showFilter(filter: boolean): void {
+    this.isFilter = !filter;
+  }
   accentuation(accent: Students): void {
     if (accent.accent) {
       this.students.filter(e => {
