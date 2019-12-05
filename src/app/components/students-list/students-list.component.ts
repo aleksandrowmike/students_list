@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Students } from "../../data/students";
 import { StudentsMock } from "../../data/students-mock";
 
@@ -11,54 +11,61 @@ import { StudentsMock } from "../../data/students-mock";
 export class StudentsListComponent implements OnInit {
   public students: Students[] = StudentsMock;
   public isAccent: boolean;
-  public isFilterScore: boolean = false;
-  public isFilterDate: boolean = false;
+  private _isFilterScore: boolean = false;
+  private _isFilterDate: boolean = false;
   public selectedStudents: string;
-  accentuation(accent: boolean): void {
+  public valueScore: string;
+  public valueDate: string;
+  public accentuation(accent: boolean): void {
     this.isAccent = !accent;
   }
-  applySearch(search: string): void {
+  public resetFilter(): void {
+    this.students = StudentsMock;
+    this.valueScore = "";
+    this.valueDate = "";
+  }
+  public applySearch(search: string): void {
     this.selectedStudents = search;
   }
-  scoreFilter(score: string): void {
-    if (score !== "") {
-      this.isFilterScore = true;
-      this.students = this.students.filter(value => value.score === Number(score));
+  public scoreFilter(): void {
+    if (this.valueScore !== "") {
+      this._isFilterScore = true;
+      this.students = this.students.filter(value => value.score === Number(this.valueScore));
     } else {
-      this.isFilterScore = false;
+      this._isFilterScore = false;
     }
-    if (score === "" && this.isFilterDate === false) {
+    if (this.valueScore === "" && this._isFilterDate === false) {
       this.students = StudentsMock;
-      this.isFilterScore = false;
+      this._isFilterScore = false;
     }
   }
-  dateFilter(date: string): void {
-    if (date !== "") {
-      this.isFilterDate = true;
-      this.students = this.students.filter(value => value.birth.toDateString() === new Date(date).toDateString());
+  public dateFilter(): void {
+    if (this.valueDate !== "") {
+      this._isFilterDate = true;
+      this.students = this.students.filter(value => value.birth.toDateString() === new Date(this.valueDate).toDateString());
     } else {
-      this.isFilterDate = false;
+      this._isFilterDate = false;
     }
-    if (date === "" && this.isFilterScore === false) {
+    if (this.valueDate === "" && this._isFilterScore === false) {
       this.students = StudentsMock;
-      this.isFilterDate = false;
+      this._isFilterDate = false;
     }
   }
-  ascSort(objectKey: string): void {
-      this.students = this.students.sort(( a: Students, b: Students ): number => {
+  public ascSort(objectKey: string): void {
+      this.students = this.students.sort((a: Students, b: Students ): number => {
         if (a[objectKey] < b[objectKey]) {
           return -1;
         }
       });
   }
-  descSort(objectKey: string): void {
-    this.students = this.students.sort(( a: Students, b: Students ): number => {
+  public descSort(objectKey: string): void {
+    this.students = this.students.sort((a: Students, b: Students ): number => {
       if (a[objectKey] > b[objectKey]) {
         return -1;
       }
     });
   }
-  delete(deleteStudent: Students): void {
+  public delete(deleteStudent: Students): void {
     const isDelete = confirm("Are you sure you want to delete?");
     if (isDelete) {
       this.students = this.students.filter(student => student !== deleteStudent);

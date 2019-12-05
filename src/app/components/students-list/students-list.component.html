@@ -34,9 +34,12 @@
     <th><input #search class="students-list__input" type="text" placeholder="Search by name" (keyup)="applySearch(search.value)"></th>
     <th></th>
     <th></th>
-    <th><input #date class="students-list__input date" type="date" (keyup.enter)="dateFilter(date.value)"></th>
-    <th><input class="students-list__input" #score type="number" min="1" max="5" placeholder="Filter by score" (keyup)="scoreFilter(score.value)"></th>
-    <th><button class="students-list__button primary" (click)="accentuation(isAccent)">Accent {{isAccent ? "On" : "Off"}}</button></th>
+    <th><input class="students-list__input date" type="date" (keyup.enter)="dateFilter()" [(ngModel)]="valueDate"></th>
+    <th><input class="students-list__input" type="number" min="1" max="5" placeholder="Filter by score"  [(ngModel)]="valueScore" (keyup)="scoreFilter()"></th>
+    <th class="students-list__action">
+      <button class="students-list__button primary" (click)="resetFilter()">ResetFilter</button>
+      <button class="students-list__button primary" (click)="accentuation(isAccent)">Accent {{isAccent ? "On" : "Off"}}</button>
+    </th>
   </tr>
   <tr *ngFor="let student of students" [ngClass]="{red: student.score < 3, noAccent: isAccent}" [class.accent]="student.firstName === selectedStudents">
     <td>{{ student.id }}</td>
