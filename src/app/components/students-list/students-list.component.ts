@@ -7,60 +7,56 @@ import { StudentsMock } from "../../data/students-mock";
   templateUrl: "./students-list.component.html",
   styleUrls: ["./students-list.component.less"]
 })
+
 export class StudentsListComponent implements OnInit {
   public students: Students[] = StudentsMock;
+  public isAccent: boolean;
+  public isFilterScore: boolean = false;
+  public isFilterDate: boolean = false;
   public selectedStudents: string;
-  public accentStudents: Students[];
-  public isFilter: boolean = false;
-  showFilter(filter: boolean): void {
-    this.isFilter = !filter;
-  }
-  accentuation(accent: Students): void {
-    if (accent.accent) {
-      this.students.filter(e => {
-        if ( e === accent) {
-          e.accent = false;
-        }
-      });
-    } else {
-      this.students.filter(e => {
-        if ( e === accent) {
-          e.accent = true;
-        }
-      });
-    }
+  accentuation(accent: boolean): void {
+    this.isAccent = !accent;
   }
   applySearch(search: string): void {
     this.selectedStudents = search;
   }
   scoreFilter(score: string): void {
-    this.students = this.students.filter(value => value.score === Number(score));
-    if (score === "") {
+    if (score !== "") {
+      this.isFilterScore = true;
+      this.students = this.students.filter(value => value.score === Number(score));
+    } else {
+      this.isFilterScore = false;
+    }
+    if (score === "" && this.isFilterDate === false) {
       this.students = StudentsMock;
+      this.isFilterScore = false;
     }
   }
   dateFilter(date: string): void {
-    this.students = this.students.filter(value => value.birth.toDateString() === new Date(date).toDateString());
-    if (date === "") {
+    if (date !== "") {
+      this.isFilterDate = true;
+      this.students = this.students.filter(value => value.birth.toDateString() === new Date(date).toDateString());
+    } else {
+      this.isFilterDate = false;
+    }
+    if (date === "" && this.isFilterScore === false) {
       this.students = StudentsMock;
+      this.isFilterDate = false;
     }
   }
-  sortFirstName(sort: string): void {
-    if (sort === "ASC") {
+  ascSort(objectKey: string): void {
       this.students = this.students.sort(( a: Students, b: Students ): number => {
-        if (a.firstName < b.firstName) {
+        if (a[objectKey] < b[objectKey]) {
           return -1;
         }
       });
-    }
-    if (sort === "DESC") {
-      this.students = this.students.sort(( a: Students, b: Students ): number => {
-        if (a.firstName < b.firstName) {
-          return -1;
-        }
-      });
-      this.students = this.students.reverse();
-    }
+  }
+  descSort(objectKey: string): void {
+    this.students = this.students.sort(( a: Students, b: Students ): number => {
+      if (a[objectKey] > b[objectKey]) {
+        return -1;
+      }
+    });
   }
   sortLastName(sort: string): void {
     if (sort === "ASC") {
@@ -150,17 +146,11 @@ export class StudentsListComponent implements OnInit {
       this.students.reverse();
     }
   }
-  delete(student: Students): void {
+  delete(deleteStudent: Students): void {
     const isDelete = confirm("Are you sure you want to delete?");
     if (isDelete) {
-      this.students = this.students.filter(e => e !== student);
+      this.students = this.students.filter(student => student !== deleteStudent);
     }
   }
-  ngOnInit(): void {
-    this.students.filter(e => {
-      if (e.score > 3) {
-        e.accent = true;
-      }
-    });
-  }
+  ngOnInit(): void {}
 }

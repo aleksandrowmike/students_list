@@ -1,43 +1,44 @@
 <table class="students-list">
   <tr class="students-list__head">
     <th class="">ID
-      <span class="students-list__filter" (click)="sortID('ASC')">&#9650;</span>
-      <span class="students-list__filter" (click)="sortID('DESC')">&#9660;</span>
+      <span class="students-list__filter" (click)="ascSort('id')">&#9650;</span>
+      <span class="students-list__filter" (click)="descSort('id')">&#9660;</span>
     </th>
     <th>
       First name
-      <span class="students-list__filter" (click)="sortFirstName('ASC')">&#9650;</span>
-      <span class="students-list__filter" (click)="sortFirstName('DESC')">&#9660;</span>
+      <span class="students-list__filter" (click)="ascSort('firstName')">&#9650;</span>
+      <span class="students-list__filter" (click)="descSort('firstName')">&#9660;</span>
     </th>
     <th>Last name
-      <span class="students-list__filter" (click)="sortLastName('ASC')">&#9650;</span>
-      <span class="students-list__filter" (click)="sortLastName('DESC')">&#9660;</span>
+      <span class="students-list__filter" (click)="ascSort('lastName')">&#9650;</span>
+      <span class="students-list__filter" (click)="descSort('lastName')">&#9660;</span>
     </th>
     <th>Middle name
-      <span class="students-list__filter" (click)="sortMiddleName('ASC')">&#9650;</span>
-      <span class="students-list__filter" (click)="sortMiddleName('DESC')">&#9660;</span>
+      <span class="students-list__filter" (click)="ascSort('middleName')">&#9650;</span>
+      <span class="students-list__filter" (click)="descSort('middleName')">&#9660;</span>
     </th>
     <th>
       Date of Birth
-      <span class="students-list__filter" (click)="sortBirth('ASC')">&#9650;</span>
-      <span class="students-list__filter" (click)="sortBirth('DESC')">&#9660;</span>
+      <span class="students-list__filter" (click)="ascSort('birth')">&#9650;</span>
+      <span class="students-list__filter" (click)="descSort('birth')">&#9660;</span>
     </th>
     <th>
       Average score
-      <span class="students-list__filter" (click)="sortScore('ASC')">&#9650;</span>
-      <span class="students-list__filter" (click)="sortScore('DESC')">&#9660;</span>
+      <span class="students-list__filter" (click)="ascSort('score')">&#9650;</span>
+      <span class="students-list__filter" (click)="descSort('score')">&#9660;</span>
     </th>
-    <th>Action <button class="students-list__button primary" (click)="showFilter(isFilter)">{{ isFilter ? 'Hide': 'Show'}} filter</button></th>
+    <th>Action</th>
   </tr>
-  <tr *ngIf="isFilter">
+  <tr>
     <th></th>
     <th><input #search class="students-list__input" type="text" placeholder="Search by name" (keyup)="applySearch(search.value)"></th>
     <th></th>
     <th></th>
     <th><input #date class="students-list__input date" type="date" (keyup.enter)="dateFilter(date.value)"></th>
     <th><input class="students-list__input" #score type="number" min="1" max="5" placeholder="Filter by score" (keyup)="scoreFilter(score.value)"></th>
+    <th><button class="students-list__button primary" (click)="accentuation(isAccent)">Accent {{isAccent ? "On" : "Off"}}</button></th>
   </tr>
-  <tr #elStudents *ngFor="let student of students" [class.red]="student.accent ? false: true" [class.accent]="student.firstName === selectedStudents">
+  <tr *ngFor="let student of students" [ngClass]="{red: student.score < 3, noAccent: isAccent}" [class.accent]="student.firstName === selectedStudents">
     <td>{{ student.id }}</td>
     <td>{{ student.firstName }}</td>
     <td>{{ student.lastName }}</td>
@@ -45,7 +46,6 @@
     <td>{{ student.birth | date }}</td>
     <td>{{ student.score }}</td>
     <td>
-      <button class="students-list__button primary" (click)="accentuation(student)">Accent</button>
       <button class="students-list__button delete" (click)="delete(student)">Delete</button>
     </td>
   </tr>
