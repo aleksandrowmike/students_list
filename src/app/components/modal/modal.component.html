@@ -1,0 +1,33 @@
+<div class="modal" [class.visible]="show">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">{{ title }}</h3>
+        <a title="Close" class="close" (click)="hideModal()">×</a>
+      </div>
+      <div class="modal-body">
+        <form novalidate [formGroup]="formStudent" class="edit-student" (ngSubmit)="submitForm()">
+          <div class="form-group" formGroupName="name">
+            <label>Fist name</label>
+            <input class="form-control" name="firstName" formControlName="firstName"/>
+            <label>Last name</label>
+            <input class="form-control" name="firstName" formControlName="lastName"/>
+            <label>Middle name</label>
+            <input class="form-control" name="firstName" formControlName="middleName"/>
+          </div>
+          <div class="error" *ngIf="isControlInvalid('name')">
+            First name, Last name and Middle name must not match
+          </div>
+          <label>Date of Birth </label>
+          <input class="form-control" type="date" name="birth" formControlName="birth"/>
+          <div class="error" *ngIf="isControlInvalid('birth')">
+            Date of birth should be no more than {{ currentDate }}
+          </div>
+          <label>Average score </label>
+          <input class="form-control" name="score" formControlName="score"/>
+          <input type="submit" class="button primary" formControlName="button">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

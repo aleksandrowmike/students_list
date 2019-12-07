@@ -10,12 +10,31 @@ import { StudentsMock } from "../../data/students-mock";
 
 export class StudentsListComponent implements OnInit {
   public students: Students[] = StudentsMock;
+  public countStudents: number = this.students.length;
   public isAccent: boolean;
+  public action: string;
   private _isFilterScore: boolean = false;
   private _isFilterDate: boolean = false;
+  public student: Students;
+  public isDisplayed: boolean;
   public selectedStudents: string;
   public valueScore: string;
   public valueDate: string;
+  public hideModal(displayed: boolean): void {
+    this.isDisplayed = displayed;
+  }
+  public editStudent(student: Students, displayed: boolean): void {
+    this.student  = student;
+    this.isDisplayed = !displayed;
+    this.action = "edit";
+  }
+  public addModal(displayed: boolean): void {
+    this.isDisplayed = !displayed;
+    this.action = "add";
+  }
+  public addStudent(student: Students): void {
+    this.students.push(student);
+  }
   public accentuation(accent: boolean): void {
     this.isAccent = !accent;
   }

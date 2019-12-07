@@ -30,7 +30,7 @@
     <th>Action</th>
   </tr>
   <tr>
-    <th></th>
+    <th><button class="students-list__button primary" (click)="addModal(isDisplayed)">Add</button></th>
     <th><input #search class="students-list__input" type="text" placeholder="Search by name" (keyup)="applySearch(search.value)"></th>
     <th></th>
     <th></th>
@@ -49,8 +49,10 @@
     <td>{{ student.birth | date }}</td>
     <td>{{ student.score }}</td>
     <td>
+      <button class="students-list__button primary" (click)="editStudent(student, isDisplayed)">Edit</button>
       <button class="students-list__button delete" (click)="delete(student)">Delete</button>
     </td>
   </tr>
 </table>
 
+<modal *ngIf="isDisplayed" [count]="countStudents" [action]="action" [data]="student" (hideModalEmmit)="hideModal($event)" (newStudent)="addStudent($event)"></modal>
