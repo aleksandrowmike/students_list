@@ -25,6 +25,22 @@ export class StudentValidatorsService {
       }
       return { invalidName: "Invalid Name" };
     }
+    if (firstName === middleName) {
+      group.controls["firstName"].setErrors({nameValidator: true});
+      group.controls["middleName"].setErrors({nameValidator: true});
+      if (firstName === lastName || lastName === middleName) {
+        group.controls["middleName"].setErrors({nameValidator: true});
+      }
+      return { invalidName: "Invalid Name" };
+    }
+    if (lastName === middleName) {
+      group.controls["lastName"].setErrors({nameValidator: true});
+      group.controls["middleName"].setErrors({nameValidator: true});
+      if (firstName === lastName || lastName === middleName) {
+        group.controls["middleName"].setErrors({nameValidator: true});
+      }
+      return { invalidName: "Invalid Name" };
+    }
     return null;
   }
 }
