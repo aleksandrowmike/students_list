@@ -28,7 +28,8 @@ export class ModalComponent implements OnInit {
   public convertDate(date: Date): string {
     const month = this.data.birth.getMonth() + 1;
     const stMonth: string = (month < 10) ? "0" + month : month.toString();
-    return date.getFullYear() + "-" + stMonth + "-" + date.getDate();
+    const stDay: string = (date.getDate() < 10) ? "0" + date.getDate() : date.getDate().toString();
+    return date.getFullYear() + "-" + stMonth + "-" + stDay;
   }
   public initEditStudentForm(): void {
    this.formStudent = new FormGroup({
@@ -85,6 +86,7 @@ export class ModalComponent implements OnInit {
   }
   ngOnInit(): void {
     if (this.action === "edit") {
+      console.log(this.convertDate(this.data.birth));
       this.show = true;
       this.title = "Edit " + this.data.firstName + " " + this.data.lastName;
       this.initEditStudentForm();
