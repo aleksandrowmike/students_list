@@ -46,8 +46,8 @@
               },
               "outputHashing": "all",
               "sourceMap": {
-                "scripts": true,
-                "styles": true
+                "scripts": false,
+                "styles": false
               },
               "extractCss": true,
               "namedChunks": false,

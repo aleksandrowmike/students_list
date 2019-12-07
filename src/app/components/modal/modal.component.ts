@@ -26,8 +26,9 @@ export class ModalComponent implements OnInit {
     return result;
   }
   public convertDate(date: Date): string {
-    const month = (this.data.birth.getMonth() === 11 || this.data.birth.getMonth() === 0) ? this.data.birth.getMonth() + 1 : this.data.birth.getMonth();
-    return date.getFullYear() + "-" + month + "-" + date.getDate();
+    const month = this.data.birth.getMonth() + 1;
+    const stMonth: string = (month < 10) ? "0" + month : month.toString();
+    return date.getFullYear() + "-" + stMonth + "-" + date.getDate();
   }
   public initEditStudentForm(): void {
    this.formStudent = new FormGroup({
