@@ -61,7 +61,7 @@ export class ModalComponent implements OnInit {
         .forEach(controlName => controls[controlName].markAsTouched());
       return;
     }
-    if (this.data === undefined) {
+    if (this.data === null) {
       this.data = {
         id: this.count + 1,
         birth: new Date(this.formStudent.value.birth),
@@ -90,6 +90,7 @@ export class ModalComponent implements OnInit {
       this.initEditStudentForm();
     }
     if (this.action === "add") {
+      this.data = null;
       this.show = true;
       this.title = "Add new student";
       this.initAddStudentForm();
