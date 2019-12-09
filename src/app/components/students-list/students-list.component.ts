@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { IEvents } from "../../data/i-events";
 import { Students } from "../../data/students";
 import { StudentsMock } from "../../data/students-mock";
 
@@ -12,7 +13,7 @@ export class StudentsListComponent implements OnInit {
   public students: Students[] = StudentsMock;
   public countStudents: number = this.students.length;
   public isAccent: boolean;
-  public action: string;
+  public action: IEvents;
   private _isFilterScore: boolean = false;
   private _isFilterDate: boolean = false;
   public student: Students;
@@ -26,11 +27,11 @@ export class StudentsListComponent implements OnInit {
   public editStudent(student: Students, displayed: boolean): void {
     this.student  = student;
     this.isDisplayed = !displayed;
-    this.action = "edit";
+    this.action = IEvents.Edit;
   }
   public addModal(displayed: boolean): void {
     this.isDisplayed = !displayed;
-    this.action = "add";
+    this.action = IEvents.Add;
   }
   public addStudent(student: Students): void {
     this.students.push(student);
@@ -84,10 +85,14 @@ export class StudentsListComponent implements OnInit {
       }
     });
   }
-  public delete(deleteStudent: Students): void {
-    const isDelete = confirm("Are you sure you want to delete?");
-    if (isDelete) {
-      this.students = this.students.filter(student => student !== deleteStudent);
+  public deleteConfirmation(deleteStudent: Students, displayed: boolean): void {
+    this.student  = deleteStudent;
+    this.isDisplayed = !displayed;
+    this.action = IEvents.Confirmation;
+  }
+  public delete(confirmation: boolean): void {
+    if (confirmation) {
+      this.students = this.students.filter(student => student !== this.student);
     }
   }
   ngOnInit(): void {}

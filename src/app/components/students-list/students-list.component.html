@@ -50,9 +50,17 @@
     <td>{{ student.score }}</td>
     <td>
       <button class="students-list__button primary" (click)="editStudent(student, isDisplayed)">Edit</button>
-      <button class="students-list__button delete" (click)="delete(student)">Delete</button>
+      <button class="students-list__button delete" (click)="deleteConfirmation(student, isDisplayed)">Delete</button>
     </td>
   </tr>
 </table>
 
-<modal *ngIf="isDisplayed" [count]="countStudents" [action]="action" [data]="student" (hideModalEmmit)="hideModal($event)" (newStudent)="addStudent($event)"></modal>
+<modal *ngIf="isDisplayed"
+       [count]="countStudents"
+       [action]="action"
+       [data]="student"
+       (hideModalEmmit)="hideModal($event)"
+       (newStudent)="addStudent($event)"
+       (returnConfirmation)="delete($event)"
+>
+</modal>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { IEvents } from "../../data/i-events";
 import { Students } from "../../data/students";
 import { StudentValidatorsService } from "../../services/student-validators.service";
 
@@ -13,17 +14,17 @@ export class ModalComponent implements OnInit {
   public show: boolean;
   public formStudent: FormGroup;
   public currentDate = new Date().getFullYear() - 10;
-  @Input() action: string;
+  @Input() action: IEvents;
   @Input() data: Students;
   @Input() count: number;
   @Output() hideModalEmmit = new EventEmitter<boolean>();
   @Output() newStudent = new EventEmitter<Students>();
+  @Output() returnConfirmation = new EventEmitter<boolean>();
   constructor(private StudentValidators: StudentValidatorsService) {
   }
   public isControlInvalid(controlName: string): boolean {
-    const control = this.formStudent.controls[controlName];
-    const result = control.invalid && control.touched;
-    return result;
+    const control = this.formStudent.get(controlName);
+    return control.invalid && control.touched;
   }
   public convertDate(date: Date): string {
     const month = this.data.birth.getMonth() + 1;
@@ -34,13 +35,12 @@ export class ModalComponent implements OnInit {
   public initEditStudentForm(): void {
    this.formStudent = new FormGroup({
      name: new FormGroup({
-       firstName: new FormControl(this.data.firstName, [Validators.required]),
-       lastName: new FormControl(this.data.lastName, [Validators.required]),
-       middleName: new FormControl(this.data.middleName, [Validators.required])
-     }, [this.StudentValidators.nameValidator]),
+       firstName: new FormControl(this.data.firstName),
+       lastName: new FormControl(this.data.lastName),
+       middleName: new FormControl(this.data.middleName)
+     }, [this.StudentValidators.nameValidator, Validators.required]),
      birth: new FormControl(this.convertDate(this.data.birth), [Validators.required, this.StudentValidators.dateValidator]),
-     score: new FormControl(this.data.score, [Validators.required]),
-     button: new FormControl("Edit student")
+     score: new FormControl(this.data.score, [Validators.required])
    });
   }
   public initAddStudentForm(): void {
@@ -51,8 +51,7 @@ export class ModalComponent implements OnInit {
         middleName: new FormControl("", [Validators.required])
       }, [this.StudentValidators.nameValidator]),
       birth: new FormControl("", [Validators.required, this.StudentValidators.dateValidator]),
-      score: new FormControl("", [Validators.required]),
-      button: new FormControl("Add student")
+      score: new FormControl("", [Validators.required])
     });
   }
   public submitForm(): void {
@@ -84,18 +83,34 @@ export class ModalComponent implements OnInit {
     this.hideModalEmmit.emit(false);
     this.show = false;
   }
+  public confirmation(): void {
+    this.returnConfirmation.emit(true);
+    this.hideModal();
+  }
+  private _action(event: IEvents): void {
+    switch (event) {
+      case IEvents.Add: {
+        this.data = null;
+        this.title = "Add new student";
+        this.initAddStudentForm();
+        break;
+      }
+      case IEvents.Edit: {
+        this.title = "Edit " + this.data.firstName + " " + this.data.lastName;
+        this.initEditStudentForm();
+        break;
+      }
+      case IEvents.Confirmation: {
+        this.title = "Confirmation";
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  }
   ngOnInit(): void {
-    if (this.action === "edit") {
-      console.log(this.convertDate(this.data.birth));
-      this.show = true;
-      this.title = "Edit " + this.data.firstName + " " + this.data.lastName;
-      this.initEditStudentForm();
-    }
-    if (this.action === "add") {
-      this.data = null;
-      this.show = true;
-      this.title = "Add new student";
-      this.initAddStudentForm();
-    }
+    this.show = true;
+    this._action(this.action);
   }
 }

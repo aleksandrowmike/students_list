@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { EditModalComponent } from './modal.component';
+import { EditModalComponent } from "./modal.component";
 
-describe('EditModalComponent', () => {
+describe("EditModalComponent", () => {
   let component: EditModalComponent;
   let fixture: ComponentFixture<EditModalComponent>;
 
@@ -19,7 +19,7 @@ describe('EditModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

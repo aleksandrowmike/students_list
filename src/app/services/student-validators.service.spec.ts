@@ -1,11 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { StudentValidatorsService } from './student-validators.service';
+import { StudentValidatorsService } from "./student-validators.service";
 
-describe('StudentValidatorsService', () => {
+describe("StudentValidatorsService", () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: StudentValidatorsService = TestBed.get(StudentValidatorsService);
     expect(service).toBeTruthy();
   });
