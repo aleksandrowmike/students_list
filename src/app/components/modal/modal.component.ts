@@ -35,10 +35,10 @@ export class ModalComponent implements OnInit {
   public initEditStudentForm(): void {
    this.formStudent = new FormGroup({
      name: new FormGroup({
-       firstName: new FormControl(this.data.firstName),
-       lastName: new FormControl(this.data.lastName),
-       middleName: new FormControl(this.data.middleName)
-     }, [this.StudentValidators.nameValidator, Validators.required]),
+       firstName: new FormControl(this.data.firstName, [Validators.required]),
+       lastName: new FormControl(this.data.lastName, [Validators.required]),
+       middleName: new FormControl(this.data.middleName, [Validators.required])
+     }, [this.StudentValidators.nameValidator]),
      birth: new FormControl(this.convertDate(this.data.birth), [Validators.required, this.StudentValidators.dateValidator]),
      score: new FormControl(this.data.score, [Validators.required])
    });
