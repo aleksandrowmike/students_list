@@ -1,31 +1,28 @@
 <table class="students-list">
   <tr class="students-list__head">
-    <th class="">ID
-      <span class="students-list__filter" (click)="ascSort('id')">&#9650;</span>
-      <span class="students-list__filter" (click)="descSort('id')">&#9660;</span>
+    <th sorting="id" [students]="this.students">ID
+      <span class="unvisibility">&#9650;</span>
+      <span class="unvisibility">&#9660;</span>
     </th>
-    <th>
-      First name
-      <span class="students-list__filter" (click)="ascSort('firstName')">&#9650;</span>
-      <span class="students-list__filter" (click)="descSort('firstName')">&#9660;</span>
+    <th sorting="firstName" [students]="this.students">First name
+      <span class="unvisibility">&#9650;</span>
+      <span class="unvisibility">&#9660;</span>
     </th>
-    <th>Last name
-      <span class="students-list__filter" (click)="ascSort('lastName')">&#9650;</span>
-      <span class="students-list__filter" (click)="descSort('lastName')">&#9660;</span>
+    <th sorting="lastName" [students]="this.students">Last name
+      <span class="unvisibility">&#9650;</span>
+      <span class="unvisibility">&#9660;</span>
     </th>
-    <th>Middle name
-      <span class="students-list__filter" (click)="ascSort('middleName')">&#9650;</span>
-      <span class="students-list__filter" (click)="descSort('middleName')">&#9660;</span>
+    <th sorting="middleName" [students]="this.students">Middle name
+      <span class="unvisibility">&#9650;</span>
+      <span class="unvisibility">&#9660;</span>
     </th>
-    <th>
-      Date of Birth
-      <span class="students-list__filter" (click)="ascSort('birth')">&#9650;</span>
-      <span class="students-list__filter" (click)="descSort('birth')">&#9660;</span>
+    <th sorting="birth" [students]="this.students">Date of Birth
+      <span class="unvisibility">&#9650;</span>
+      <span class="unvisibility">&#9660;</span>
     </th>
-    <th>
-      Average score
-      <span class="students-list__filter" (click)="ascSort('score')">&#9650;</span>
-      <span class="students-list__filter" (click)="descSort('score')">&#9660;</span>
+    <th sorting="score" [students]="this.students">Average score
+      <span class="unvisibility">&#9650;</span>
+      <span class="unvisibility">&#9660;</span>
     </th>
     <th>Action</th>
   </tr>

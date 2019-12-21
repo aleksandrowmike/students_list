@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { IEvents } from "../../data/i-events";
 import { Students } from "../../data/students";
@@ -6,6 +6,7 @@ import { StudentValidatorsService } from "../../services/student-validators.serv
 
 @Component({
   selector: "modal",
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./modal.component.html",
   styleUrls: ["./modal.component.less"]
 })

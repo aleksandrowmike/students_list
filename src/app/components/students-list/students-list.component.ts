@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { IEvents } from "../../data/i-events";
 import { Students } from "../../data/students";
 import { StudentsMock } from "../../data/students-mock";
 
 @Component({
   selector: "students-list",
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./students-list.component.html",
   styleUrls: ["./students-list.component.less"]
 })
@@ -70,20 +71,6 @@ export class StudentsListComponent implements OnInit {
       this.students = StudentsMock;
       this._isFilterDate = false;
     }
-  }
-  public ascSort(objectKey: string): void {
-      this.students = this.students.sort((a: Students, b: Students ): number => {
-        if (a[objectKey] < b[objectKey]) {
-          return -1;
-        }
-      });
-  }
-  public descSort(objectKey: string): void {
-    this.students = this.students.sort((a: Students, b: Students ): number => {
-      if (a[objectKey] > b[objectKey]) {
-        return -1;
-      }
-    });
   }
   public deleteConfirmation(deleteStudent: Students, displayed: boolean): void {
     this.student  = deleteStudent;
