@@ -1,23 +1,16 @@
 import { NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
+import { StTable } from "./modules/table/st-table.module";
 
-import { ModalComponent } from "./components/modal/modal.component";
-import { StudentsListComponent } from "./components/students-list/students-list.component";
 import { StudentsRootComponent } from "./components/students-root/students-root.component";
-import { SortingDirective } from "./directives/sorting.directive";
 
 @NgModule({
   declarations: [
     StudentsRootComponent,
-    StudentsListComponent,
-    ModalComponent,
-    SortingDirective,
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
-    FormsModule,
+    StTable,
   ],
   providers: [],
   bootstrap: [StudentsRootComponent]

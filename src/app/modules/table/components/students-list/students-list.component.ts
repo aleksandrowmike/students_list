@@ -1,18 +1,18 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { IEvents } from "../../data/i-events";
-import { Students } from "../../data/students";
-import { StudentsMock } from "../../data/students-mock";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from "@angular/core";
+import { IEvents } from "../../../../data/i-events";
+import { Students } from "../../../../data/students";
 
 @Component({
-  selector: "students-list",
+  selector: "st-table",
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./students-list.component.html",
   styleUrls: ["./students-list.component.less"]
 })
 
 export class StudentsListComponent implements OnInit {
-  public students: Students[] = StudentsMock;
-  public countStudents: number = this.students.length;
+  @Input() source: Students[];
+  public students: Students[];
+  public countStudents: number;
   public isAccent: boolean;
   public action: IEvents;
   private _isFilterScore: boolean = false;
@@ -41,7 +41,7 @@ export class StudentsListComponent implements OnInit {
     this.isAccent = !accent;
   }
   public resetFilter(): void {
-    this.students = StudentsMock;
+    this.students = this.source;
     this.valueScore = "";
     this.valueDate = "";
   }
@@ -56,7 +56,7 @@ export class StudentsListComponent implements OnInit {
       this._isFilterScore = false;
     }
     if (this.valueScore === "" && this._isFilterDate === false) {
-      this.students = StudentsMock;
+      this.students = this.source;
       this._isFilterScore = false;
     }
   }
@@ -68,7 +68,7 @@ export class StudentsListComponent implements OnInit {
       this._isFilterDate = false;
     }
     if (this.valueDate === "" && this._isFilterScore === false) {
-      this.students = StudentsMock;
+      this.students = this.source;
       this._isFilterDate = false;
     }
   }
@@ -82,5 +82,8 @@ export class StudentsListComponent implements OnInit {
       this.students = this.students.filter(student => student !== this.student);
     }
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.students = this.source;
+    this.countStudents = this.source.length;
+  }
 }

@@ -28,11 +28,17 @@
   </tr>
   <tr>
     <th><button class="students-list__button primary" (click)="addModal(isDisplayed)">Add</button></th>
-    <th><input #search class="students-list__input" type="text" placeholder="Search by name" (keyup)="applySearch(search.value)"></th>
+    <th><label>
+      <input #search class="students-list__input" type="text" placeholder="Search by name" (keyup)="applySearch(search.value)">
+    </label></th>
     <th></th>
     <th></th>
-    <th><input class="students-list__input date" type="date" (keyup.enter)="dateFilter()" [(ngModel)]="valueDate"></th>
-    <th><input class="students-list__input" type="number" min="1" max="5" placeholder="Filter by score"  [(ngModel)]="valueScore" (keyup)="scoreFilter()"></th>
+    <th><label>
+      <input class="students-list__input date" type="date" (keyup.enter)="dateFilter()" [(ngModel)]="valueDate">
+    </label></th>
+    <th><label>
+      <input class="students-list__input" type="number" min="1" max="5" placeholder="Filter by score"  [(ngModel)]="valueScore" (keyup)="scoreFilter()">
+    </label></th>
     <th class="students-list__action">
       <button class="students-list__button primary" (click)="resetFilter()">ResetFilter</button>
       <button class="students-list__button primary" (click)="accentuation(isAccent)">Accent {{isAccent ? "On" : "Off"}}</button>
@@ -61,3 +67,4 @@
        (returnConfirmation)="delete($event)"
 >
 </modal>
+

@@ -1,5 +1,5 @@
 import { AfterViewInit, Attribute, Directive, ElementRef, HostListener, Input } from "@angular/core";
-import { Students } from "../data/students";
+import { Students } from "../../../data/students";
 
 enum Sort {
   ASC,

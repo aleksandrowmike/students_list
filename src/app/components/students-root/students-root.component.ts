@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { Students } from "../../data/students";
+import { StudentsMock } from "../../data/students-mock";
 
 @Component({
   selector: "students-root",
@@ -6,5 +8,5 @@ import { Component } from "@angular/core";
   styleUrls: ["./students-root.component.less"]
 })
 export class StudentsRootComponent {
-  name: string;
+  public mockStudents: Students[] = StudentsMock;
 }
