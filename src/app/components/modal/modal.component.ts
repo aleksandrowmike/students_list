@@ -41,7 +41,7 @@ export class ModalComponent implements OnInit {
        middleName: new FormControl(this.data.middleName, [Validators.required])
      }, [this.StudentValidators.nameValidator]),
      birth: new FormControl(this.convertDate(this.data.birth), [Validators.required, this.StudentValidators.dateValidator]),
-     score: new FormControl(this.data.score, [Validators.required])
+     score: new FormControl(this.data.score, [Validators.required, Validators.min(1), Validators.max(5)])
    });
   }
   public initAddStudentForm(): void {
@@ -52,7 +52,7 @@ export class ModalComponent implements OnInit {
         middleName: new FormControl("", [Validators.required])
       }, [this.StudentValidators.nameValidator]),
       birth: new FormControl("", [Validators.required, this.StudentValidators.dateValidator]),
-      score: new FormControl("", [Validators.required])
+      score: new FormControl("", [Validators.required, Validators.min(1), Validators.max(5)])
     });
   }
   public submitForm(): void {

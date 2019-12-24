@@ -42,9 +42,15 @@
           </div>
           <div class="form-control">
             <label>Average score </label>
-            <input class="form-control" name="score" formControlName="score"/>
+            <input type="number" max="5" min="1" class="form-control" name="score" formControlName="score"/>
             <span class="tooltiptext" *ngIf="isControlInvalid('score')">
               Average score is required
+            </span>
+            <span class="tooltiptext" *ngIf="this.formStudent.get('score').hasError('min')">
+             Minimum value 1
+            </span>
+            <span class="tooltiptext" *ngIf="this.formStudent.get('score').hasError('max')">
+             Maximum value 5
             </span>
           </div>
           <button type="submit" class="button primary"> Send </button>

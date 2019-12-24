@@ -1,4 +1,4 @@
-import { AfterViewInit, Attribute, Directive, ElementRef, HostListener, Input } from "@angular/core";
+import {Attribute, Directive, ElementRef, HostListener, Input } from "@angular/core";
 import { Students } from "../../../data/students";
 
 enum Sort {
@@ -10,12 +10,13 @@ enum Sort {
   selector: "[sorting]"
 })
 
-export class SortingDirective implements AfterViewInit  {
+export class SortingDirective {
   private _numberOfClicks = 0;
   private _childElement: ElementRef;
   private readonly _sortField: string;
   constructor(@Attribute("sorting") sortField: string, private el: ElementRef) {
     this._sortField = sortField;
+    this._childElement = this.el.nativeElement.childNodes;
   }
   @Input() students: Students[];
   @HostListener("click") onClick(): void {
@@ -47,8 +48,5 @@ export class SortingDirective implements AfterViewInit  {
         break;
       }
     }
-  }
-  ngAfterViewInit(): void {
-    this._childElement = this.el.nativeElement.childNodes;
   }
 }

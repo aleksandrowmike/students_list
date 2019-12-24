@@ -12,6 +12,8 @@ import { Students } from "../../../../data/students";
 export class StudentsListComponent implements OnInit {
   @Input() source: Students[];
   public students: Students[];
+  private _newStudentsList: Students[];
+  private _filteredStudents: Students[];
   public countStudents: number;
   public isAccent: boolean;
   public action: IEvents;
@@ -41,7 +43,7 @@ export class StudentsListComponent implements OnInit {
     this.isAccent = !accent;
   }
   public resetFilter(): void {
-    this.students = this.source;
+    this.students = this.source.filter(student => student !== this.student);
     this.valueScore = "";
     this.valueDate = "";
   }
@@ -49,14 +51,14 @@ export class StudentsListComponent implements OnInit {
     this.selectedStudents = search;
   }
   public scoreFilter(): void {
-    if (this.valueScore !== "") {
+    if (this.valueScore !== null) {
       this._isFilterScore = true;
       this.students = this.students.filter(value => value.score === Number(this.valueScore));
     } else {
       this._isFilterScore = false;
     }
-    if (this.valueScore === "" && this._isFilterDate === false) {
-      this.students = this.source;
+    if (this.valueScore === null && this._isFilterDate === false) {
+      this.students = this.source.filter(student => student !== this.student);
       this._isFilterScore = false;
     }
   }
@@ -68,7 +70,7 @@ export class StudentsListComponent implements OnInit {
       this._isFilterDate = false;
     }
     if (this.valueDate === "" && this._isFilterScore === false) {
-      this.students = this.source;
+      this.students = this.source.filter(student => student !== this.student);
       this._isFilterDate = false;
     }
   }
