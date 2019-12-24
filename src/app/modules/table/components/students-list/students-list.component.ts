@@ -69,7 +69,7 @@ export class StudentsListComponent implements OnInit {
     } else {
       this._isFilterDate = false;
     }
-    if (this.valueDate === "" && this._isFilterScore === false) {
+    if (this.valueDate === null && this._isFilterScore === false) {
       this.students = this.source.filter(student => student !== this.student);
       this._isFilterDate = false;
     }
