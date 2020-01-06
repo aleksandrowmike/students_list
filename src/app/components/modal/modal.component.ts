@@ -88,6 +88,7 @@ export class ModalComponent implements OnInit {
     }
     if (this.data === null) {
       this.data = {
+        _id: "5e12bd9ffc13ae725b0000" + this.count,
         id: this.count + 1,
         birth: new Date(this.formStudent.value.birth),
         score: this.formStudent.value.score,
