@@ -1,12 +1,10 @@
-import { Component } from "@angular/core";
-import { Students } from "../../data/students";
-import { StudentsMock } from "../../data/students-mock";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "students-root",
   templateUrl: "./students-root.component.html",
   styleUrls: ["./students-root.component.less"]
 })
-export class StudentsRootComponent {
-  public mockStudents: Students[] = StudentsMock;
+export class StudentsRootComponent implements OnInit {
+  ngOnInit(): void {}
 }
