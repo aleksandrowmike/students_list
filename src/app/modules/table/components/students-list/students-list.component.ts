@@ -124,7 +124,11 @@ export class StudentsListComponent implements OnInit, AfterViewChecked {
     }
   }
   private _reloadStudents(): void {
-   this.dataService.getStudents().subscribe(data => this.students = data);
+   this.dataService.getStudents().subscribe(data => this.students = data, error => {
+     this.notificationShow = true;
+     this.notificationCode = "error";
+     this.notificationMessage = error.statusText;
+   });
   }
   ngOnInit(): void {
     this._reloadStudents();
