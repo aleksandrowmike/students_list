@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { IData } from "../../data/i-data";
 import { IEvents } from "../../data/i-events";
 import { IStudents } from "../../data/students";
 import { DataService } from "../../services/data.service";
-import { StudentValidatorsService } from "../../services/student-validators.service";
 import { StudentsService } from "../../services/students.service";
-import { HttpDataService } from "../../services/students/http-data.service";
-import { InMemoryDataService } from "../../services/students/in-memory-data.service";
+import { StudentValidatorsService } from "../../services/validators/student-validators.service";
 
 @Component({
   selector: "modal",
@@ -26,7 +25,7 @@ export class ModalComponent implements OnInit {
   public data: IStudents = {__v: 0, _id: "", birth: undefined, firstName: "", id: 0, lastName: "", middleName: "", score: 0};
   public count: number;
   constructor(private StudentValidators: StudentValidatorsService,
-              @Inject(DataService) private dataService: HttpDataService | InMemoryDataService,
+              @Inject(DataService) private dataService: IData,
               private router: Router,
               private activatedRoute: ActivatedRoute,
               private studentsService: StudentsService,
@@ -97,7 +96,7 @@ export class ModalComponent implements OnInit {
         middleName: this.formStudent.value.name.middleName
       };
       this.hideModal();
-      return true;
+      this.confirm = true;
     }
     this.data.birth = new Date(this.formStudent.value.birth);
     this.data.score = this.formStudent.value.score;
@@ -105,10 +104,11 @@ export class ModalComponent implements OnInit {
     this.data.lastName = this.formStudent.value.name.lastName;
     this.data.middleName = this.formStudent.value.name.middleName;
     this.hideModal();
-    return true;
+    this.confirm = true;
   }
   public hideModal(): void {
     this.studentsService.debug() ? this.router.navigate([""], {queryParams: {debug: true}}) : this.router.navigate([""]);
+    this.confirm = false;
   }
   public confirmation(): void {
     this.confirm = !this.confirm;

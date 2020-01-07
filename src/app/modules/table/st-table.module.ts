@@ -13,7 +13,6 @@ import { SortingDirective } from "./directives/sorting.directive";
     StudentsListComponent,
     SortingDirective,
     ModalComponent,
-    NotificationsComponent,
   ],
     imports: [
         FormsModule,
@@ -21,9 +20,9 @@ import { SortingDirective } from "./directives/sorting.directive";
         ReactiveFormsModule,
         RouterModule,
     ],
-  exports: [
-    StudentsListComponent,
-  ],
+    exports: [
+        StudentsListComponent,
+    ],
   providers: [],
 })
 export class StTable { }

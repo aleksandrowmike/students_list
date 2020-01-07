@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { ModalComponent } from "./components/modal/modal.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { StudentsListComponent } from "./modules/table/components/students-list/students-list.component";
-import { EditGuardService } from "./services/edit-guard.service";
+import { EditGuardService } from "./services/guards/edit-guard.service";
 
 const childRoutes: Routes = [
   { path: "add", component: ModalComponent },

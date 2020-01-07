@@ -1,12 +1,11 @@
-import { AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ModalComponent } from "../../../../components/modal/modal.component";
+import { IData } from "../../../../data/i-data";
 import { IEvents } from "../../../../data/i-events";
 import { IStudents } from "../../../../data/students";
 import { DataService } from "../../../../services/data.service";
 import { StudentsService } from "../../../../services/students.service";
-import { HttpDataService } from "../../../../services/students/http-data.service";
-import { InMemoryDataService } from "../../../../services/students/in-memory-data.service";
 
 @Component({
   selector: "st-table",
@@ -15,11 +14,7 @@ import { InMemoryDataService } from "../../../../services/students/in-memory-dat
   styleUrls: ["./students-list.component.less"],
 })
 
-export class StudentsListComponent implements OnInit, AfterViewChecked {
-  public countStudents: number;
-  public notificationShow: boolean;
-  public notificationCode: string;
-  public notificationMessage: string;
+export class StudentsListComponent implements OnInit {
   public isAccent: boolean;
   public action: IEvents;
   private _isFilterScore: boolean = false;
@@ -30,7 +25,7 @@ export class StudentsListComponent implements OnInit, AfterViewChecked {
   public valueScore: string;
   public valueDate: string;
   public students: IStudents[];
-  constructor(@Inject(DataService) private dataService: InMemoryDataService | HttpDataService,
+  constructor(@Inject(DataService) private dataService: IData,
               private ref: ChangeDetectorRef,
               private router: Router,
               private studentsService: StudentsService) {}
@@ -80,28 +75,22 @@ export class StudentsListComponent implements OnInit, AfterViewChecked {
   public addStudent(): void {
     this.studentsService.debug() ? this.router.navigate([`add`], {queryParams: {debug: true}}) : this.router.navigate([`add`]);
   }
-  public editStudent(_id: string, score: number): void {
-    this.studentsService.debug() ? this.router.navigate([`edit/${_id}`], {queryParams: {debug: true, score: score}}) : this.router.navigate([`edit/${_id}`], {queryParams: {score: score}});
+  public editStudent(_id: string): void {
+    this.studentsService.debug() ? this.router.navigate([`edit/${_id}`], {queryParams: {debug: true}}) : this.router.navigate([`edit/${_id}`]);
   }
   public actions(modal: ModalComponent): void {
     switch (IEvents[modal.event]) {
       case 1: {
-        if (modal.submitForm()) {
+        if (modal.confirm) {
           this.dataService.createStudent(modal.data).subscribe(() => {
-            this.notificationShow = true;
-            this.notificationCode = "success";
-            this.notificationMessage = "Student successfully added!";
             this._reloadStudents();
           });
         }
         break;
       }
       case 2: {
-        if (modal.submitForm()) {
+        if (modal.confirm) {
           this.dataService.updateStudent(modal.studentId, modal.data).subscribe(() => {
-              this.notificationShow = true;
-              this.notificationCode = "success";
-              this.notificationMessage = "Student successfully changed!";
               this._reloadStudents();
           });
         }
@@ -110,9 +99,6 @@ export class StudentsListComponent implements OnInit, AfterViewChecked {
       case 0: {
         if (modal.confirm) {
           this.dataService.deleteStudent(modal.studentId).subscribe(() => {
-            this.notificationShow = true;
-            this.notificationCode = "success";
-            this.notificationMessage = "Student successfully deleted!";
             this._reloadStudents();
           });
         }
@@ -124,17 +110,12 @@ export class StudentsListComponent implements OnInit, AfterViewChecked {
     }
   }
   private _reloadStudents(): void {
-   this.dataService.getStudents().subscribe(data => this.students = data, error => {
-     this.notificationShow = true;
-     this.notificationCode = "error";
-     this.notificationMessage = error.statusText;
+   this.dataService.getStudents().subscribe(data => {
+     this.students = data;
+     this.ref.markForCheck();
    });
   }
   ngOnInit(): void {
     this._reloadStudents();
-  }
-  ngAfterViewChecked(): void {
-    this.ref.detectChanges();
-    this.notificationShow = false;
   }
 }

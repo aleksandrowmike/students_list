@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { NotificationService } from "../../services/notification.service";
 
 @Component({
   selector: "students-notifications",
@@ -6,8 +7,7 @@ import { Component, Input, OnInit } from "@angular/core";
   styleUrls: ["./notifications.component.less"]
 })
 export class NotificationsComponent implements OnInit {
-  @Input() notification: string;
-  @Input() textMessage: string;
-
-  ngOnInit(): void {}
+  constructor(public notificationService: NotificationService) {}
+  ngOnInit(): void {
+  }
 }

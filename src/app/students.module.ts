@@ -2,10 +2,12 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { NotificationsComponent } from "./components/notifications/notifications.component";
 import { StudentsRootComponent } from "./components/students-root/students-root.component";
 import { StTable } from "./modules/table/st-table.module";
 import { DataService } from "./services/data.service";
-import { EditGuardService } from "./services/edit-guard.service";
+import { EditGuardService } from "./services/guards/edit-guard.service";
+import { NotificationService } from "./services/notification.service";
 import { StudentsService } from "./services/students.service";
 import { HttpDataService } from "./services/students/http-data.service";
 import { InMemoryDataService } from "./services/students/in-memory-data.service";
@@ -15,6 +17,7 @@ import { StudentRoutingModule } from "./student-routing.module";
   declarations: [
     StudentsRootComponent,
     NotFoundComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,11 +25,11 @@ import { StudentRoutingModule } from "./student-routing.module";
     HttpClientModule,
     StudentRoutingModule,
   ],
-  providers: [EditGuardService, StudentsService, {provide: DataService, deps: [StudentsService, HttpClient], useFactory: (studentsService, httpClient) => {
+  providers: [EditGuardService, StudentsService, NotificationService, {provide: DataService, deps: [StudentsService, HttpClient, NotificationService], useFactory: (studentsService, httpClient, notificationService) => {
     if (studentsService.debug()) {
-      return new InMemoryDataService();
+      return new InMemoryDataService(notificationService);
     }
-      return new HttpDataService(httpClient);
+      return new HttpDataService(httpClient, notificationService);
   }}],
   bootstrap: [StudentsRootComponent]
 })

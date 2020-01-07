@@ -53,10 +53,9 @@
     <td>{{ student.birth | date }}</td>
     <td>{{ student.score }}</td>
     <td>
-      <button class="students-list__button primary" (click)="editStudent(student._id, student.score)">Edit</button>
+      <button class="students-list__button primary" (click)="editStudent(student._id)">Edit</button>
       <button class="students-list__button delete" (click)="deleteStudent(student._id)">Delete</button>
     </td>
   </tr>
 </table>
 <router-outlet (deactivate)="actions($event)"></router-outlet>
-<students-notifications *ngIf="notificationShow" [notification]="notificationCode" [textMessage]="notificationMessage"></students-notifications>

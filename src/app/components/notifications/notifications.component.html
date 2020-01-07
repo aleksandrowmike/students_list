@@ -1,1 +1,6 @@
-<div [ngClass]="notification" class="alert-box"><span>{{notification}}: </span>{{textMessage}}</div>
+<div *ngIf="notificationService.messages.length" >
+  <div *ngFor="let notification of notificationService.messages"  class="alert-box error" [ngClass]="notification.type">
+    <span>{{notification.type}}: </span> {{ notification.message }}
+  </div>
+</div>
+
