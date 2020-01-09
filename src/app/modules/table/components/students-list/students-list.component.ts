@@ -83,7 +83,8 @@ export class StudentsListComponent implements OnInit {
       case 1: {
         if (modal.confirm) {
           this.dataService.createStudent(modal.data).subscribe(() => {
-            this._reloadStudents();
+            this.students.push(modal.data);
+            this.ref.markForCheck();
           });
         }
         break;
@@ -91,7 +92,16 @@ export class StudentsListComponent implements OnInit {
       case 2: {
         if (modal.confirm) {
           this.dataService.updateStudent(modal.studentId, modal.data).subscribe(() => {
-              this._reloadStudents();
+            this.students.forEach(student => {
+              if (student._id === modal.studentId) {
+                student.firstName = modal.data.firstName;
+                student.lastName = modal.data.lastName;
+                student.middleName = modal.data.middleName;
+                student.birth = modal.data.birth;
+                student.score = modal.data.score;
+              }
+            });
+            this.ref.markForCheck();
           });
         }
         break;
@@ -99,7 +109,8 @@ export class StudentsListComponent implements OnInit {
       case 0: {
         if (modal.confirm) {
           this.dataService.deleteStudent(modal.studentId).subscribe(() => {
-            this._reloadStudents();
+            this.students = this.students.filter(student => student._id !== modal.studentId);
+            this.ref.markForCheck();
           });
         }
         break;

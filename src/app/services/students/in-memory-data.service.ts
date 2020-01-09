@@ -21,9 +21,7 @@ export class InMemoryDataService implements IData {
      );
   }
   public deleteStudent(_id: string): Observable<IStudents> {
-    console.log(this._students);
     this._students = this._students.filter(student => student._id !== _id ? this._student = student : this._student = null);
-    console.log(this._students);
     return of(this._student).pipe(
       tap(() => this.notificationService.add({type: "success", message: "Student successfully deleted"})),
       catchError(this.notificationService.handleError<IStudents>("Error")),

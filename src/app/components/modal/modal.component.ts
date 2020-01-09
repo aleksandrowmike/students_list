@@ -22,7 +22,7 @@ export class ModalComponent implements OnInit {
   public formStudent: FormGroup;
   public action: Number;
   public currentDate = new Date().getFullYear() - 10;
-  public data: IStudents = {__v: 0, _id: "", birth: undefined, firstName: "", id: 0, lastName: "", middleName: "", score: 0};
+  public data: IStudents = {birth: undefined, firstName: "", id: 0, lastName: "", middleName: "", score: 0};
   public count: number;
   constructor(private StudentValidators: StudentValidatorsService,
               @Inject(DataService) private dataService: IData,
@@ -85,16 +85,16 @@ export class ModalComponent implements OnInit {
         .forEach(controlName => controls[controlName].markAsTouched());
       return false;
     }
-    if (this.data === null) {
-      this.data = {
-        _id: "5e12bd9ffc13ae725b0000" + this.count,
-        id: this.count + 1,
-        birth: new Date(this.formStudent.value.birth),
-        score: this.formStudent.value.score,
-        firstName: this.formStudent.value.name.firstName,
-        lastName: this.formStudent.value.name.lastName,
-        middleName: this.formStudent.value.name.middleName
-      };
+    if (this.action === 1) {
+      if (this.studentsService.debug()) {
+        this.data._id = "5e12bd9ffc13ae725b0000" + this.count;
+      }
+      this.data.id = this.count + 1;
+      this.data.birth = new Date(this.formStudent.value.birth);
+      this.data.firstName = this.formStudent.value.name.firstName;
+      this.data.lastName = this.formStudent.value.name.lastName;
+      this.data.middleName = this.formStudent.value.name.middleName;
+      this.data.score = this.formStudent.value.score;
       this.hideModal();
       this.confirm = true;
     }
@@ -117,7 +117,6 @@ export class ModalComponent implements OnInit {
   private _action(event: string): void {
     switch (IEvents[event]) {
       case 1: {
-        this.data = null;
         this.action = 1;
         this.title = "Add new student";
         this.initAddStudentForm();
