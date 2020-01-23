@@ -1,0 +1,33 @@
+@import "var";
+
+.welcome{
+  display: flex;
+  height: 100vh;
+  h1{
+    margin-bottom: 40px;
+  }
+  &-left, &-right{
+    flex-basis: 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    padding: 150px 70px 70px;
+  }
+  &-left{
+    background-color: fade(@green, 40%);
+  }
+  &-right{
+    background-color: fade(@purple, 50%);
+  }
+  .login-form {
+    background-color: fade(#fff, 50%);
+    box-shadow: 0 4px 10px fade(@black, 10%);
+    padding: 40px 50px;
+    border-radius: 4px;
+    button{
+      width: 100%;
+    }
+  }
+}
+

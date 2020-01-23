@@ -1,10 +1,12 @@
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { LoginComponent } from "./components/login/login.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { DetailComponent } from "./components/detail/detail.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { NotificationsComponent } from "./components/notifications/notifications.component";
 import { StudentsRootComponent } from "./components/students-root/students-root.component";
+import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { EditGuardService } from "./guards/edit-guard.service";
 import { StTable } from "./modules/table/st-table.module";
 import { DataService } from "./services/data.service";
@@ -19,7 +21,9 @@ import { StudentRoutingModule } from "./student-routing.module";
     StudentsRootComponent,
     NotFoundComponent,
     NotificationsComponent,
-    LoginComponent,
+    WelcomeComponent,
+    DashboardComponent,
+    DetailComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,70 @@
+@import "var";
+.info-bar {
+  padding: 15.5px;
+  background-color: @white;
+  border-bottom: 1px solid #EBEFF2;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  h3{
+    color: @table-gray;
+  }
+}
+.arrow-back {
+  margin-left: 15px;
+  margin-right: 25px;
+}
+.detail{
+  margin: 40px 40px 0;
+  margin-top: 80px;
+  display: flex;
+  &-avatar{
+    width: 150px;
+    height: 150px;
+    flex-basis: 18%;
+  }
+  &-info {
+    flex-basis: 80%;
+    margin-left: 20px;
+    &__individual{
+      display: flex;
+    }
+    &__common{
+      margin-right: 150px;
+    }
+    &__common, &__contacts{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    &__label{
+      color: @accent-blue;
+      font-size: 14px;
+    }
+    &__text{
+      color: @table-gray;
+      margin-bottom: 10px;
+      font-size: 15px;
+  }
+    p{
+      color: @table-gray;
+      font-size: 15px;
+    }
+  }
+}
+.progress{
+  margin: 40px;
+  .table{
+    th,td {
+      width: auto;
+    }
+    th,td:first-child {width: auto;}
+    th,td:last-child {width: auto;}
+    button{
+      padding: 0;
+      margin-left: 10px;
+    }
+  }
+}

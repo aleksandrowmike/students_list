@@ -20,8 +20,9 @@ import { SortingDirective } from "./directives/sorting.directive";
         ReactiveFormsModule,
         RouterModule,
     ],
-  exports: [
+    exports: [
         StudentsListComponent,
+        SideBarComponent,
     ],
   providers: [],
 })

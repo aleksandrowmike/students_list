@@ -1,10 +1,6 @@
 @import "styles/reset";
 @import "styles/var";
 
-side-bar{
-  flex-basis: 16%;
-}
-
 
 body{
   font-family: @font-family, sans-serif;
@@ -12,6 +8,60 @@ body{
   font-size: @font-size;
 }
 
+app-welcome {
+  width: 100%;
+}
+p{
+  margin: 5px 0;
+}
+.table {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  background-color: @white;
+  width: 100%;
+  border-radius: 4px;
+  border-collapse: collapse;
+  th,td {
+    width: 20%;
+    padding: 10px;
+    border-bottom: 1px solid #EBEFF2;
+  }
+  th,td:first-child {width: 5%;}
+  th,td:last-child {width: 10%;}
+  &-head {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 19px;
+    letter-spacing: 0.01em;
+    color: @dark-blue-text;
+    opacity: 0.5;
+    text-align: left;
+  }
+  &-body {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: 0.01em;
+    color: @table-black;
+    &:hover{
+      background-color: fade(@table-gray, 10%);
+    }
+    &__detail{
+      cursor: pointer;
+      &:hover{
+        color: #34AFF9;
+      }
+    }
+    &__second{
+      font-style: normal;
+      font-weight: normal;
+      font-size: 13px;
+      line-height: 19px;
+      letter-spacing: 0.01em;
+      color: @table-gray;
+    }
+  }
+}
 /* Buttons */
  button {
    border: none;
@@ -72,6 +122,21 @@ body{
     }
   }
 
+.arrow-back{
+  width: 28px;
+  height: 28px;
+  fill: @accent-blue;
+  vertical-align: text-bottom;
+  &:hover{
+    fill: #34AFF9;
+  }
+  &:focus{
+    fill: #098EDF;
+  }
+  &:disabled{
+    opacity: 0.4;
+  }
+}
 
 /* inputs */
 .form-group {
@@ -84,6 +149,7 @@ input {
   padding: 10px;
   display: block;
   border: none;
+  background-color: transparent;
   &:invalid{
     border-bottom: 1px solid #D3D8DD;
     color: fade(@table-black, 50%);
@@ -113,7 +179,7 @@ input:focus ~ label, input:valid ~ label {
 .bar {
   position: relative;
   display: block;
-  width: 320px;
+  width: 250px;
 }
 .bar:before, .bar:after {
   content: "";
@@ -130,7 +196,7 @@ input:focus ~ label, input:valid ~ label {
   left: 50%;
 }
 .bar:after {
-  right: 50%;
+  right: 47%;
 }
 /* active state */
 input:focus ~ .bar:before,

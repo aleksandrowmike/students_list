@@ -4,15 +4,10 @@
 <!--<input class="students-list__input" type="number" min="1" max="5" placeholder="Filter by score"  [(ngModel)]="valueScore" (keyup)="scoreFilter()">-->
 <!--<button class="students-list__button primary" (click)="resetFilter()">ResetFilter</button>-->
 <!--<button class="students-list__button primary" (click)="accentuation(isAccent)">Accent {{isAccent ? "On" : "Off"}}</button>-->
-<div class="container">
-  <side-bar></side-bar>
-  <div class="content">
-    <div class="search-bar">
-      <label>
-        <input #search type="text" placeholder="Search by name" (keyup)="applySearch(search.value)">
-      </label>
-    </div>
-    <div class="table-list">
+<div class="search-bar">
+  <input #search type="text" placeholder="Search by name" (keyup)="applySearch(search.value)">
+</div>
+<div class="table-list">
       <table class="table">
         <tr class="table-head">
           <th sorting="id" [students]="this.students">ID
@@ -31,9 +26,11 @@
           </th>
           <th class="table-head__tertiary">Actions</th>
         </tr>
-        <tr *ngFor="let student of students" class="table-body" [class.accent]="student.firstName === selectedStudents">
+        <tr *ngFor="let student of students" class="table-body"
+            [class.accent]="student.firstName === selectedStudents"
+        >
           <td>{{ student.id }}</td>
-          <td>{{ student.firstName }} {{ student.lastName }}</td>
+          <td (click)="detail(student._id)" class="table-body__detail">{{ student.firstName }} {{ student.lastName }}</td>
           <td class="table-body__second">lindsey.stroud@gmail.com</td>
           <td class="table-body__second">{{ student.birth | date }}</td>
           <td class="table-body__second">{{ student.score }}</td>
@@ -52,6 +49,4 @@
         </tr>
       </table>
     </div>
-  </div>
-</div>
 <router-outlet (deactivate)="actions($event)"></router-outlet>

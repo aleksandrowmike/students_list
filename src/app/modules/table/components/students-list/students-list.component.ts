@@ -8,7 +8,7 @@ import { DataService } from "../../../../services/data.service";
 import { StudentsService } from "../../../../services/students.service";
 
 @Component({
-  selector: "st-table",
+  selector: "app-list",
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./students-list.component.html",
   styleUrls: ["./students-list.component.less"],
@@ -31,6 +31,9 @@ export class StudentsListComponent implements OnInit {
               private studentsService: StudentsService) {}
   public hideModal(displayed: boolean): void {
     this.isDisplayed = displayed;
+  }
+  public detail(_id: string): void {
+    this.router.navigate([`dashboard/detail/${_id}`]);
   }
   public addModal(displayed: boolean): void {
     this.isDisplayed = !displayed;
@@ -76,7 +79,7 @@ export class StudentsListComponent implements OnInit {
     this.studentsService.debug() ? this.router.navigate([`add`], {queryParams: {debug: true}}) : this.router.navigate([`add`]);
   }
   public editStudent(_id: string): void {
-    this.studentsService.debug() ? this.router.navigate([`edit/${_id}`], {queryParams: {debug: true}}) : this.router.navigate([`edit/${_id}`]);
+    this.studentsService.debug() ? this.router.navigate([`dashboard/edit/${_id}`], {queryParams: {debug: true}}) : this.router.navigate([`dashboard/edit/${_id}`]);
   }
   public actions(modal: ModalComponent): void {
     switch (IEvents[modal.event]) {
