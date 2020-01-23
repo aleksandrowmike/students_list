@@ -2,8 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
-import { IData } from "../../data/i-data";
-import { IStudents } from "../../data/students";
+import { IData } from "../../interfaces/i-data";
+import { IStudents } from "../../interfaces/students";
 import { DataService } from "../data.service";
 import { NotificationService } from "../notification.service";
 

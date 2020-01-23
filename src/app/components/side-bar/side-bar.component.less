@@ -1,0 +1,70 @@
+@import "var";
+.side-bar{
+  box-shadow: 6px 0 18px rgba(0, 0, 0, 0.06);
+  background-color: @white;
+  height: 100vh;
+  .logo{
+    padding: 15px 15px;
+    border-bottom: 1px solid #EBEFF2;
+    h1{
+      color: @accent-blue;
+      font-size: 20px;
+    }
+  }
+  .profile {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    &-avatar {
+      width: 46px;
+      height: 46px;
+      img{
+        border-radius: 50%;
+        width: 46px;
+        height: 46px;
+      }
+    }
+    &-info{
+      &__name{
+        color: @black;
+        font-size: 14px;
+        font-weight: 500;
+        font-style: normal;
+        line-height: 21px;
+        display: block;
+      }
+      &__email{
+        color: @gray;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 16px;
+        letter-spacing: 0.01em;
+      }
+    }
+  }
+  .menu{
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    &-list{
+      margin-left: 25px;
+      &__item{
+        margin-bottom: 15px;
+        a{
+          font-style: normal;
+          font-weight: 500;
+          font-size: 13px;
+          line-height: 19px;
+          letter-spacing: 0.01em;
+          color: @dark-blue-text;
+        }
+        .icon{
+          vertical-align: text-bottom;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

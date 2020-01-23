@@ -1,3 +1,140 @@
-body{
-  font-family: 'Lato', sans-serif;
+@import "styles/reset";
+@import "styles/var";
+
+side-bar{
+  flex-basis: 16%;
 }
+
+
+body{
+  font-family: @font-family, sans-serif;
+  font-weight: normal;
+  font-size: @font-size;
+}
+
+/* Buttons */
+ button {
+   border: none;
+   background-color: transparent;
+   letter-spacing: 0.01em;
+   font-size: 14px;
+   font-weight: 500;
+   text-align: center;
+   padding: 10px 40px;
+   border-radius: 4px;
+   box-sizing: border-box;
+ }
+.btn-default {
+    background-color: @accent-blue;
+    box-shadow: 0 4px 10px rgba(16, 156, 241, 0.24);
+    color: @white;
+    &:hover {
+      background: #34AFF9;
+      box-shadow: 0 8px 16px rgba(52, 175, 249, 0.2);
+    }
+    &:focus {
+      background: #098EDF;
+      box-shadow: 0 2px 6px rgba(9, 142, 223, 0.3);
+    }
+    &:disabled {
+      background: #C2CFE0;
+      color: rgba(255, 255, 255, 0.8);
+      box-shadow: none;
+
+    }
+  }
+.btn-secondary {
+    color: @accent-blue;
+    border: 1px solid @accent-blue;
+    &:hover{
+      color: #34AFF9;
+      border: 1px solid #34AFF9;
+    }
+    &:focus{
+      color: #098EDF;
+      border: 1px solid #098EDF;
+    }
+    &:disabled{
+      color: @icon-gray;
+      border: 1px solid @icon-gray;
+    }
+  }
+.btn-tertiary{
+    color: @accent-blue;
+    &:hover{
+      color: #34AFF9;
+    }
+    &:focus{
+      color: #098EDF;
+    }
+    &:disabled{
+      opacity: 0.4;
+    }
+  }
+
+
+/* inputs */
+.form-group {
+  position: relative;
+  margin-bottom: 30px;
+}
+input {
+  font-size: 13px;
+  color: @table-black;
+  padding: 10px;
+  display: block;
+  border: none;
+  &:invalid{
+    border-bottom: 1px solid #D3D8DD;
+    color: fade(@table-black, 50%);
+  }
+  &:focus {
+    outline: none;
+  }
+}
+label {
+  color: #818E9B;
+  font-weight: 500;
+  font-size: 12px;
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 15px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+/* active state */
+input:focus ~ label, input:valid ~ label {
+  top: -15px;
+  font-size: 14px;
+  color: @accent-blue;
+}
+.bar {
+  position: relative;
+  display: block;
+  width: 320px;
+}
+.bar:before, .bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 0;
+  position: absolute;
+  background: #818E9B;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%;
+}
+/* active state */
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+  width: 50%;
+}
+

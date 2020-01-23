@@ -1,5 +1,5 @@
 import { Attribute, Directive, ElementRef, HostListener, Input } from "@angular/core";
-import { IStudents } from "../../../data/students";
+import { IStudents } from "../../../interfaces/students";
 
 enum Sort {
   ASC,
@@ -42,7 +42,6 @@ export class SortingDirective {
             return -1;
           }
         });
-        break;
       }
       default: {
         break;

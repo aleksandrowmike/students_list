@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { IData } from "../../data/i-data";
-import { IEvents } from "../../data/i-events";
-import { IStudents } from "../../data/students";
+import { IData } from "../../interfaces/i-data";
+import { IEvents } from "../../interfaces/i-events";
+import { IStudents } from "../../interfaces/students";
 import { DataService } from "../../services/data.service";
 import { StudentsService } from "../../services/students.service";
-import { StudentValidatorsService } from "../../services/validators/student-validators.service";
+import { StudentValidatorsService } from "../../validators/student-validators.service";
 
 @Component({
   selector: "modal",

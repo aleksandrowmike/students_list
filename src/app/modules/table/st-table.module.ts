@@ -3,8 +3,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { ModalComponent } from "../../components/modal/modal.component";
-import { NotificationsComponent } from "../../components/notifications/notifications.component";
-
+import { SideBarComponent } from "../../components/side-bar/side-bar.component";
 import { StudentsListComponent } from "./components/students-list/students-list.component";
 import { SortingDirective } from "./directives/sorting.directive";
 
@@ -13,14 +12,15 @@ import { SortingDirective } from "./directives/sorting.directive";
     StudentsListComponent,
     SortingDirective,
     ModalComponent,
+    SideBarComponent,
   ],
-    imports: [
+  imports: [
         FormsModule,
         BrowserModule,
         ReactiveFormsModule,
         RouterModule,
     ],
-    exports: [
+  exports: [
         StudentsListComponent,
     ],
   providers: [],

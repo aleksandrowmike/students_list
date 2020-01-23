@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ModalComponent } from "../../../../components/modal/modal.component";
-import { IData } from "../../../../data/i-data";
-import { IEvents } from "../../../../data/i-events";
-import { IStudents } from "../../../../data/students";
+import { IData } from "../../../../interfaces/i-data";
+import { IEvents } from "../../../../interfaces/i-events";
+import { IStudents } from "../../../../interfaces/students";
 import { DataService } from "../../../../services/data.service";
 import { StudentsService } from "../../../../services/students.service";
 

@@ -1,4 +1,4 @@
-import { IStudents } from "./students";
+import { IStudents } from "../interfaces/students";
 
 export const StudentsMock: IStudents[] = [{
   "_id": "5e12bd9ffc13ae725b000000",

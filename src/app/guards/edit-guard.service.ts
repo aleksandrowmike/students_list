@@ -2,9 +2,9 @@ import { Inject, Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
-import { IData } from "../../data/i-data";
-import { DataService } from "../data.service";
-import { NotificationService } from "../notification.service";
+import { IData } from "../interfaces/i-data";
+import { DataService } from "../services/data.service";
+import { NotificationService } from "../services/notification.service";
 
 @Injectable({
   providedIn: "root"

@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError, tap, toArray } from "rxjs/operators";
-import { IData } from "../../data/i-data";
-import { IStudents } from "../../data/students";
 import { StudentsMock } from "../../data/students-mock";
+import { IData } from "../../interfaces/i-data";
+import { IStudents } from "../../interfaces/students";
 import { DataService } from "../data.service";
 import { NotificationService } from "../notification.service";
 
