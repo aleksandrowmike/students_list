@@ -78,9 +78,9 @@ export class TableComponent implements OnInit {
   // public deleteStudent(_id: string): void {
   //   this.studentsService.debug() ? this.router.navigate([`delete/${_id}`], {queryParams: {debug: true}}) : this.router.navigate([`delete/${_id}`]);
   // }
-  // public addStudent(): void {
-  //   this.studentsService.debug() ? this.router.navigate([`add`], {queryParams: {debug: true}}) : this.router.navigate([`add`]);
-  // }
+  public addStudent(): void {
+    // this.studentsService.debug() ? this.router.navigate([`add`], {queryParams: {debug: true}}) : this.router.navigate([`add`]);
+  }
   // public editStudent(_id: string): void {
   //   this.studentsService.debug() ? this.router.navigate([`dashboard/edit/${_id}`], {queryParams: {debug: true}}) : this.router.navigate([`dashboard/edit/${_id}`]);
   // }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { select, Store } from "@ngrx/store";
+import { Observable, of } from "rxjs";
 import { map } from "rxjs/operators";
 import { IStudent } from "../../models/student.interface";
 import { GetStudent } from "../../store/actions/student.actions";
@@ -14,13 +15,21 @@ import { IAppState } from "../../store/state/app.state";
 })
 export class DetailComponent implements OnInit {
   public student: IStudent;
-  constructor(private _store: Store<IAppState>, private _route: ActivatedRoute) {
+  constructor(private _store: Store<IAppState>, private _route: ActivatedRoute) {}
+  ngOnInit(): void {
     this._store.pipe(select(selectSelectedStudent)).subscribe(data => {
       this.student = data;
     });
-  }
-  ngOnInit(): void {
     this._store.dispatch(new GetStudent(this._route.snapshot.params.id));
   }
-
+  public discipline(period: string): object[] {
+    const recordBook = this.student.recordBook.find(record => record.period === period);
+    const discipline = [];
+    const keys = Object.keys(recordBook.discipline);
+    const values = Object.values(recordBook.discipline);
+    for (let i = 0; i < keys.length; i++) {
+      discipline[i] = {subject: keys[i], result: values[i]};
+    }
+    return discipline;
+  }
 }

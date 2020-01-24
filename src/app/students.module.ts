@@ -18,9 +18,12 @@ import { StudentsRootComponent } from "./components/students-root/students-root.
 import { TableComponent } from "./components/table/table.component";
 import { WelcomeComponent } from "./components/welcome/welcome.component";
 import { SortingDirective } from "./directives/sorting.directive";
+import { TextResultPipe } from "./pipes/text-resut.pipes";
 import { StudentEffects } from "./store/effects/student.effects";
 import { appReducers } from "./store/reducers/app.reducers";
 import { StudentRoutingModule } from "./student-routing.module";
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabComponent } from './components/tabs/tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,9 @@ import { StudentRoutingModule } from "./student-routing.module";
     SortingDirective,
     ModalComponent,
     SideBarComponent,
+    TabsComponent,
+    TabComponent,
+    TextResultPipe,
   ],
   imports: [
     BrowserModule,

@@ -4,8 +4,22 @@
   background-color: @white;
   border-bottom: 1px solid #EBEFF2;
 }
-.table-list{
+.table{
   margin: 40px 40px 0;
+  &-elements{
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    &__filter{
+      display: flex;
+      input{
+        width: 200px;
+      }
+    }
+    &__add{
+      padding: 10px 20px;
+    }
+  }
 }
 button{
   padding: 0;

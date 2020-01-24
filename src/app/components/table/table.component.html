@@ -1,15 +1,19 @@
-<!--<button class="btn-default" (click)="addStudent()">Add student</button>-->
 <!--<input #search class="students-list__input" type="text" placeholder="Search by name" (keyup)="applySearch(search.value)">-->
-<!--<input class="students-list__input date" type="date" (keyup.enter)="dateFilter()" [(ngModel)]="valueDate">-->
-<!--<input class="students-list__input" type="number" min="1" max="5" placeholder="Filter by score"  [(ngModel)]="valueScore" (keyup)="scoreFilter()">-->
-<!--<button class="students-list__button primary" (click)="resetFilter()">ResetFilter</button>-->
 <!--<button class="students-list__button primary" (click)="accentuation(isAccent)">Accent {{isAccent ? "On" : "Off"}}</button>-->
 <div class="search-bar">
   <input #search type="text" placeholder="Search by name" (keyup)="applySearch(search.value)">
 </div>
-<div class="table-list">
-      <table class="table">
-        <tr class="table-head">
+<div class="table">
+  <div class="table-elements">
+    <div class="table-elements__filter">
+      <input class="students-list__input date" type="date">
+      <input class="students-list__input" type="number" min="1" max="5" placeholder="Filter by score">
+      <button class="btn-tertiary">ResetFilter</button>
+    </div>
+    <button class="btn-default table-elements__add" (click)="addStudent()">Add student</button>
+  </div>
+  <table class="table-list">
+        <tr class="table-list-head">
           <th>ID</th>
           <th>Name</th>
           <th>Email</th>
@@ -17,19 +21,19 @@
           <th>Date of birth</th>
           <th>Country</th>
           <th>City</th>
-          <th class="table-head__tertiary">Actions</th>
+          <th class="table-list-head__tertiary">Actions</th>
         </tr>
-        <tr *ngFor="let student of students$ | async; let i = index" class="table-body"
+        <tr *ngFor="let student of students$ | async; let i = index" class="table-list-body"
             [class.accent]="student.name === selectedStudents"
             (click)="navigateToStudent(student._id)"
         >
           <td>{{ i + 1 }}</td>
-          <td class="table-body__detail">{{ student.name }}</td>
-          <td class="table-body__second">{{ student.email }}</td>
-          <td class="table-body__second">{{ student.sex }}</td>
-          <td class="table-body__second">{{ student.birth | date }}</td>
-          <td class="table-body__second">{{ student.country }}</td>
-          <td class="table-body__second">{{ student.city }}</td>
+          <td class="table-list-body__detail">{{ student.name }}</td>
+          <td class="table-list-body__second">{{ student.email }}</td>
+          <td class="table-list-body__second">{{ student.sex }}</td>
+          <td class="table-list-body__second">{{ student.birth | date }}</td>
+          <td class="table-list-body__second">{{ student.country }}</td>
+          <td class="table-list-body__second">{{ student.city }}</td>
           <td>
 <!--            <button class="btn-tertiary" (click)="editStudent(student._id)">-->
 <!--              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
@@ -46,3 +50,4 @@
       </table>
     </div>
 <!--<router-outlet (deactivate)="actions($event)"></router-outlet>-->
+

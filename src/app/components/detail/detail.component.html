@@ -2,7 +2,7 @@
   <a routerLink="/dashboard" class="btn-tertiary">
     <svg class="arrow-back"><path d="M28,14H8.8l4.62-4.62C13.814,8.986,14,8.516,14,8c0-0.984-0.813-2-2-2c-0.531,0-0.994,0.193-1.38,0.58l-7.958,7.958  C2.334,14.866,2,15.271,2,16s0.279,1.08,0.646,1.447l7.974,7.973C11.006,25.807,11.469,26,12,26c1.188,0,2-1.016,2-2  c0-0.516-0.186-0.986-0.58-1.38L8.8,18H28c1.104,0,2-0.896,2-2S29.104,14,28,14z"/></svg>
   </a>
-  <h3>Detail {{student.name}}</h3>
+  <h3>Detail <span>{{student.name}}</span></h3>
 </div>
 <div class="detail">
     <div class="detail-avatar">
@@ -38,113 +38,19 @@
     </div>
 </div>
 <div class="progress">
-    <table class="table">
-      <tr class="table-head">
-        <th>Subjects</th>
-        <th>Sunday</th>
-        <th>Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thursday</th>
-        <th>Friday</th>
-        <th>Saturday</th>
-        <th>Actions</th>
-      </tr>
-      <tr class="table-body">
-        <td>Algebra</td>
-        <td>2</td>
-        <td></td>
-        <td>4</td>
-        <td></td>
-        <td>5</td>
-        <td>5</td>
-        <td>5</td>
-        <td>
-          <button class="btn-tertiary">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-            </svg>
-          </button></td>
-      </tr>
-      <tr class="table-body">
-        <td>Algebra</td>
-        <td>2</td>
-        <td></td>
-        <td>4</td>
-        <td></td>
-        <td>5</td>
-        <td>5</td>
-        <td>5</td>
-        <td>
-          <button class="btn-tertiary">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-            </svg>
-          </button></td>
-      </tr>
-      <tr class="table-body">
-        <td>Algebra</td>
-        <td>2</td>
-        <td></td>
-        <td>4</td>
-        <td></td>
-        <td>5</td>
-        <td>5</td>
-        <td>5</td>
-        <td>
-          <button class="btn-tertiary">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-            </svg>
-          </button></td>
-      </tr>
-      <tr class="table-body">
-        <td>Algebra</td>
-        <td>2</td>
-        <td></td>
-        <td>4</td>
-        <td></td>
-        <td>5</td>
-        <td>5</td>
-        <td>5</td>
-        <td>
-          <button class="btn-tertiary">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-            </svg>
-          </button></td>
-      </tr>
-      <tr class="table-body">
-        <td>Algebra</td>
-        <td>2</td>
-        <td></td>
-        <td>4</td>
-        <td></td>
-        <td>5</td>
-        <td>5</td>
-        <td>5</td>
-        <td>
-          <button class="btn-tertiary">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-            </svg>
-          </button></td>
-      </tr>
-      <tr class="table-body">
-        <td>Algebra</td>
-        <td>2</td>
-        <td></td>
-        <td>4</td>
-        <td></td>
-        <td>5</td>
-        <td>5</td>
-        <td>5</td>
-        <td>
-          <button class="btn-tertiary">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-            </svg>
-          </button></td>
-      </tr>
-    </table>
-  </div>
+  <app-tabs>
+    <app-tab *ngFor="let recordBook of student.recordBook" [tabTitle]="recordBook.period">
+      <table class="table-list">
+        <tr class="table-list-head">
+          <th>Subjects</th>
+          <th>Result</th>
+        </tr>
+        <tr *ngFor="let discipline of discipline(recordBook.period)" class="table-list-body">
+          <td>{{ discipline.subject }}</td>
+          <td>{{ discipline.result | textResult}}</td>
+        </tr>
+      </table>
+    </app-tab>
+  </app-tabs>
+</div>
+
