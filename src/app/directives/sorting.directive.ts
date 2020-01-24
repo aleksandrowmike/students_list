@@ -1,5 +1,5 @@
 import { Attribute, Directive, ElementRef, HostListener, Input } from "@angular/core";
-import { IStudents } from "../../../interfaces/students";
+import { IStudent } from "../models/student.interface";
 
 enum Sort {
   ASC,
@@ -18,17 +18,17 @@ export class SortingDirective {
     this._sortField = sortField;
     this._childElement = this.el.nativeElement.childNodes;
   }
-  @Input() students: IStudents[];
+  @Input() students: IStudent[];
   @HostListener("click") onClick(): void {
     this._action(Sort[this._numberOfClicks]);
     this._numberOfClicks = this._numberOfClicks === 1 ? this._numberOfClicks = 0 : this._numberOfClicks = 1;
   }
-  private _action(event: string): IStudents[] {
+  private _action(event: string): IStudent[] {
     switch (event) {
       case "ASC": {
         this._childElement[1].className = "visibility";
         this._childElement[2].className = "unvisibility";
-        return this.students.sort((a: IStudents, b: IStudents ): number => {
+        return this.students.sort((a: IStudent, b: IStudent ): number => {
           if (a[this._sortField] < b[this._sortField]) {
             return -1;
           }
@@ -37,7 +37,7 @@ export class SortingDirective {
       case "DESC": {
         this._childElement[2].className = "visibility";
         this._childElement[1].className = "unvisibility";
-        return this.students.sort((a: IStudents, b: IStudents ): number => {
+        return this.students.sort((a: IStudent, b: IStudent ): number => {
           if (a[this._sortField] > b[this._sortField]) {
             return -1;
           }

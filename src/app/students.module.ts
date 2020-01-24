@@ -1,19 +1,25 @@
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule } from "@angular/router";
+import { EffectsModule } from "@ngrx/effects";
+import { StoreRouterConnectingModule } from "@ngrx/router-store";
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { environment } from "../environments/environment";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { DetailComponent } from "./components/detail/detail.component";
+import { ModalComponent } from "./components/modal/modal.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { NotificationsComponent } from "./components/notifications/notifications.component";
+import { SideBarComponent } from "./components/side-bar/side-bar.component";
 import { StudentsRootComponent } from "./components/students-root/students-root.component";
+import { TableComponent } from "./components/table/table.component";
 import { WelcomeComponent } from "./components/welcome/welcome.component";
-import { EditGuardService } from "./guards/edit-guard.service";
-import { StTable } from "./modules/table/st-table.module";
-import { DataService } from "./services/data.service";
-import { NotificationService } from "./services/notification.service";
-import { StudentsService } from "./services/students.service";
-import { HttpDataService } from "./services/students/http-data.service";
-import { InMemoryDataService } from "./services/students/in-memory-data.service";
+import { SortingDirective } from "./directives/sorting.directive";
+import { StudentEffects } from "./store/effects/student.effects";
+import { appReducers } from "./store/reducers/app.reducers";
 import { StudentRoutingModule } from "./student-routing.module";
 
 @NgModule({
@@ -24,21 +30,24 @@ import { StudentRoutingModule } from "./student-routing.module";
     WelcomeComponent,
     DashboardComponent,
     DetailComponent,
+    TableComponent,
+    SortingDirective,
+    ModalComponent,
+    SideBarComponent,
   ],
   imports: [
     BrowserModule,
-    StTable,
     HttpClientModule,
     StudentRoutingModule,
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([StudentEffects]),
+    StoreDevtoolsModule.instrument(),
+    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
+    FormsModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    RouterModule,
   ],
-  providers: [EditGuardService, StudentsService, NotificationService, {
-    provide: DataService, deps: [StudentsService, HttpClient, NotificationService], useFactory: (studentsService, httpClient, notificationService) => {
-      if (studentsService.debug()) {
-        return new InMemoryDataService(notificationService);
-      }
-      return new HttpDataService(httpClient, notificationService);
-    }
-  }],
   bootstrap: [StudentsRootComponent]
 })
 export class StudentsModule {}

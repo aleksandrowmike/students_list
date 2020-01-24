@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
-import { INotification } from "../interfaces/i-notification";
+import { NotificationInterface } from "../interfaces/notification.interface";
 
 @Injectable({
   providedIn: "root"
 })
-export class NotificationService implements INotification {
+export class NotificationService implements NotificationInterface {
   messages: object[] = [];
   add(message: object): void {
     this.messages = [];

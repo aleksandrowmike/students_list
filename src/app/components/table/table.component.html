@@ -1,0 +1,48 @@
+<!--<button class="btn-default" (click)="addStudent()">Add student</button>-->
+<!--<input #search class="students-list__input" type="text" placeholder="Search by name" (keyup)="applySearch(search.value)">-->
+<!--<input class="students-list__input date" type="date" (keyup.enter)="dateFilter()" [(ngModel)]="valueDate">-->
+<!--<input class="students-list__input" type="number" min="1" max="5" placeholder="Filter by score"  [(ngModel)]="valueScore" (keyup)="scoreFilter()">-->
+<!--<button class="students-list__button primary" (click)="resetFilter()">ResetFilter</button>-->
+<!--<button class="students-list__button primary" (click)="accentuation(isAccent)">Accent {{isAccent ? "On" : "Off"}}</button>-->
+<div class="search-bar">
+  <input #search type="text" placeholder="Search by name" (keyup)="applySearch(search.value)">
+</div>
+<div class="table-list">
+      <table class="table">
+        <tr class="table-head">
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Sex</th>
+          <th>Date of birth</th>
+          <th>Country</th>
+          <th>City</th>
+          <th class="table-head__tertiary">Actions</th>
+        </tr>
+        <tr *ngFor="let student of students$ | async; let i = index" class="table-body"
+            [class.accent]="student.name === selectedStudents"
+            (click)="navigateToStudent(student._id)"
+        >
+          <td>{{ i + 1 }}</td>
+          <td class="table-body__detail">{{ student.name }}</td>
+          <td class="table-body__second">{{ student.email }}</td>
+          <td class="table-body__second">{{ student.sex }}</td>
+          <td class="table-body__second">{{ student.birth | date }}</td>
+          <td class="table-body__second">{{ student.country }}</td>
+          <td class="table-body__second">{{ student.city }}</td>
+          <td>
+<!--            <button class="btn-tertiary" (click)="editStudent(student._id)">-->
+<!--              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>-->
+<!--              </svg>-->
+<!--            </button>-->
+<!--            <button class="btn-tertiary" (click)="deleteStudent(student._id)">-->
+<!--              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path d="M3.99992 12.6667C3.99992 13.4 4.59992 14 5.33325 14H10.6666C11.3999 14 11.9999 13.4 11.9999 12.6667V4.66667H3.99992V12.6667ZM12.6666 2.66667H10.3333L9.66659 2H6.33325L5.66659 2.66667H3.33325V4H12.6666V2.66667Z" fill="#C2CFE0"/>-->
+<!--              </svg>-->
+<!--            </button>-->
+          </td>
+        </tr>
+      </table>
+    </div>
+<!--<router-outlet (deactivate)="actions($event)"></router-outlet>-->

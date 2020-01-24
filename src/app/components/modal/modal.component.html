@@ -1,65 +1,65 @@
-<div class="modal visible">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">{{ title }}</h3>
-        <a title="Close" class="close" (click)="hideModal()">×</a>
-      </div>
-      <div class="modal-body">
-        <form *ngIf="action; else confirm" novalidate [formGroup]="formStudent" class="edit-student" (ngSubmit)="submitForm()">
-          <div class="form-group" formGroupName="name">
-            <div class="form-control">
-              <label>Fist name*:</label>
-              <input name="firstName" formControlName="firstName"/>
-              <span class="tooltiptext" *ngIf="isControlInvalid('name.firstName')">
-                First name is required
-              </span>
-            </div>
-            <div class="form-control">
-              <label>Last name*:</label>
-              <input class="form-control" name="lastName" formControlName="lastName"/>
-              <span class="tooltiptext" *ngIf="isControlInvalid('name.lastName')">
-                Last name is required
-              </span>
-            </div>
-            <div class="form-control">
-              <label>Middle name*:</label>
-              <input class="form-control" name="middleName" formControlName="middleName"/>
-              <span class="tooltiptext" *ngIf="isControlInvalid('name.middleName')">
-                Middle name is required
-              </span>
-            </div>
-            <span class="tooltiptext" *ngIf="isControlInvalid('name')">
-              Fist name Last name Middle name must not match
-            </span>
-          </div>
-          <div class="form-control">
-            <label>Date of Birth </label>
-            <input type="date" name="birth" formControlName="birth"/>
-            <span class="tooltiptext" *ngIf="isControlInvalid('birth')">
-              Date of birth should be no more than {{ currentDate }}
-            </span>
-          </div>
-          <div class="form-control">
-            <label>Average score </label>
-            <input type="number" max="5" min="1" class="form-control" name="score" formControlName="score"/>
-            <span class="tooltiptext" *ngIf="isControlInvalid('score')">
-              Average score is required
-            </span>
-            <span class="tooltiptext" *ngIf="this.formStudent.get('score').hasError('min')">
-             Minimum value 1
-            </span>
-            <span class="tooltiptext" *ngIf="this.formStudent.get('score').hasError('max')">
-             Maximum value 5
-            </span>
-          </div>
-          <button type="submit" class="button primary"> Send </button>
-        </form>
-        <ng-template #confirm>
-          <p>Are you sure you want to delete?</p>
-          <button class="button primary" (click)="confirmation()">Yes</button><button class="button primary" (click)="hideModal()">Cancel</button>
-        </ng-template>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class="modal visible">-->
+<!--  <div class="modal-dialog">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h3 class="modal-title">{{ title }}</h3>-->
+<!--        <a title="Close" class="close" (click)="hideModal()">×</a>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <form *ngIf="action; else confirm" novalidate [formGroup]="formStudent" class="edit-student" (ngSubmit)="submitForm()">-->
+<!--          <div class="form-group" formGroupName="name">-->
+<!--            <div class="form-control">-->
+<!--              <label>Fist name*:</label>-->
+<!--              <input name="firstName" formControlName="firstName"/>-->
+<!--              <span class="tooltiptext" *ngIf="isControlInvalid('name.firstName')">-->
+<!--                First name is required-->
+<!--              </span>-->
+<!--            </div>-->
+<!--            <div class="form-control">-->
+<!--              <label>Last name*:</label>-->
+<!--              <input class="form-control" name="lastName" formControlName="lastName"/>-->
+<!--              <span class="tooltiptext" *ngIf="isControlInvalid('name.lastName')">-->
+<!--                Last name is required-->
+<!--              </span>-->
+<!--            </div>-->
+<!--            <div class="form-control">-->
+<!--              <label>Middle name*:</label>-->
+<!--              <input class="form-control" name="middleName" formControlName="middleName"/>-->
+<!--              <span class="tooltiptext" *ngIf="isControlInvalid('name.middleName')">-->
+<!--                Middle name is required-->
+<!--              </span>-->
+<!--            </div>-->
+<!--            <span class="tooltiptext" *ngIf="isControlInvalid('name')">-->
+<!--              Fist name Last name Middle name must not match-->
+<!--            </span>-->
+<!--          </div>-->
+<!--          <div class="form-control">-->
+<!--            <label>Date of Birth </label>-->
+<!--            <input type="date" name="birth" formControlName="birth"/>-->
+<!--            <span class="tooltiptext" *ngIf="isControlInvalid('birth')">-->
+<!--              Date of birth should be no more than {{ currentDate }}-->
+<!--            </span>-->
+<!--          </div>-->
+<!--          <div class="form-control">-->
+<!--            <label>Average score </label>-->
+<!--            <input type="number" max="5" min="1" class="form-control" name="score" formControlName="score"/>-->
+<!--            <span class="tooltiptext" *ngIf="isControlInvalid('score')">-->
+<!--              Average score is required-->
+<!--            </span>-->
+<!--            <span class="tooltiptext" *ngIf="this.formStudent.get('score').hasError('min')">-->
+<!--             Minimum value 1-->
+<!--            </span>-->
+<!--            <span class="tooltiptext" *ngIf="this.formStudent.get('score').hasError('max')">-->
+<!--             Maximum value 5-->
+<!--            </span>-->
+<!--          </div>-->
+<!--          <button type="submit" class="button primary"> Send </button>-->
+<!--        </form>-->
+<!--        <ng-template #confirm>-->
+<!--          <p>Are you sure you want to delete?</p>-->
+<!--          <button class="button primary" (click)="confirmation()">Yes</button><button class="button primary" (click)="hideModal()">Cancel</button>-->
+<!--        </ng-template>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

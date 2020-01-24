@@ -2,155 +2,149 @@
   <a routerLink="/dashboard" class="btn-tertiary">
     <svg class="arrow-back"><path d="M28,14H8.8l4.62-4.62C13.814,8.986,14,8.516,14,8c0-0.984-0.813-2-2-2c-0.531,0-0.994,0.193-1.38,0.58l-7.958,7.958  C2.334,14.866,2,15.271,2,16s0.279,1.08,0.646,1.447l7.974,7.973C11.006,25.807,11.469,26,12,26c1.188,0,2-1.016,2-2  c0-0.516-0.186-0.986-0.58-1.38L8.8,18H28c1.104,0,2-0.896,2-2S29.104,14,28,14z"/></svg>
   </a>
-  <h3>Detail Angelina Stoune</h3>
+  <h3>Detail {{student.name}}</h3>
 </div>
 <div class="detail">
-  <div class="detail-avatar">
-    <img src="http://giga-store.themes4wp.com/demo2/wp-content/uploads/sites/4/2013/06/girl-1498351_1920-400x600.jpg" alt="">
-  </div>
-  <div class="detail-info">
-    <div class="detail-info__individual">
-      <div class="detail-info__common">
-        <span class="detail-info__label">Name </span>
-        <span class="detail-info__text">Angelina Stoune</span>
-        <span class="detail-info__label">Date of Birth</span>
-        <span class="detail-info__text">16.08.1998</span>
-        <span class="detail-info__label">Sex</span>
-        <span class="detail-info__text">Female</span>
-        <span class="detail-info__label">Grade</span>
-        <span class="detail-info__text">9</span>
+    <div class="detail-avatar">
+      <img src="{{student.avatar}}" alt="">
+    </div>
+    <div class="detail-info">
+      <div class="detail-info__individual">
+        <div class="detail-info__common">
+          <span class="detail-info__label">Name </span>
+          <span class="detail-info__text">{{student.name}}</span>
+          <span class="detail-info__label">Date of Birth</span>
+          <span class="detail-info__text">{{ student.birth | date }}</span>
+          <span class="detail-info__label">Sex</span>
+          <span class="detail-info__text">{{ student.sex }}</span>
+          <span class="detail-info__label">Grade</span>
+          <span class="detail-info__text">{{ student.grade }}</span>
+        </div>
+        <div class="detail-info__contacts">
+          <span class="detail-info__label">Country</span>
+          <span class="detail-info__text">{{ student.country }}</span>
+          <span class="detail-info__label">City</span>
+          <span class="detail-info__text">{{ student.city }}</span>
+          <span class="detail-info__label">Email</span>
+          <span class="detail-info__text">{{ student.email }}</span>
+          <span class="detail-info__label">Phone</span>
+          <span class="detail-info__text">{{ student.phone }}</span>
+        </div>
       </div>
-      <div class="detail-info__contacts">
-        <span class="detail-info__label">Country</span>
-        <span class="detail-info__text">Russia</span>
-        <span class="detail-info__label">City</span>
-        <span class="detail-info__text">Moscow</span>
-        <span class="detail-info__label">Email</span>
-        <span class="detail-info__text">gor.mihal@gmail.com</span>
-        <span class="detail-info__label">Phone</span>
-        <span class="detail-info__text">+79200046134</span>
+      <div class="detail-info__about">
+        <span class="detail-info__label">About students: </span>
+        <p>{{ student.about }}</p>
       </div>
     </div>
-    <div class="detail-info__about">
-      <span class="detail-info__label">About students: </span>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Aspernatur dignissimos dolor ea eius est exercitationem harum ipsa iure minus neque, quae quibusdam sint.
-        Cum fuga nisi odit sapiente totam velit.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Ducimus illo, iste itaque maxime modi suscipit tenetur velit!
-        Aperiam assumenda autem facere, id necessitatibus odio ratione tenetur veniam. Iusto, mollitia, quas.</p>
-    </div>
-  </div>
 </div>
-
 <div class="progress">
-  <table class="table">
-    <tr class="table-head">
-      <th>Subjects</th>
-      <th>Sunday</th>
-      <th>Monday</th>
-      <th>Tuesday</th>
-      <th>Wednesday</th>
-      <th>Thursday</th>
-      <th>Friday</th>
-      <th>Saturday</th>
-      <th>Actions</th>
-    </tr>
-    <tr class="table-body">
-      <td>Algebra</td>
-      <td>2</td>
-      <td></td>
-      <td>4</td>
-      <td></td>
-      <td>5</td>
-      <td>5</td>
-      <td>5</td>
-      <td>
-        <button class="btn-tertiary">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-        </svg>
-      </button></td>
-    </tr>
-    <tr class="table-body">
-      <td>Algebra</td>
-      <td>2</td>
-      <td></td>
-      <td>4</td>
-      <td></td>
-      <td>5</td>
-      <td>5</td>
-      <td>5</td>
-      <td>
-        <button class="btn-tertiary">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-          </svg>
-        </button></td>
-    </tr>
-    <tr class="table-body">
-      <td>Algebra</td>
-      <td>2</td>
-      <td></td>
-      <td>4</td>
-      <td></td>
-      <td>5</td>
-      <td>5</td>
-      <td>5</td>
-      <td>
-        <button class="btn-tertiary">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-          </svg>
-        </button></td>
-    </tr>
-    <tr class="table-body">
-      <td>Algebra</td>
-      <td>2</td>
-      <td></td>
-      <td>4</td>
-      <td></td>
-      <td>5</td>
-      <td>5</td>
-      <td>5</td>
-      <td>
-        <button class="btn-tertiary">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-          </svg>
-        </button></td>
-    </tr>
-    <tr class="table-body">
-      <td>Algebra</td>
-      <td>2</td>
-      <td></td>
-      <td>4</td>
-      <td></td>
-      <td>5</td>
-      <td>5</td>
-      <td>5</td>
-      <td>
-        <button class="btn-tertiary">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-          </svg>
-        </button></td>
-    </tr>
-    <tr class="table-body">
-      <td>Algebra</td>
-      <td>2</td>
-      <td></td>
-      <td>4</td>
-      <td></td>
-      <td>5</td>
-      <td>5</td>
-      <td>5</td>
-      <td>
-        <button class="btn-tertiary">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
-          </svg>
-        </button></td>
-    </tr>
-  </table>
-</div>
+    <table class="table">
+      <tr class="table-head">
+        <th>Subjects</th>
+        <th>Sunday</th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Actions</th>
+      </tr>
+      <tr class="table-body">
+        <td>Algebra</td>
+        <td>2</td>
+        <td></td>
+        <td>4</td>
+        <td></td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+        <td>
+          <button class="btn-tertiary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
+            </svg>
+          </button></td>
+      </tr>
+      <tr class="table-body">
+        <td>Algebra</td>
+        <td>2</td>
+        <td></td>
+        <td>4</td>
+        <td></td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+        <td>
+          <button class="btn-tertiary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
+            </svg>
+          </button></td>
+      </tr>
+      <tr class="table-body">
+        <td>Algebra</td>
+        <td>2</td>
+        <td></td>
+        <td>4</td>
+        <td></td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+        <td>
+          <button class="btn-tertiary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
+            </svg>
+          </button></td>
+      </tr>
+      <tr class="table-body">
+        <td>Algebra</td>
+        <td>2</td>
+        <td></td>
+        <td>4</td>
+        <td></td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+        <td>
+          <button class="btn-tertiary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
+            </svg>
+          </button></td>
+      </tr>
+      <tr class="table-body">
+        <td>Algebra</td>
+        <td>2</td>
+        <td></td>
+        <td>4</td>
+        <td></td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+        <td>
+          <button class="btn-tertiary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
+            </svg>
+          </button></td>
+      </tr>
+      <tr class="table-body">
+        <td>Algebra</td>
+        <td>2</td>
+        <td></td>
+        <td>4</td>
+        <td></td>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+        <td>
+          <button class="btn-tertiary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
+            </svg>
+          </button></td>
+      </tr>
+    </table>
+  </div>

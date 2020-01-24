@@ -4,19 +4,18 @@ import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { DetailComponent } from "./components/detail/detail.component";
 import { ModalComponent } from "./components/modal/modal.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
+import { TableComponent } from "./components/table/table.component";
 import { WelcomeComponent } from "./components/welcome/welcome.component";
-import { EditGuardService } from "./guards/edit-guard.service";
-import { StudentsListComponent } from "./modules/table/components/students-list/students-list.component";
 
 const studentsRoutes: Routes = [
   { path: "add", component: ModalComponent },
-  { path: "edit/:id", component: ModalComponent, canActivate: [EditGuardService]},
+  { path: "edit/:id", component: ModalComponent},
   { path: "delete/:id", component: ModalComponent},
 ];
 
 const dashboardRoutes: Routes = [
-  { path: "", component: StudentsListComponent},
-  { path: "students", component: StudentsListComponent , children: studentsRoutes},
+  { path: "", component: TableComponent},
+  { path: "students", component: TableComponent , children: studentsRoutes},
   { path: "detail/:id", component: DetailComponent},
 ];
 

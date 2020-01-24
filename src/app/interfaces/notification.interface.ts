@@ -1,4 +1,4 @@
-export interface INotification {
+export interface NotificationInterface {
   messages: object[];
   add(message: object): void;
 }
