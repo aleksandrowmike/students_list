@@ -2,6 +2,6 @@ import { Action, ActionReducerMap } from "@ngrx/store";
 import { IAppState } from "../state/app.state";
 import { studentReducers } from "./student.reducers";
 
-export const appReducers: ActionReducerMap<IAppState, Action> = {
+export const appReducers: ActionReducerMap<IAppState, any> = {
   students: studentReducers
 };
