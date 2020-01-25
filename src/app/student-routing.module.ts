@@ -2,10 +2,10 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { DetailComponent } from "./components/detail/detail.component";
-import { ModalComponent } from "./components/modal/modal.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
-import { TableComponent } from "./components/table/table.component";
+import { StudentListComponent } from "./components/student-list/student-list.component";
 import { WelcomeComponent } from "./components/welcome/welcome.component";
+import { ModalComponent } from "./modules/modal/components/modal.component";
 
 const studentsRoutes: Routes = [
   { path: "add", component: ModalComponent },
@@ -14,8 +14,8 @@ const studentsRoutes: Routes = [
 ];
 
 const dashboardRoutes: Routes = [
-  { path: "", component: TableComponent},
-  { path: "students", component: TableComponent , children: studentsRoutes},
+  { path: "", component: StudentListComponent},
+  { path: "students", component: StudentListComponent , children: studentsRoutes},
   { path: "detail/:id", component: DetailComponent},
 ];
 

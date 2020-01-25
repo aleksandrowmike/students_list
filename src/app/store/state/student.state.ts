@@ -6,5 +6,5 @@ export interface IStudentState {
 }
 export const initialStudentState: IStudentState = {
   students: null,
-  selectedStudent: null
+  selectedStudent: null,
 };

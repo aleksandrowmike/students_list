@@ -20,8 +20,7 @@
   margin-right: 25px;
 }
 .detail{
-  margin: 40px 40px 0;
-  margin-top: 80px;
+  margin: 80px 40px 0;
   display: flex;
   &-avatar{
     width: 150px;
@@ -29,6 +28,17 @@
     flex-basis: 18%;
   }
   &-info {
+    input{
+      border-bottom: 1px solid fade(@table-gray, 20%);
+      padding-left: 0;
+      width: 200px;
+    }
+    textarea{
+      border: none;
+      border-bottom: 1px solid fade(@table-gray, 20%);
+      font-size: 14px;
+      color: fade(@table-gray, 90%);
+    }
     flex-basis: 80%;
     margin-left: 20px;
     &__individual{

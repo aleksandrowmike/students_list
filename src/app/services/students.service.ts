@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
+import { catchError } from "rxjs/operators";
 import { environment } from "../../environments/environment";
 import { IStudent } from "../models/student.interface";
 import { NotificationService } from "./notification.service";
@@ -11,9 +12,14 @@ import { NotificationService } from "./notification.service";
 })
 export class StudentsService {
   private _apiUri: string  = !environment.production ? "http://localhost:3000/students/" : "https://backend-students.herokuapp.com/students/";
-
-  constructor(private http: HttpClient, private notificationService: NotificationService) {
+  constructor(private http: HttpClient,
+              private notificationService: NotificationService,
+              private router: ActivatedRoute) {
   }
+  public editMode(): boolean {
+    return this.router.snapshot.queryParams["edit"] === "true";
+  }
+
   public getStudents(): Observable<IStudent[]> {
     return this.http.get<IStudent[]>(this._apiUri).pipe(
       catchError(this.notificationService.handleError<IStudent[]>("Error")),
