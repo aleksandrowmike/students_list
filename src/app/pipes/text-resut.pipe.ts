@@ -22,6 +22,9 @@ export class TextResultPipe implements PipeTransform {
       case (EResult.wellDone): {
         return "well done";
       }
+      default: {
+        return "none";
+      }
     }
   }
 }

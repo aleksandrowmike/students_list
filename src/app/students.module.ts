@@ -19,7 +19,8 @@ import { ModalModule } from "./modules/modal/modal.module";
 import { NotificationsModule } from "./modules/notifications/notifications.module";
 import { TableModule } from "./modules/table/table.module";
 import { TabsModule } from "./modules/tabs/tabs.module";
-import { TextResultPipe } from "./pipes/text-resut.pipes";
+import { TextLabelModePipe } from "./pipes/text-label-mode.pipe";
+import { TextResultPipe } from "./pipes/text-resut.pipe";
 import { StudentEffects } from "./store/effects/student.effects";
 import { appReducers } from "./store/reducers/app.reducers";
 import { StudentRoutingModule } from "./student-routing.module";
@@ -35,6 +36,7 @@ import { StudentRoutingModule } from "./student-routing.module";
     SideBarComponent,
     TextResultPipe,
     StudentListComponent,
+    TextLabelModePipe,
   ],
   imports: [
     BrowserModule,

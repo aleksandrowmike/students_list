@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { select, Store } from "@ngrx/store";
+import { Observable } from "rxjs";
 import { GetStudents } from "../../store/actions/student.actions";
-import { selectStudentList } from "../../store/selectors/students.selectors";
+import { getMode, selectStudentList } from "../../store/selectors/students.selectors";
 import { IAppState } from "../../store/state/app.state";
 
 @Component({
@@ -11,6 +12,7 @@ import { IAppState } from "../../store/state/app.state";
 })
 export class StudentListComponent implements OnInit {
   public students$ = this._store.pipe(select(selectStudentList));
+  public mode: Observable<boolean> = this._store.pipe(select(getMode));
   constructor(private _store: Store<IAppState>) { }
 
   ngOnInit(): void {

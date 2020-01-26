@@ -21,12 +21,11 @@ p{
   border-radius: 4px;
   border-collapse: collapse;
   th,td {
-    width: 20%;
+    width: 15%;
     padding: 10px;
     border-bottom: 1px solid #EBEFF2;
   }
-  th,td:first-child {width: 5%;}
-  th,td:last-child {width: 10%;}
+  th,td:first-child {width: 1%;}
   &-head {
     font-weight: 500;
     font-size: 13px;
@@ -144,69 +143,96 @@ p{
   }
 }
 
-/* inputs */
-.form-group {
-  position: relative;
-  margin-bottom: 30px;
-}
-input {
-  font-size: 13px;
-  color: @table-black;
-  padding: 10px;
-  display: block;
-  border: none;
-  background-color: transparent;
-  &:invalid{
-    border-bottom: 1px solid #D3D8DD;
-    color: fade(@table-black, 50%);
+
+.form-check{
+  label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    font-size: 13px;
   }
-  &:focus {
-    outline: none;
+  input[type=checkbox] {
+    display: none;
   }
-}
-label {
-  color: #818E9B;
-  font-weight: 500;
-  font-size: 12px;
-  position: absolute;
-  pointer-events: none;
-  left: 10px;
-  top: 15px;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-}
-/* active state */
-input:focus ~ label, input:valid ~ label {
-  top: -15px;
-  font-size: 14px;
-  color: @accent-blue;
-}
-.bar {
-  position: relative;
-  display: block;
-  width: 250px;
-}
-.bar:before, .bar:after {
-  content: "";
-  height: 2px;
-  width: 0;
-  bottom: 0;
-  position: absolute;
-  background: #818E9B;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-}
-.bar:before {
-  left: 50%;
-}
-.bar:after {
-  right: 47%;
-}
-/* active state */
-input:focus ~ .bar:before,
-input:focus ~ .bar:after {
-  width: 50%;
+  .checkbox label:before {
+    border-radius: 3px;
+  }
+  input[type=checkbox]:checked + label:before {
+    content: "\2713";
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    line-height: 13px;
+    background-color: @accent-blue;
+    border-color: @accent-blue;
+  }
+  label:before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: transparent;
+    border: 2px solid #D5D5D5;
+    border-radius: 4px;
+  }
 }
 
+.form-input {
+  margin: @wrapper-margin;
+  label {
+    position:relative;
+    display:block;
+    width:100%;
+    min-height:@input-height + @input-top;
+  }
+  .placeholder {
+    position:absolute;
+    display:block;
+    top:(@input-height / 2) + @placeholder-padding;
+    z-index:2;
+    font-size:@placeholder-font-size;
+    transition:all @placeholder-transition;
+    width:100%;
+    cursor:text;
+  }
+  input, textarea {
+    position:absolute;
+    top:@input-top;
+    z-index:1;
+    width:100%;
+    font-size:@input-font-size;
+    border:0;
+    border-bottom:1px solid @input-border-color;
+    transition: border-color @placeholder-transition;
+    outline:none;
+    padding: 0;
+    margin: 0;
+  }
+  textarea {
+    min-height:@input-height;
+    padding: @placeholder-padding 0;
+  }
+  input {
+    height:@input-height;
+  }
+  input:focus,
+  input:valid,
+  textarea:focus,
+  textarea:valid {
+    & + .placeholder {
+      top:0;
+      cursor:inherit;
+      font-size:@placeholder-font-size-small;
+      color:@accent-blue;
+    }
+
+    border-bottom:2px solid @accent-blue;
+  }
+}

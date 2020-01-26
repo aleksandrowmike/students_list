@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
 import { TableComponent } from "./components/table.component";
 
 
@@ -7,9 +8,10 @@ import { TableComponent } from "./components/table.component";
   declarations: [
     TableComponent,
   ],
-  imports: [
-    CommonModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+    ],
   exports: [
     TableComponent,
   ]

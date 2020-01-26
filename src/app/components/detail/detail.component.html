@@ -4,7 +4,74 @@
   </a>
   <h3>Detail <span>{{student.name}}</span></h3>
 </div>
-<div *ngIf="!editMode; else editModeTemplate" class="detail">
+<div *ngIf="mode | async; else detailTemplate" class="detail">
+  <div class="detail-avatar">
+    <img src="{{student.avatar}}" alt="">
+  </div>
+  <div class="detail-info">
+    <div class="detail-info__individual">
+      <div class="detail-info__common">
+        <span class="detail-info__label">Name </span>
+        <span class="detail-info__text">
+            <input type="text" placeholder="{{student.name}}">
+          </span>
+        <span class="detail-info__label">Date of Birth</span>
+        <span class="detail-info__text">
+            <input type="date" placeholder="{{ student.birth }}">
+          </span>
+        <span class="detail-info__label">Sex</span>
+        <span class="detail-info__text">
+            <input type="text" placeholder="{{ student.sex }}">
+          </span>
+        <span class="detail-info__label">Grade</span>
+        <span class="detail-info__text">
+            <input type="text" placeholder="{{ student.grade }}">
+          </span>
+      </div>
+      <div class="detail-info__contacts">
+        <span class="detail-info__label">Country</span>
+        <span class="detail-info__text">
+            <input type="text" placeholder="{{ student.country }}">
+          </span>
+        <span class="detail-info__label">City</span>
+        <span class="detail-info__text">
+            <input type="text" placeholder="{{ student.city }}">
+          </span>
+        <span class="detail-info__label">Email</span>
+        <span class="detail-info__text">
+            <input type="email" placeholder="{{ student.email }}">
+          </span>
+        <span class="detail-info__label">Phone</span>
+        <span class="detail-info__text">
+            <input type="tel" placeholder="{{ student.phone }}">
+          </span>
+      </div>
+    </div>
+    <div class="detail-info__about">
+      <span class="detail-info__label">About students: </span>
+      <p><textarea name="" id="" cols="80" rows="8">{{ student.about }}</textarea>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="progress">
+  <app-tabs>
+    <app-tab *ngFor="let recordBook of student.recordBook" [tabTitle]="recordBook.period">
+      <table class="table-list">
+        <tr class="table-list-head">
+          <th>Subjects</th>
+          <th>Result</th>
+        </tr>
+        <tr *ngFor="let discipline of discipline(recordBook.period) | async" class="table-list-body">
+          <td>{{ discipline.subject }}</td>
+          <td>{{ discipline.result | textResult}}</td>
+        </tr>
+      </table>
+    </app-tab>
+  </app-tabs>
+</div>
+<ng-template #detailTemplate>
+  <div class="detail">
     <div class="detail-avatar">
       <img src="{{student.avatar}}" alt="">
     </div>
@@ -36,73 +103,6 @@
         <p>{{ student.about }}</p>
       </div>
     </div>
-</div>
-<div class="progress">
-  <app-tabs>
-    <app-tab *ngFor="let recordBook of student.recordBook" [tabTitle]="recordBook.period">
-      <table class="table-list">
-        <tr class="table-list-head">
-          <th>Subjects</th>
-          <th>Result</th>
-        </tr>
-        <tr *ngFor="let discipline of discipline(recordBook.period)" class="table-list-body">
-          <td>{{ discipline.subject }}</td>
-          <td>{{ discipline.result | textResult}}</td>
-        </tr>
-      </table>
-    </app-tab>
-  </app-tabs>
-</div>
-
-<ng-template #editModeTemplate>
-  <div class="detail">
-    <div class="detail-avatar">
-      <img src="{{student.avatar}}" alt="">
-    </div>
-    <div class="detail-info">
-      <div class="detail-info__individual">
-        <div class="detail-info__common">
-          <span class="detail-info__label">Name </span>
-          <span class="detail-info__text">
-            <input type="text" placeholder="{{student.name}}">
-          </span>
-          <span class="detail-info__label">Date of Birth</span>
-          <span class="detail-info__text">
-            <input type="date" placeholder="{{ student.birth }}">
-          </span>
-          <span class="detail-info__label">Sex</span>
-          <span class="detail-info__text">
-            <input type="text" placeholder="{{ student.sex }}">
-          </span>
-          <span class="detail-info__label">Grade</span>
-          <span class="detail-info__text">
-            <input type="text" placeholder="{{ student.grade }}">
-          </span>
-        </div>
-        <div class="detail-info__contacts">
-          <span class="detail-info__label">Country</span>
-          <span class="detail-info__text">
-            <input type="text" placeholder="{{ student.country }}">
-          </span>
-          <span class="detail-info__label">City</span>
-          <span class="detail-info__text">
-            <input type="text" placeholder="{{ student.city }}">
-          </span>
-          <span class="detail-info__label">Email</span>
-          <span class="detail-info__text">
-            <input type="email" placeholder="{{ student.email }}">
-          </span>
-          <span class="detail-info__label">Phone</span>
-          <span class="detail-info__text">
-            <input type="tel" placeholder="{{ student.phone }}">
-          </span>
-        </div>
-      </div>
-      <div class="detail-info__about">
-        <span class="detail-info__label">About students: </span>
-        <p><textarea name="" id="" cols="80" rows="8">{{ student.about }}</textarea>
-          </p>
-      </div>
-    </div>
   </div>
+
 </ng-template>

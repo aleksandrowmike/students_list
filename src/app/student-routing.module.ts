@@ -22,7 +22,7 @@ const dashboardRoutes: Routes = [
 const routes: Routes = [
   { path: "", redirectTo: "/dashboard" , pathMatch: "full"},
   { path: "login", component: WelcomeComponent },
-  { path: "dashboard", component: DashboardComponent, children: dashboardRoutes },
+  { path: "dashboard", component: DashboardComponent, children: dashboardRoutes},
   { path: "page-not-found", component: NotFoundComponent },
   { path: "**", redirectTo: "/page-not-found"},
 ];

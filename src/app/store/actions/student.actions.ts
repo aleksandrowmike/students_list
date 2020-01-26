@@ -2,16 +2,19 @@ import { Action } from "@ngrx/store";
 import { IStudent } from "../../models/student.interface";
 
 export enum EStudentActions {
-  GetStudents = "[Student] Get students",
-  GetStudentsSuccess = "[Student] Get students success",
+  GetStudents = "[Student List] Get students",
+  GetStudentsSuccess = "[Student List] Get students success",
   GetStudent = "[Student] Get student",
   GetStudentSuccess = "[Student] Get student success",
-  AddStudent = "[Student] Add student",
-  AddStudentsSuccess = "[Student] Add student success",
-  UpdateStudent = "[Student] Update student",
-  UpdateStudentsSuccess = "[Student] Update student success",
-  DeleteStudent = "[Student] Delete student",
-  DeleteStudentsSuccess = "[Student] Delete student success",
+  CreateStudent = "[Create/Edit Student] Create student",
+  CreateStudentsSuccess = "[Create/Edit Student] Create student success",
+  CreateStudentsError = "[Create/Edit Student] Create student error",
+  UpdateStudent = "[Create/Edit Student] Update student",
+  UpdateStudentSuccess = "[Create/Edit Student] Update student success",
+  UpdateStudentError = "[Create/Edit Student] Update student error",
+  DeleteStudent = "[Student List] Delete student",
+  DeleteStudentSuccess = "[Student List] Delete student success",
+  DeleteStudentError = "[Student List] Delete student success",
 }
 export class GetStudents implements Action {
   public readonly type = EStudentActions.GetStudents;
@@ -28,4 +31,38 @@ export class GetStudentSuccess implements Action {
   public readonly type = EStudentActions.GetStudentSuccess;
   constructor(public payload: IStudent) {}
 }
-export type StudentActions = GetStudents | GetStudent | GetStudentsSuccess | GetStudentSuccess;
+export class CreateStudent implements Action {
+  public readonly type = EStudentActions.CreateStudent;
+}
+export class CreateStudentSuccess implements Action {
+  public readonly type = EStudentActions.CreateStudentsSuccess;
+  constructor(public payload: IStudent) {}
+}
+export class CreateStudentError implements Action {
+  public readonly type = EStudentActions.CreateStudentsError;
+}
+export class UpdateStudent implements Action {
+  public readonly type = EStudentActions.UpdateStudent;
+}
+export class UpdateStudentSuccess implements Action {
+  public readonly type = EStudentActions.UpdateStudentSuccess;
+  constructor(public payload: IStudent) {}
+}
+export class UpdateStudentError implements Action {
+  public readonly type = EStudentActions.UpdateStudentError;
+}
+export class DeleteStudent implements Action {
+  public readonly type = EStudentActions.DeleteStudent;
+}
+export class DeleteStudentSuccess implements Action {
+  public readonly type = EStudentActions.DeleteStudentSuccess;
+  constructor(public payload: IStudent) {}
+}
+export class DeleteStudentError implements Action {
+  public readonly type = EStudentActions.DeleteStudentError;
+}
+export type StudentActions =
+  GetStudents | GetStudent | GetStudentsSuccess | GetStudentSuccess |
+  CreateStudent | CreateStudentSuccess | CreateStudentError |
+  UpdateStudent | UpdateStudentSuccess | UpdateStudentError |
+  DeleteStudent | DeleteStudentSuccess | DeleteStudentError;

@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { GetStudents } from "../../store/actions/student.actions";
+import { IAppState } from "../../store/state/app.state";
 
 @Component({
   selector: "students-root",
@@ -6,5 +9,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./students-root.component.less"]
 })
 export class StudentsRootComponent implements OnInit {
-  ngOnInit(): void {}
+  constructor() {}
+  ngOnInit(): void {
+  }
 }

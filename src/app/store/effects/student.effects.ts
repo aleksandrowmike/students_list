@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { select, Store } from "@ngrx/store";
 import { of } from "rxjs";
-import { map, switchMap, tap, withLatestFrom } from "rxjs/operators";
+import { map, switchMap, withLatestFrom } from "rxjs/operators";
 import { IStudent } from "../../models/student.interface";
 import { StudentsService } from "../../services/students.service";
 import { EStudentActions, GetStudent, GetStudents, GetStudentsSuccess, GetStudentSuccess } from "../actions/student.actions";
@@ -20,12 +20,15 @@ export class StudentEffects {
       const selectedStudent = students.filter(student => student._id === id)[0];
       return of(new GetStudentSuccess(selectedStudent));
     }),
-  );
+    );
   @Effect()
   getStudents$ = this._actions$.pipe(
     ofType<GetStudents>(EStudentActions.GetStudents),
     switchMap(() => this._studentsService.getStudents()),
-    switchMap((studentHttp: IStudent[]) => of(new GetStudentsSuccess(studentHttp))),
+    switchMap((studentHttp: IStudent[]) => {
+      localStorage.setItem("state", JSON.stringify(studentHttp));
+      return of(new GetStudentsSuccess(studentHttp));
+    }),
   );
 
   constructor(
