@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from "@angular/core";
+import { HttpClient, HttpEventType } from "@angular/common/http";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators, FormBuilder } from "@angular/forms";
+import { StudentValidatorsService } from "../../../validators/student-validators.service";
 // import { FormControl, FormGroup, Validators } from "@angular/forms";
 // import { ActivatedRoute, Router } from "@angular/router";
 // import { DataInterface } from "../../interfaces/data.interface";
@@ -19,21 +22,48 @@ export class ModalComponent implements OnInit {
   // public event: string;
   // public studentId: string;
   // public confirm: boolean = false;
-  // public formStudent: FormGroup;
+  public formStudent: FormGroup;
+  public selectedFile: File = null;
+  public imagePath: string | ArrayBuffer;
   // public action: Number;
   // public currentDate = new Date().getFullYear() - 10;
   // public data: IStudents = {birth: undefined, firstName: "", id: 0, lastName: "", middleName: "", score: 0};
   // public count: number;
-  // constructor(private StudentValidators: StudentValidatorsService,
-  //             @Inject(DataService) private dataService: DataInterface,
-  //             private router: Router,
-  //             private activatedRoute: ActivatedRoute,
-  //             private studentsService: StudentsService,
-  // ) {}
-  // public isControlInvalid(controlName: string): boolean {
-  //   const control = this.formStudent.get(controlName);
-  //   return control.invalid && control.touched;
-  // }
+  constructor(private StudentValidators: StudentValidatorsService,
+              private fb: FormBuilder,
+              private http: HttpClient,
+              private _ref: ChangeDetectorRef) {}
+  public isControlInvalid(controlName: string): boolean {
+    const control = this.formStudent.get(controlName);
+    return control.invalid && control.touched;
+  }
+  // tslint:disable-next-line:typedef
+  public onFileSelected(event): void {
+    if (<File>event.target.files[0]) {
+      this.selectedFile = <File>event.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(this.selectedFile);
+      reader.onload = () => {
+        this.imagePath = reader.result;
+        this._ref.markForCheck();
+      };
+    }
+  }
+  public onUpload(): void {
+    const fd = new FormData();
+    fd.append("image", this.selectedFile, this.selectedFile.name);
+    this.http.post("http://localhost:3000/students/upload", fd, {
+      reportProgress: true,
+      observe: "events"
+    }).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        console.log("Upload Progress: ", Math.round(event.loaded / event.total * 100) + "%");
+      } else if (event.type === HttpEventType.Response) {
+        console.log(event);
+      }
+    });
+
+  }
   // public convertDate(date: Date): string {
   //   const dates = new Date(date);
   //   const month = dates.getMonth() + 1;
@@ -66,18 +96,25 @@ export class ModalComponent implements OnInit {
   //     this.formStudent.setValue(editStudent);
   //   });
   // }
-  // public initAddStudentForm(): void {
-  //   this.formStudent = new FormGroup({
-  //     name: new FormGroup({
-  //       firstName: new FormControl("", [Validators.required]),
-  //       lastName: new FormControl("", [Validators.required]),
-  //       middleName: new FormControl("", [Validators.required])
-  //     }, [this.StudentValidators.nameValidator]),
-  //     birth: new FormControl("", [Validators.required, this.StudentValidators.dateValidator]),
-  //     score: new FormControl("", [Validators.required, Validators.min(1), Validators.max(5)])
-  //   });
-  //   this.dataService.getCountStudents().subscribe(num => this.count = +num);
-  // }
+  public initAddStudentForm(): void {
+    this.formStudent = this.fb.group({
+      name: this.fb.group({
+        firstName: ["", Validators.required],
+        lastName: ["", Validators.required]
+      }),
+      birth: ["", Validators.required, this.StudentValidators.dateValidator],
+      email: ["", Validators.email],
+      phone: ["", Validators.pattern("/^(\\s*)?(\\+)?([- _():=+]?\\d[- _():=+]?){10,14}(\\s*)?$/")],
+      country: ["", Validators.required],
+      city: ["", Validators.required],
+      grade: ["", Validators.required],
+      sex: ["Sex", Validators.required],
+      about: [""],
+      avatar: [""]
+    });
+
+
+  }
   // public submitForm(): boolean {
   //   const controls = this.formStudent.controls;
   //   if (this.formStudent.invalid) {
@@ -141,6 +178,7 @@ export class ModalComponent implements OnInit {
   //   }
   // }
   ngOnInit(): void {
+    this.initAddStudentForm();
     // this.event = this.activatedRoute.snapshot.url[0].path;
     // this._action(this.event);
   }

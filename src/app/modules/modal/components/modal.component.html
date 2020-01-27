@@ -6,6 +6,115 @@
         <a title="Close" class="close" routerLink="/">×</a>
       </div>
       <div class="modal-body">
+        <form action="" class="form-group" novalidate [formGroup]="formStudent">
+          <h4>Name</h4>
+          <div class="form-group__name" formGroupName="name">
+            <div class="form-input">
+              <label>
+                <input type="text" formControlName="firstName" required>
+                <span class="placeholder">First Name</span>
+              </label>
+              <span class="tooltip-text" *ngIf="isControlInvalid('name.firstName')">
+                First name is required
+              </span>
+            </div>
+            <div class="form-input">
+              <label>
+                <input type="text" formControlName="lastName" required>
+                <span class="placeholder">Last Name</span>
+              </label>
+              <span class="tooltip-text" *ngIf="isControlInvalid('name.lastName')">
+                  Last name is required
+              </span>
+            </div>
+          </div>
+          <h4>Contact information</h4>
+          <div class="form-group__contact">
+            <div class="form-input">
+              <label>
+                <input type="email" formControlName="email" required>
+                <span class="placeholder">Email </span>
+              </label>
+              <span class="tooltip-text" *ngIf="isControlInvalid('email')">
+                  Email is required
+              </span>
+            </div>
+            <div class="form-input">
+              <label>
+                <input type="tel" formControlName="phone" required>
+                <span class="placeholder">Phone</span>
+              </label>
+              <span class="tooltip-text" *ngIf="isControlInvalid('phone')">
+                  Phone is required
+              </span>
+            </div>
+            <div class="form-input">
+              <label>
+                <input type="text" formControlName="country" required>
+                <span class="placeholder">Country</span>
+              </label>
+              <span class="tooltip-text" *ngIf="isControlInvalid('country')">
+                  Country is required
+              </span>
+            </div>
+            <div class="form-input">
+            <label>
+              <input type="text" formControlName="city" required>
+              <span class="placeholder">City</span>
+            </label>
+              <span class="tooltip-text" *ngIf="isControlInvalid('city')">
+                  City is required
+              </span>
+          </div>
+            <div class="form-input">
+              <label>
+                <input type="text"
+                       onfocus="(this.type='date')"
+                       onblur="if(!this.value)this.type='text'"
+                       formControlName="birth"
+                       required>
+                <span class="placeholder">Date of birth</span>
+              </label>
+              <span class="tooltip-text" *ngIf="isControlInvalid('birth')">
+                  Birth is required
+              </span>
+            </div>
+            <div class="form-input">
+              <label>
+                <input type="number" min="1" max="11" formControlName="grade" required>
+                <span class="placeholder">Grade</span>
+              </label>
+              <span class="tooltip-text" *ngIf="isControlInvalid('grade')">
+                  Birth is required
+              </span>
+            </div>
+          </div>
+          <div>
+            <label>
+              <select class="select" formControlName="sex">
+                <option selected> Sex </option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-group__about">
+            <div class="form-input">
+              <label>
+                <textarea formControlName="about" required></textarea>
+                <span class="placeholder">About</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group__file">
+            <h4>Upload photo</h4>
+            <input style="display: none" #fileInput type="file" (change)="onFileSelected($event)">
+            <button type="button" (click)="fileInput.click()">Pick File</button>
+            <img src="{{imagePath}}" alt="">
+          </div>
+          <button type="submit" class="btn-default submit">Create</button>
+        </form>
+
 <!--        <form *ngIf="action; else confirm" novalidate [formGroup]="formStudent" class="edit-student" (ngSubmit)="submitForm()">-->
 <!--          <div class="form-group" formGroupName="name">-->
 <!--            <div class="form-control">-->
@@ -57,7 +166,7 @@
 <!--        </form>-->
 <!--        <ng-template #confirm>-->
 <!--          <p>Are you sure you want to delete?</p>-->
-<!--          <button class="button primary" (click)="confirmation()">Yes</button><button class="button primary" (click)="hideModal()">Cancel</button>-->
+<!--          <button class="button primary">Yes</button><button class="button primary">Cancel</button>-->
 <!--        </ng-template>-->
       </div>
     </div>

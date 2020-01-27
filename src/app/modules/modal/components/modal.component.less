@@ -1,10 +1,11 @@
+@import "var";
 .modal {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0,0,0,0.5);
+  background: fade(@table-black, 40%);
   z-index: 1050;
   opacity: 0;
   -webkit-transition: opacity 200ms ease-in;
@@ -18,7 +19,7 @@
     width: auto;
     margin: 10px;
     @media (min-width: 576px) {
-      max-width: 500px;
+      max-width: 710px;
       margin: 30px auto;
     }
   }
@@ -36,12 +37,9 @@
     background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: .3rem;
     outline: 0;
     @media (min-width: 768px) {
-      -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
-      box-shadow: 0 5px 15px rgba(0,0,0,.5);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
     }
   }
   &-header{
@@ -134,21 +132,19 @@
   background-color: #6c757d;
   color: #fff;
 }
-input.ng-touched.ng-invalid{
-  border: 1px solid #ff4a4a;
-  outline-color: #ff4a4a;
-}
-.tooltiptext {
+
+.tooltip-text {
   visibility: visible;
   width: 100%;
-  background-color: #ff4a4a;
+  background-color: @red;
   color: #fff;
   text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
-  position: relative;
+  padding: 2px 10px;
+  position: absolute;
   z-index: 1;
-  margin-bottom: 5px;
+  margin: 0 auto;
+  font-size: 11px;
+  display: block;
   &::after {
     content: " ";
     position: absolute;
@@ -157,7 +153,62 @@ input.ng-touched.ng-invalid{
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent #ff4a4a transparent;
+    border-color: transparent transparent @red transparent;
   }
 }
 
+.form-group{
+  &__name{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__contact{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .select{
+    border: none;
+    font-size: 15px;
+    width: 45%;
+    border-bottom: 1px solid grey;
+    outline: none;
+    margin-top: 20px;
+  }
+  &__about{
+    .form-input{
+      width: 100%;
+      height: 70px;
+    }
+  }
+  .submit{
+    margin-top: 30px;
+  }
+  input.ng-touched.ng-invalid{
+    border-bottom: 2px solid @red;
+    outline-color: @red;
+  }
+  input.ng-touched.ng-invalid ~ .placeholder{
+    color: @red;
+    font-weight: 500;
+  }
+  &__file{
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    button{
+      padding: 10px;
+    }
+    img{
+      width: 200px;
+    }
+  }
+}
+.form-input{
+  width: 45%;
+  margin-top: 0;
+  margin-bottom: 10px;
+  position: relative;
+}
