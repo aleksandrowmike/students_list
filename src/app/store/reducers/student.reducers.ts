@@ -16,12 +16,6 @@ export function studentReducers (state: IStudentState = initialStudentState, act
       };
     }
     default: {
-      if (localStorage.getItem("state")) {
-        return {
-          ...state,
-          students: JSON.parse(localStorage.getItem("state"))
-        };
-      }
       return state;
     }
   }

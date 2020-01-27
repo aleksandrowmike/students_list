@@ -3,9 +3,13 @@
   padding: 10px 12px;
   background-color: @white;
   border-bottom: 1px solid #EBEFF2;
+  height: 60px;
+  display: flex;
+  position: fixed;
+  width: 100%;
 }
 .table{
-  margin: 40px 40px 0;
+  margin: 90px 40px 0;
   &-elements{
     display: flex;
     padding: 10px;
@@ -19,6 +23,11 @@
     &__add{
       padding: 10px 20px;
     }
+  }
+  &-rules{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
 button{
@@ -37,4 +46,88 @@ button{
 }
 .unvisibility{
   visibility: hidden;
+}
+
+.pagination{
+  padding: 30px 0;
+}
+
+.pagination ul{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.pagination a{
+  display: inline-block;
+  padding: 7px 13px;
+  color: @table-gray;
+  cursor: pointer;
+}
+/* TWELVE */
+.p12 a:first-of-type{
+  margin-right: 5px;
+}
+.p12 a:last-of-type{
+  margin-left: 5px;
+}
+.p12 .active{
+  background-color: @accent-blue;
+}
+.p12 a:first-of-type, .p12 a:last-of-type, .p12 .active{
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.selectdiv {
+  position: relative;
+  /*Don't really need this just for demo styling*/
+  float: left;
+  min-width: 100px;
+}
+
+/* IE11 hide native button (thanks Matt!) */
+select::-ms-expand {
+  display: none;
+}
+
+.selectdiv:after {
+  content: '<>';
+  font: 17px "Consolas", monospace;
+  color: #333;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  right: 11px;
+  /*Adjust for position however you want*/
+  top: 11px;
+  padding: 0 0 2px;
+  border-bottom: 1px solid #999;
+  /*left line */
+  position: absolute;
+  pointer-events: none;
+}
+
+.selectdiv select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: 37px;
+  float: right;
+  margin: 5px 0px;
+  padding: 0px 24px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  -ms-word-break: normal;
+  word-break: normal;
 }

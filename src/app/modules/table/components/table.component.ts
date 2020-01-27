@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { IStudent } from "../../../models/student.interface";
+import { IPagination, PaginationService } from "../../../services/pagination.service";
 import { EditMode } from "../../../store/actions/app.actions";
 import { getMode } from "../../../store/selectors/students.selectors";
 import { IAppState } from "../../../store/state/app.state";
@@ -21,19 +22,22 @@ enum Sort {
 
 export class TableComponent implements OnInit {
   @Input() data: IStudent[];
+  public page: IPagination;
+  public pageItems: IStudent[];
   public mode: Observable<boolean> = this._store.pipe(select(getMode));
   public selectedStudents: string;
   private _numberOfClicks: number = 0;
   constructor(private ref: ChangeDetectorRef,
               private _router: Router,
-              private _store: Store<IAppState>) {}
+              private _store: Store<IAppState>,
+              private _paginationService: PaginationService) {}
   public applySearch(search: string): void {
     search === "" ? this.selectedStudents = null :  this.selectedStudents = search;
   }
   public sort(sortField: string): void {
     switch (Sort[this._numberOfClicks]) {
       case ("ASC"): {
-        this.data.sort((a, b) => {
+        this.pageItems.sort((a, b) => {
           if (a[sortField] < b[sortField]) {
             return -1;
           }
@@ -41,7 +45,7 @@ export class TableComponent implements OnInit {
         break;
       }
       case ("DESC"): {
-        this.data.sort((a, b) => {
+        this.pageItems.sort((a, b) => {
           if (a[sortField] > b[sortField]) {
             return -1;
           }
@@ -61,5 +65,15 @@ export class TableComponent implements OnInit {
   public changeMode(value: boolean): void {
     this._store.dispatch(new EditMode(value));
   }
-  ngOnInit(): void {}
+  public setPage(page: number): void {
+    this.page = this._paginationService.getPage(this.data.length, page);
+    this.pageItems = this.data.slice(this.page.startIndex, this.page.endIndex + 1);
+  }
+  public setPageSize(pageSize: string): void {
+    this._paginationService.setPageSize(+pageSize);
+    this.setPage(this.page.currentPage);
+  }
+  ngOnInit(): void {
+    this.setPage(1);
+  }
 }

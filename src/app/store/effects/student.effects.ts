@@ -26,7 +26,6 @@ export class StudentEffects {
     ofType<GetStudents>(EStudentActions.GetStudents),
     switchMap(() => this._studentsService.getStudents()),
     switchMap((studentHttp: IStudent[]) => {
-      localStorage.setItem("state", JSON.stringify(studentHttp));
       return of(new GetStudentsSuccess(studentHttp));
     }),
   );

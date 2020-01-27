@@ -10,7 +10,9 @@ export function appModeReducer (state: IModeState = initialModeState, action: Ap
       };
     }
     default: {
-      return state;
+      return {
+        ...state,
+      };
     }
   }
 }

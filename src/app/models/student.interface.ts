@@ -1,6 +1,7 @@
 import { IRecordBook } from "./recordbook.interface";
 
 export interface IStudent {
+  id?: number;
   _id?: string;
   name: string;
   avatar: string;

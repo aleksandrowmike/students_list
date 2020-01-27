@@ -1,5 +1,6 @@
 <div class="search-bar">
-  <input #search type="text" placeholder="Search by name" (keyup)="applySearch(search.value)">
+  <label for="search"></label>
+  <input id="search" class="search-input" #search type="search" placeholder="Search by name" (keyup)="applySearch(search.value)">
 </div>
 <div class="table">
   <div class="table-elements">
@@ -28,11 +29,11 @@
           <th class="table-list-head__sort" (click)="sort('city')">City</th>
           <th class="table-list-head__tertiary" *ngIf="mode | async">Actions</th>
         </tr>
-        <tr *ngFor="let student of data; let i = index" class="table-list-body"
+        <tr *ngFor="let student of pageItems" class="table-list-body"
             [class.accent]="student.name.includes(selectedStudents)"
             (click)="navigateToStudent(student._id)"
         >
-          <td>{{ i + 1 }}</td>
+          <td>{{student.id}}</td>
           <td class="table-list-body__detail">{{ student.name }}</td>
           <td class="table-list-body__second">{{ student.email }}</td>
           <td class="table-list-body__second">{{ student.sex }}</td>
@@ -53,5 +54,35 @@
           </td>
         </tr>
       </table>
+  <div class="table-rules">
+    <div class="selectdiv">
+      <label>
+        <select #pageSizing (click)="setPageSize(pageSizing.value)">
+          <option selected> 10 </option>
+          <option>15</option>
+          <option>25</option>
+          <option>30</option>
+        </select>
+      </label>
     </div>
+    <div class="pagination p12">
+      <ul *ngIf="page.pages && page.pages.length">
+        <a class="btn-default"
+           [ngClass]="{disabled:page.currentPage === 1}"
+           (click)="setPage(page.currentPage - 1)"
+        >
+          <li>Previous</li>
+        </a>
+        <a *ngFor="let pager of page.pages"
+           [ngClass]="{active: page.currentPage === pager }"
+           (click)="setPage(pager)">
+          <li>{{pager}}</li></a>
+        <a class="btn-default"
+           [ngClass]="{disabled:page.currentPage === page.totalPages}"
+           (click)="setPage(page.currentPage + 1)"
+        ><li>Next</li></a>
+      </ul>
+    </div>
+  </div>
+</div>
 

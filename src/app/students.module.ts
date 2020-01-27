@@ -22,7 +22,7 @@ import { TabsModule } from "./modules/tabs/tabs.module";
 import { TextLabelModePipe } from "./pipes/text-label-mode.pipe";
 import { TextResultPipe } from "./pipes/text-resut.pipe";
 import { StudentEffects } from "./store/effects/student.effects";
-import { appReducers } from "./store/reducers/app.reducers";
+import { appReducers, metaReducers } from "./store/reducers/app.reducers";
 import { StudentRoutingModule } from "./student-routing.module";
 
 @NgModule({
@@ -42,7 +42,7 @@ import { StudentRoutingModule } from "./student-routing.module";
     BrowserModule,
     HttpClientModule,
     StudentRoutingModule,
-    StoreModule.forRoot(appReducers),
+    StoreModule.forRoot(appReducers, {metaReducers}),
     EffectsModule.forRoot([StudentEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
