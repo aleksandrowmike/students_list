@@ -14,16 +14,16 @@ export interface IFile {
   providedIn: "root"
 })
 export class StudentsService {
-  private _apiUri: string  = !environment.production ? environment.apiUrlLocal : environment.apiUrl;
+  public apiUri: string  = environment.apiUrl;
   constructor(private notificationService: NotificationService, private http: HttpClient) {
   }
   public getStudents(): Observable<IStudent[]> {
-    return this.http.get<IStudent[]>(this._apiUri).pipe (
+    return this.http.get<IStudent[]>(this.apiUri).pipe (
       catchError(this.notificationService.handleError<IStudent[]>("Error")),
     );
   }
   public onUpload(fd: FormData): Observable<IFile> {
-    return this.http.post<IFile>("http://localhost:3000/students/upload", fd);
+    return this.http.post<IFile>(this.apiUri + "upload", fd);
   }
   // public getCountStudents(): Observable<Number> {
   //   return this.http.get<Number>(this._apiUri + "count").pipe(

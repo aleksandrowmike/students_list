@@ -122,7 +122,7 @@ export class ModalComponent implements OnInit {
     const data: Object = {
       ...this.formStudent.value,
       name: this.formStudent.value.name.firstName + " " + this.formStudent.value.name.lastName,
-      avatar: !environment.production ? environment.apiUrlLocal + this.filename : environment.apiUrl + this.filename
+      avatar: this.studentsService.apiUri + this.filename
     };
     console.log(data);
     // if (this.action === 1) {
