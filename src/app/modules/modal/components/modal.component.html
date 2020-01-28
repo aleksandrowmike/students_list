@@ -6,7 +6,7 @@
         <a title="Close" class="close" routerLink="/">×</a>
       </div>
       <div class="modal-body">
-        <form action="" class="form-group" novalidate [formGroup]="formStudent">
+        <form action="" class="form-group" novalidate [formGroup]="formStudent" (ngSubmit)="submitForm()">
           <h4>Name</h4>
           <div class="form-group__name" formGroupName="name">
             <div class="form-input">
@@ -110,11 +110,11 @@
             <h4>Upload photo</h4>
             <input style="display: none" #fileInput type="file" (change)="onFileSelected($event)">
             <button type="button" (click)="fileInput.click()">Pick File</button>
-            <img src="{{imagePath}}" alt="">
+            <button (click)="getImage()"> Get image</button>
           </div>
+          <img class="form-group__photo" src="{{imagePath}}" alt="">
           <button type="submit" class="btn-default submit">Create</button>
         </form>
-
 <!--        <form *ngIf="action; else confirm" novalidate [formGroup]="formStudent" class="edit-student" (ngSubmit)="submitForm()">-->
 <!--          <div class="form-group" formGroupName="name">-->
 <!--            <div class="form-control">-->

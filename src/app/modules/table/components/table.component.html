@@ -23,6 +23,7 @@
           <th>ID</th>
           <th class="table-list-head__sort" (click)="sort('name')">Name</th>
           <th class="table-list-head__sort" (click)="sort('email')">Email</th>
+          <th class="table-list-head__sort" (click)="sort('phone')">Phone</th>
           <th class="table-list-head__sort" (click)="sort('sex')">Sex</th>
           <th class="table-list-head__sort" (click)="sort('birth')">Date of birth</th>
           <th class="table-list-head__sort" (click)="sort('country')">Country</th>
@@ -31,11 +32,13 @@
         </tr>
         <tr *ngFor="let student of pageItems" class="table-list-body"
             [class.accent]="student.name.includes(selectedStudents)"
-            (click)="navigateToStudent(student._id)"
         >
           <td>{{student.id}}</td>
-          <td class="table-list-body__detail">{{ student.name }}</td>
+          <td class="table-list-body__detail"
+              (click)="navigateToStudent(student._id)"
+          ><img src="{{student.avatar}}" class="table-list-body__img" alt="">{{ student.name }}</td>
           <td class="table-list-body__second">{{ student.email }}</td>
+          <td class="table-list-body__second">{{ student.phone }}</td>
           <td class="table-list-body__second">{{ student.sex }}</td>
           <td class="table-list-body__second">{{ student.birth | date }}</td>
           <td class="table-list-body__second">{{ student.country }}</td>

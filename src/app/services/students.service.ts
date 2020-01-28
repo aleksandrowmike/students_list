@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpEventType } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
@@ -6,17 +6,24 @@ import { environment } from "../../environments/environment";
 import { IStudent } from "../models/student.interface";
 import { NotificationService } from "./notification.service";
 
+export interface IFile {
+  filename: string;
+}
+
 @Injectable({
   providedIn: "root"
 })
 export class StudentsService {
-  private _apiUri: string  = !environment.production ? "http://localhost:3000/students/" : "https://backend-students.herokuapp.com/students/";
+  private _apiUri: string  = !environment.production ? environment.apiUrlLocal : environment.apiUrl;
   constructor(private notificationService: NotificationService, private http: HttpClient) {
   }
   public getStudents(): Observable<IStudent[]> {
     return this.http.get<IStudent[]>(this._apiUri).pipe (
       catchError(this.notificationService.handleError<IStudent[]>("Error")),
     );
+  }
+  public onUpload(fd: FormData): Observable<IFile> {
+    return this.http.post<IFile>("http://localhost:3000/students/upload", fd);
   }
   // public getCountStudents(): Observable<Number> {
   //   return this.http.get<Number>(this._apiUri + "count").pipe(
