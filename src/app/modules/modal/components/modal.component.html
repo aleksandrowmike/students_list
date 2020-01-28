@@ -110,7 +110,6 @@
             <h4>Upload photo</h4>
             <input style="display: none" #fileInput type="file" (change)="onFileSelected($event)">
             <button type="button" (click)="fileInput.click()">Pick File</button>
-            <button (click)="getImage()"> Get image</button>
           </div>
           <img class="form-group__photo" src="{{imagePath}}" alt="">
           <button type="submit" class="btn-default submit">Create</button>
