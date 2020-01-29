@@ -1,7 +1,7 @@
 import { HttpClient, HttpEventType } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { catchError, map, tap } from "rxjs/operators";
 import { environment } from "../../environments/environment";
 import { IStudent } from "../models/student.interface";
 import { NotificationService } from "./notification.service";
@@ -30,12 +30,9 @@ export class StudentsService {
   //     catchError(this.notificationService.handleError<Number>("Error")),
   //   );
   // }
-  // public createStudent(data: IStudent): Observable<IStudent> {
-  //   return this.http.post<IStudent>(this._apiUri, data).pipe(
-  //     tap(() => this.notificationService.add({type: "success", message: "Student successfully added"})),
-  //     catchError(this.notificationService.handleError<IStudent>("Error")),
-  //   );
-  // }
+  public createStudent(data: IStudent): Observable<IStudent> {
+    return this.http.post<IStudent>(this.apiUri, data);
+  }
   // public getStudentsById(_id: string): Observable<IStudent[]> {
   //   return this.http.get<IStudent[]>(this._apiUri + _id).pipe(
   //     catchError(this.notificationService.handleError<IStudent[]>("Error")),
@@ -47,10 +44,7 @@ export class StudentsService {
   //     catchError(this.notificationService.handleError<IStudent>("Error")),
   //   );
   // }
-  // public deleteStudent(_id: string): Observable<IStudent> {
-  //   return this.http.delete<IStudent>(this._apiUri + _id).pipe(
-  //     tap(() => this.notificationService.add({type: "success", message: "Student successfully deleted"})),
-  //     catchError(this.notificationService.handleError<IStudent>("Error")),
-  //   );
-  // }
+  public deleteStudent(_id: string): Observable<string> {
+    return this.http.delete<string>(this.apiUri + _id);
+  }
 }

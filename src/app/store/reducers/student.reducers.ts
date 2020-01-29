@@ -15,6 +15,18 @@ export function studentReducers (state: IStudentState = initialStudentState, act
         selectedStudent: action.payload
       };
     }
+    case EStudentActions.CreateStudentsSuccess: {
+      state.students.push(action.payload);
+      return {
+        ...state,
+      };
+    }
+    case EStudentActions.DeleteStudentSuccess: {
+      return {
+        ...state,
+        students: state.students.filter(student => student._id !== action.payload)
+      };
+    }
     default: {
       return state;
     }

@@ -1,8 +1,12 @@
 import { HttpClient, HttpEventType } from "@angular/common/http";
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
 import { environment } from "../../../../environments/environment";
+import { IStudent } from "../../../models/student.interface";
 import { StudentsService } from "../../../services/students.service";
+import { CreateStudent, GetStudents } from "../../../store/actions/student.actions";
 import { StudentValidatorsService } from "../../../validators/student-validators.service";
 // import { FormControl, FormGroup, Validators } from "@angular/forms";
 // import { ActivatedRoute, Router } from "@angular/router";
@@ -18,7 +22,7 @@ import { StudentValidatorsService } from "../../../validators/student-validators
   templateUrl: "./modal.component.html",
   styleUrls: ["./modal.component.less"]
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnDestroy {
   // public title: string;
   // public event: string;
   // public studentId: string;
@@ -33,9 +37,10 @@ export class ModalComponent implements OnInit {
   // public count: number;
   constructor(private StudentValidators: StudentValidatorsService,
               private fb: FormBuilder,
-              private http: HttpClient,
+              private _store: Store<IStudent>,
               private _ref: ChangeDetectorRef,
-              private studentsService: StudentsService) {}
+              private studentsService: StudentsService,
+              private router: Router) {}
   public isControlInvalid(controlName: string): boolean {
     const control = this.formStudent.get(controlName);
     return control.invalid && control.touched;
@@ -119,12 +124,14 @@ export class ModalComponent implements OnInit {
         .forEach(controlName => controls[controlName].markAsTouched());
       return false;
     }
-    const data: Object = {
+    const data: IStudent = {
       ...this.formStudent.value,
+      id: 30,
       name: this.formStudent.value.name.firstName + " " + this.formStudent.value.name.lastName,
       avatar: this.studentsService.apiUri + this.filename
     };
-    console.log(data);
+    this._store.dispatch(new CreateStudent(data));
+    this.router.navigate(["/"]);
     // if (this.action === 1) {
     //   if (this.studentsService.debug()) {
     //     this.data._id = "5e12bd9ffc13ae725b0000" + this.count;
@@ -184,5 +191,8 @@ export class ModalComponent implements OnInit {
     this.initAddStudentForm();
     // this.event = this.activatedRoute.snapshot.url[0].path;
     // this._action(this.event);
+  }
+  ngOnDestroy(): void {
+    this._store.dispatch(new GetStudents());
   }
 }

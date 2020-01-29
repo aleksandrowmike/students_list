@@ -2,10 +2,10 @@ import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { select, Store } from "@ngrx/store";
 import { of } from "rxjs";
-import { map, switchMap, withLatestFrom } from "rxjs/operators";
+import { map, switchMap, tap, withLatestFrom } from "rxjs/operators";
 import { IStudent } from "../../models/student.interface";
 import { StudentsService } from "../../services/students.service";
-import { EStudentActions, GetStudent, GetStudents, GetStudentsSuccess, GetStudentSuccess } from "../actions/student.actions";
+import { CreateStudent, CreateStudentSuccess, DeleteStudent, DeleteStudentSuccess, EStudentActions, GetStudent, GetStudents, GetStudentsSuccess, GetStudentSuccess } from "../actions/student.actions";
 import { selectStudentList } from "../selectors/students.selectors";
 import { IAppState } from "../state/app.state";
 
@@ -29,7 +29,22 @@ export class StudentEffects {
       return of(new GetStudentsSuccess(studentHttp));
     }),
   );
-
+  @Effect()
+  createStudent$ = this._actions$.pipe(
+    ofType<CreateStudent>(EStudentActions.CreateStudent),
+    map(action => action.payload),
+    switchMap((createStudent: IStudent) => this._studentsService.createStudent(createStudent).pipe(
+      switchMap(() => of(new CreateStudentSuccess(createStudent))),
+    )),
+  );
+  @Effect()
+  deleteStudent$ = this._actions$.pipe(
+    ofType<DeleteStudent>(EStudentActions.DeleteStudent),
+    map(action => action.payload),
+    switchMap((id: string) => this._studentsService.deleteStudent(id).pipe(
+        switchMap(() => of(new DeleteStudentSuccess(id))),
+    )),
+  );
   constructor(
     private _studentsService: StudentsService,
     private _actions$: Actions,

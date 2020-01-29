@@ -23,6 +23,7 @@ export class GetStudentsSuccess implements Action {
   public readonly type = EStudentActions.GetStudentsSuccess;
   constructor(public payload: IStudent[]) {}
 }
+
 export class GetStudent implements Action {
   public readonly type = EStudentActions.GetStudent;
   constructor(public payload: string) {}
@@ -31,8 +32,10 @@ export class GetStudentSuccess implements Action {
   public readonly type = EStudentActions.GetStudentSuccess;
   constructor(public payload: IStudent) {}
 }
+
 export class CreateStudent implements Action {
   public readonly type = EStudentActions.CreateStudent;
+  constructor(public payload: IStudent) {}
 }
 export class CreateStudentSuccess implements Action {
   public readonly type = EStudentActions.CreateStudentsSuccess;
@@ -53,16 +56,13 @@ export class UpdateStudentError implements Action {
 }
 export class DeleteStudent implements Action {
   public readonly type = EStudentActions.DeleteStudent;
+  constructor(public payload: string) {}
 }
 export class DeleteStudentSuccess implements Action {
   public readonly type = EStudentActions.DeleteStudentSuccess;
-  constructor(public payload: IStudent) {}
-}
-export class DeleteStudentError implements Action {
-  public readonly type = EStudentActions.DeleteStudentError;
+  constructor(public payload: string) {}
 }
 export type StudentActions =
   GetStudents | GetStudent | GetStudentsSuccess | GetStudentSuccess |
   CreateStudent | CreateStudentSuccess | CreateStudentError |
-  UpdateStudent | UpdateStudentSuccess | UpdateStudentError |
-  DeleteStudent | DeleteStudentSuccess | DeleteStudentError;
+  DeleteStudent | DeleteStudentSuccess ;

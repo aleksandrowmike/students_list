@@ -19,5 +19,4 @@ export class StudentListComponent implements OnInit {
   ngOnInit(): void {
     this._store.dispatch(new GetStudents());
   }
-
 }

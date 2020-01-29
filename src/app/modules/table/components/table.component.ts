@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { AfterContentChecked, AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { IStudent } from "../../../models/student.interface";
 import { IPagination, PaginationService } from "../../../services/pagination.service";
 import { EditMode } from "../../../store/actions/app.actions";
+import { DeleteStudent } from "../../../store/actions/student.actions";
 import { getMode } from "../../../store/selectors/students.selectors";
 import { IAppState } from "../../../store/state/app.state";
 
@@ -58,7 +59,6 @@ export class TableComponent implements OnInit {
     }
     this._numberOfClicks = this._numberOfClicks === 1 ? this._numberOfClicks = 0 : this._numberOfClicks = 1;
   }
-  public addStudent(): void {}
   public navigateToStudent(id: string): void {
     this._router.navigate(["dashboard/detail", id], {queryParams: {edit: true}});
   }
@@ -72,6 +72,10 @@ export class TableComponent implements OnInit {
   public setPageSize(pageSize: string): void {
     this._paginationService.setPageSize(+pageSize);
     this.setPage(this.page.currentPage);
+  }
+  public delete(_id: string): void  {
+    this._store.dispatch(new DeleteStudent(_id));
+    this.pageItems = this.pageItems.filter(student => student._id !== _id);
   }
   ngOnInit(): void {
     this.setPage(1);
