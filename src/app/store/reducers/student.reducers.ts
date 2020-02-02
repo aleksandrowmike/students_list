@@ -40,16 +40,9 @@ export function studentReducers (state: IStudentState = initialStudentState, act
       };
     }
     case EStudentActions.UpdateRecordBookSuccess: {
-      state.students.forEach(student => {
+      state.students.find(student => {
         if (student._id === action.payload._id) {
-          student.recordBook.forEach(record => {
-            if (record.period === action.payload.data.period) {
-              record.discipline = {
-                ...record.discipline,
-                ...action.payload.data.discipline
-              };
-            }
-          });
+          student.recordBook = action.payload.data;
         }
       });
       return {

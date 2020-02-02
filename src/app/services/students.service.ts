@@ -26,8 +26,8 @@ export class StudentsService {
   public onUpload(fd: FormData): Observable<IFile> {
     return this.http.post<IFile>(this.apiUri + "upload", fd);
   }
-  public updateRecordBook(_id: string, data: IRecordBook): Observable<IRecordBook> {
-    return this.http.put<IRecordBook>(this.apiUri + _id + "/record", data);
+  public updateRecordBook(_id: string, data: IRecordBook[]): Observable<IRecordBook[]> {
+    return this.http.put<IRecordBook[]>(this.apiUri + _id + "/record", data);
   }
   // public getCountStudents(): Observable<Number> {
   //   return this.http.get<Number>(this._apiUri + "count").pipe(

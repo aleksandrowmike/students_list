@@ -70,7 +70,7 @@ export class StudentEffects {
   updateRecordBook$ = this._actions$.pipe(
     ofType<UpdateRecordBook>(EStudentActions.UpdateRecordBook),
     map(action => action.payload),
-    switchMap((action: {_id: string, data: IRecordBook}) => this._studentsService.updateRecordBook(action._id, action.data).pipe(
+    switchMap((action: {_id: string, data: IRecordBook[]}) => this._studentsService.updateRecordBook(action._id, action.data).pipe(
       switchMap(() => of(new UpdateRecordBookSuccess(action))),
     )),
   );

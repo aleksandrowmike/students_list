@@ -1,6 +1,7 @@
 import { IRecordBook } from "./recordbook.interface";
 
 export interface IStudent {
+    student: IRecordBook[];
   id?: number;
   _id?: string;
   name: string;
@@ -13,6 +14,6 @@ export interface IStudent {
   city: string;
   about: string;
   birth: Date;
-  recordBook: [IRecordBook];
+  recordBook: IRecordBook[];
   __v?: number;
 }
