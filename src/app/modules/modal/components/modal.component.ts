@@ -23,18 +23,10 @@ import { StudentValidatorsService } from "../../../validators/student-validators
   styleUrls: ["./modal.component.less"]
 })
 export class ModalComponent implements OnInit, OnDestroy {
-  // public title: string;
-  // public event: string;
-  // public studentId: string;
-  // public confirm: boolean = false;
   public formStudent: FormGroup;
   public selectedFile: File = null;
   public imagePath: string | ArrayBuffer;
   public filename: string;
-  // public action: Number;
-  // public currentDate = new Date().getFullYear() - 10;
-  // public data: IStudents = {birth: undefined, firstName: "", id: 0, lastName: "", middleName: "", score: 0};
-  // public count: number;
   constructor(private StudentValidators: StudentValidatorsService,
               private fb: FormBuilder,
               private _store: Store<IStudent>,
@@ -65,7 +57,6 @@ export class ModalComponent implements OnInit, OnDestroy {
       }
     }
   }
-
   // public convertDate(date: Date): string {
   //   const dates = new Date(date);
   //   const month = dates.getMonth() + 1;
@@ -153,14 +144,6 @@ export class ModalComponent implements OnInit, OnDestroy {
     // this.hideModal();
     // this.confirm = true;
   }
-  // public hideModal(): void {
-  //   this.studentsService.debug() ? this.router.navigate([""], {queryParams: {debug: true}}) : this.router.navigate([""]);
-  //   this.confirm = false;
-  // }
-  // public confirmation(): void {
-  //   this.confirm = !this.confirm;
-  //   this.studentsService.debug() ? this.router.navigate([""], {queryParams: {debug: true}}) : this.router.navigate([""]);
-  // }
   // private _action(event: string): void {
   //   switch (EventsInterface[event]) {
   //     case 1: {

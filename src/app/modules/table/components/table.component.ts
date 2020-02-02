@@ -60,7 +60,7 @@ export class TableComponent implements OnInit {
     this._numberOfClicks = this._numberOfClicks === 1 ? this._numberOfClicks = 0 : this._numberOfClicks = 1;
   }
   public navigateToStudent(id: string): void {
-    this._router.navigate(["dashboard/detail", id], {queryParams: {edit: true}});
+    this._router.navigate(["dashboard/detail", id]);
   }
   public changeMode(value: boolean): void {
     this._store.dispatch(new EditMode(value));

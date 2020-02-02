@@ -1,5 +1,6 @@
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
@@ -38,20 +39,21 @@ import { StudentRoutingModule } from "./student-routing.module";
     StudentListComponent,
     TextLabelModePipe,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    StudentRoutingModule,
-    StoreModule.forRoot(appReducers, {metaReducers}),
-    EffectsModule.forRoot([StudentEffects]),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
-    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
-    RouterModule,
-    TableModule,
-    TabsModule,
-    ModalModule,
-    NotificationsModule,
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        StudentRoutingModule,
+        StoreModule.forRoot(appReducers, {metaReducers}),
+        EffectsModule.forRoot([StudentEffects]),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
+        StoreRouterConnectingModule.forRoot({stateKey: "router"}),
+        RouterModule,
+        TableModule,
+        TabsModule,
+        ModalModule,
+        NotificationsModule,
+        ReactiveFormsModule,
+    ],
   bootstrap: [StudentsRootComponent]
 })
 export class StudentsModule {}

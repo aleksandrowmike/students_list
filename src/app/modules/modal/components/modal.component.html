@@ -6,7 +6,7 @@
         <a title="Close" class="close" routerLink="/">×</a>
       </div>
       <div class="modal-body">
-        <form action="" class="form-group" novalidate [formGroup]="formStudent" (ngSubmit)="submitForm()">
+          <form class="form-group" novalidate [formGroup]="formStudent" (ngSubmit)="submitForm()">
           <h4>Name</h4>
           <div class="form-group__name" formGroupName="name">
             <div class="form-input">
@@ -14,9 +14,6 @@
                 <input type="text" formControlName="firstName" required>
                 <span class="placeholder">First Name</span>
               </label>
-              <span class="tooltip-text" *ngIf="isControlInvalid('name.firstName')">
-                First name is required
-              </span>
             </div>
             <div class="form-input">
               <label>

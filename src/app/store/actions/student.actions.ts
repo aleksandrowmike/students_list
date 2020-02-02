@@ -1,4 +1,5 @@
 import { Action } from "@ngrx/store";
+import { IRecordBook } from "../../models/recordbook.interface";
 import { IStudent } from "../../models/student.interface";
 
 export enum EStudentActions {
@@ -15,6 +16,9 @@ export enum EStudentActions {
   DeleteStudent = "[Student List] Delete student",
   DeleteStudentSuccess = "[Student List] Delete student success",
   DeleteStudentError = "[Student List] Delete student success",
+  UpdateRecordBook = "[Create/Edit Student record book]",
+  UpdateRecordBookSuccess = "[Create/Edit Student record book success]",
+  UpdateRecordBookError = "[Create/Edit Student record book error]"
 }
 export class GetStudents implements Action {
   public readonly type = EStudentActions.GetStudents;
@@ -44,16 +48,19 @@ export class CreateStudentSuccess implements Action {
 export class CreateStudentError implements Action {
   public readonly type = EStudentActions.CreateStudentsError;
 }
+
 export class UpdateStudent implements Action {
   public readonly type = EStudentActions.UpdateStudent;
+  constructor(public payload: {_id: string, data: IStudent}) {}
 }
 export class UpdateStudentSuccess implements Action {
   public readonly type = EStudentActions.UpdateStudentSuccess;
-  constructor(public payload: IStudent) {}
+  constructor(public payload: {_id: string, data: IStudent}) {}
 }
 export class UpdateStudentError implements Action {
   public readonly type = EStudentActions.UpdateStudentError;
 }
+
 export class DeleteStudent implements Action {
   public readonly type = EStudentActions.DeleteStudent;
   constructor(public payload: string) {}
@@ -62,7 +69,21 @@ export class DeleteStudentSuccess implements Action {
   public readonly type = EStudentActions.DeleteStudentSuccess;
   constructor(public payload: string) {}
 }
+
+export class UpdateRecordBook implements Action {
+  public readonly type = EStudentActions.UpdateRecordBook;
+  constructor(public payload: {_id: string, data: IRecordBook[]}) {}
+}
+export class UpdateRecordBookSuccess implements Action {
+  public readonly type = EStudentActions.UpdateRecordBookSuccess;
+  constructor(public payload: {_id: string, data: IRecordBook[]}) {}
+}
+export class UpdateRecordBookError implements Action {
+  public readonly type = EStudentActions.UpdateRecordBookError;
+}
 export type StudentActions =
   GetStudents | GetStudent | GetStudentsSuccess | GetStudentSuccess |
   CreateStudent | CreateStudentSuccess | CreateStudentError |
-  DeleteStudent | DeleteStudentSuccess ;
+  DeleteStudent | DeleteStudentSuccess | UpdateStudent |
+  UpdateStudentSuccess | UpdateStudentError | UpdateRecordBook |
+  UpdateRecordBookSuccess | UpdateRecordBookError;

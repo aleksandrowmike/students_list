@@ -1,5 +1,5 @@
 export interface IRecordBook {
   period: string;
-  semester: number;
+  semester?: number;
   discipline: object;
 }

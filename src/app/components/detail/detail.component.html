@@ -6,65 +6,136 @@
 </div>
 <div *ngIf="mode | async; else detailTemplate" class="detail">
   <div class="detail-avatar">
-    <img src="{{student.avatar}}" alt="">
+    <img src="{{imagePath}}" alt="">
+    <div class="detail-avatar__file">
+      <h4>Upload photo</h4>
+      <input style="display: none" #fileInput type="file" (change)="onFileSelected(fileInput.files)">
+      <button type="button" (click)="fileInput.click()">Pick File</button>
+      <button type="button" (click)="deleteFile()">Delete</button>
+    </div>
   </div>
   <div class="detail-info">
-    <div class="detail-info__individual">
-      <div class="detail-info__common">
-        <span class="detail-info__label">Name </span>
-        <span class="detail-info__text">
-            <input type="text" placeholder="{{student.name}}">
-          </span>
-        <span class="detail-info__label">Date of Birth</span>
-        <span class="detail-info__text">
-            <input type="date" placeholder="{{ student.birth }}">
-          </span>
-        <span class="detail-info__label">Sex</span>
-        <span class="detail-info__text">
-            <input type="text" placeholder="{{ student.sex }}">
-          </span>
-        <span class="detail-info__label">Grade</span>
-        <span class="detail-info__text">
-            <input type="text" placeholder="{{ student.grade }}">
-          </span>
+    <form [formGroup]="updateForm" (ngSubmit)="submitForm()" novalidate>
+      <div class="detail-info__individual">
+        <div class="detail-info__common">
+          <div class="form-input">
+            <label>
+              <input type="text" formControlName="name" required>
+              <span class="placeholder">Name</span>
+            </label>
+          </div>
+          <div class="form-input">
+            <label>
+              <input type="date" formControlName="birth" required>
+              <span class="placeholder">Date of Birth</span>
+            </label>
+          </div>
+          <div class="form-input select">
+            <label for="sex" class="detail-info__label">Sex</label>
+            <select id="sex" class="select-sex" formControlName="sex">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+          <div class="form-input">
+            <label>
+              <input type="number" formControlName="grade" required>
+              <span class="placeholder">Grade</span>
+            </label>
+          </div>
+        </div>
+        <div class="detail-info__contacts">
+          <div class="form-input">
+            <label>
+              <input type="text" formControlName="country" required>
+              <span class="placeholder">Country</span>
+            </label>
+          </div>
+          <div class="form-input">
+            <label>
+              <input type="text" formControlName="city" required>
+              <span class="placeholder">City</span>
+            </label>
+          </div>
+          <div class="form-input">
+            <label>
+              <input type="email" formControlName="email" required>
+              <span class="placeholder">Email</span>
+            </label>
+          </div>
+          <div class="form-input">
+            <label>
+              <input type="tel" formControlName="phone" required>
+              <span class="placeholder">Phone</span>
+            </label>
+          </div>
+        </div>
       </div>
-      <div class="detail-info__contacts">
-        <span class="detail-info__label">Country</span>
-        <span class="detail-info__text">
-            <input type="text" placeholder="{{ student.country }}">
-          </span>
-        <span class="detail-info__label">City</span>
-        <span class="detail-info__text">
-            <input type="text" placeholder="{{ student.city }}">
-          </span>
-        <span class="detail-info__label">Email</span>
-        <span class="detail-info__text">
-            <input type="email" placeholder="{{ student.email }}">
-          </span>
-        <span class="detail-info__label">Phone</span>
-        <span class="detail-info__text">
-            <input type="tel" placeholder="{{ student.phone }}">
-          </span>
+      <div class="detail-info__about">
+        <div class="form-input">
+          <label>
+            <textarea formControlName="about" required></textarea>
+            <span class="placeholder">About</span>
+          </label>
+        </div>
       </div>
-    </div>
-    <div class="detail-info__about">
-      <span class="detail-info__label">About students: </span>
-      <p><textarea name="" id="" cols="80" rows="8">{{ student.about }}</textarea>
-      </p>
-    </div>
+      <button type="submit" class="btn-default">Save</button>
+    </form>
   </div>
 </div>
-<div class="progress">
+<h3 class="info-title">Progress statistic</h3>
+<div class="add-performance" *ngIf="mode | async">
+  <form [formGroup]="updateRecordBookForm" (ngSubmit)="submitUpdateRecordBookForm()" novalidate>
+    <div class="form-input">
+      <label>
+        <input type="text" formControlName="period" required>
+        <span class="placeholder">Period</span>
+      </label>
+    </div>
+    <div class="form-input">
+      <label>
+        <input type="text" formControlName="subject" required>
+        <span class="placeholder">Subject</span>
+      </label>
+    </div>
+    <div class="form-input">
+      <label>
+        <input type="number" formControlName="result" required>
+        <span class="placeholder">Result</span>
+      </label>
+    </div>
+    <div class="add-performance__btn">
+      <button type="submit" class="btn-tertiary">{{updateRecordBookButtonName}}</button>
+    </div>
+  </form>
+</div>
+<div class="progress" *ngIf="student.recordBook.length; else noData">
   <app-tabs>
     <app-tab *ngFor="let recordBook of student.recordBook" [tabTitle]="recordBook.period">
       <table class="table-list">
         <tr class="table-list-head">
           <th>Subjects</th>
           <th>Result</th>
+          <th *ngIf="mode | async">Actions</th>
         </tr>
         <tr *ngFor="let discipline of discipline(recordBook.period) | async" class="table-list-body">
           <td>{{ discipline.subject }}</td>
           <td>{{ discipline.result | textResult}}</td>
+          <td *ngIf="mode | async">
+            <button class="btn-tertiary" (click)="updateRecordBook({
+            period: recordBook.period,
+            subject: discipline.subject,
+            result: discipline.result})">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 11.5002V14.0002H4.5L11.8733 6.62687L9.37333 4.12687L2 11.5002ZM13.8067 4.69354C14.0667 4.43354 14.0667 4.01354 13.8067 3.75354L12.2467 2.19354C11.9867 1.93354 11.5667 1.93354 11.3067 2.19354L10.0867 3.41354L12.5867 5.91354L13.8067 4.69354Z" fill="#C2CFE0"/>
+              </svg>
+            </button>
+            <button class="btn-tertiary">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.99992 12.6667C3.99992 13.4 4.59992 14 5.33325 14H10.6666C11.3999 14 11.9999 13.4 11.9999 12.6667V4.66667H3.99992V12.6667ZM12.6666 2.66667H10.3333L9.66659 2H6.33325L5.66659 2.66667H3.33325V4H12.6666V2.66667Z" fill="#C2CFE0"/>
+              </svg>
+            </button>
+          </td>
         </tr>
       </table>
     </app-tab>
@@ -105,4 +176,9 @@
     </div>
   </div>
 
+</ng-template>
+<ng-template #noData>
+  <div class="progress">
+    <p>Sorry, but there is no performance data. Please enable editing mode and add data.</p>
+  </div>
 </ng-template>
