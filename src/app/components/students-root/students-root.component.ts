@@ -1,15 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { Store } from "@ngrx/store";
-import { GetStudents } from "../../store/actions/student.actions";
-import { IAppState } from "../../store/state/app.state";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 
 @Component({
   selector: "students-root",
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./students-root.component.html",
   styleUrls: ["./students-root.component.less"]
 })
 export class StudentsRootComponent implements OnInit {
-  constructor() {}
   ngOnInit(): void {
   }
 }

@@ -18,7 +18,8 @@ export enum EStudentActions {
   DeleteStudentError = "[Student List] Delete student success",
   UpdateRecordBook = "[Create/Edit Student record book]",
   UpdateRecordBookSuccess = "[Create/Edit Student record book success]",
-  UpdateRecordBookError = "[Create/Edit Student record book error]"
+  UpdateRecordBookError = "[Create/Edit Student record book error]",
+  GetCountStudents = "[Student] Get count students"
 }
 export class GetStudents implements Action {
   public readonly type = EStudentActions.GetStudents;

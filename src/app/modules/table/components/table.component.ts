@@ -1,11 +1,10 @@
-import { AfterContentChecked, AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { IStudent } from "../../../models/student.interface";
 import { IPagination, PaginationService } from "../../../services/pagination.service";
 import { EditMode } from "../../../store/actions/app.actions";
-import { DeleteStudent } from "../../../store/actions/student.actions";
 import { getMode } from "../../../store/selectors/students.selectors";
 import { IAppState } from "../../../store/state/app.state";
 
@@ -21,15 +20,23 @@ enum Sort {
   styleUrls: ["./table.component.less"],
 })
 
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, AfterContentChecked {
   @Input() data: IStudent[];
-  public page: IPagination;
-  public pageItems: IStudent[];
+  public page: IPagination = {
+    totalItems: 0,
+    currentPage: 0,
+    pageSize: 0,
+    totalPages: 0,
+    startPage: 0,
+    endPage: 0,
+    startIndex: 0,
+    endIndex: 0,
+    pages: [0]};
+  public pageItems: IStudent[] = [];
   public mode: Observable<boolean> = this._store.pipe(select(getMode));
   public selectedStudents: string;
   private _numberOfClicks: number = 0;
-  constructor(private ref: ChangeDetectorRef,
-              private _router: Router,
+  constructor(private _router: Router,
               private _store: Store<IAppState>,
               private _paginationService: PaginationService) {}
   public applySearch(search: string): void {
@@ -73,11 +80,10 @@ export class TableComponent implements OnInit {
     this._paginationService.setPageSize(+pageSize);
     this.setPage(this.page.currentPage);
   }
-  public delete(_id: string): void  {
-    this._store.dispatch(new DeleteStudent(_id));
-    this.pageItems = this.pageItems.filter(student => student._id !== _id);
-  }
-  ngOnInit(): void {
-    this.setPage(1);
+  ngOnInit(): void {}
+  ngAfterContentChecked(): void {
+    if (this.data) {
+      this.setPage(1);
+    }
   }
 }

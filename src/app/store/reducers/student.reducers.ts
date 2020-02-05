@@ -6,7 +6,8 @@ export function studentReducers (state: IStudentState = initialStudentState, act
     case EStudentActions.GetStudentsSuccess: {
       return {
         ...state,
-        students: action.payload
+        students: action.payload,
+        count: action.payload.length
       };
     }
     case EStudentActions.GetStudentSuccess: {

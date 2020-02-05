@@ -17,7 +17,7 @@ import {
   GetStudentsSuccess,
   GetStudentSuccess, UpdateRecordBook, UpdateRecordBookSuccess,
   UpdateStudent,
-  UpdateStudentSuccess
+  UpdateStudentSuccess,
 } from "../actions/student.actions";
 import { selectStudentList } from "../selectors/students.selectors";
 import { IAppState } from "../state/app.state";

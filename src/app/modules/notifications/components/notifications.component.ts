@@ -1,8 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { NotificationService } from "../../../services/notification.service";
 
 @Component({
   selector: "students-notifications",
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./notifications.component.html",
   styleUrls: ["./notifications.component.less"]
 })

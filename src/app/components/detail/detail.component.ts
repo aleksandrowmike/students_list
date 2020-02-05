@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
@@ -7,13 +7,14 @@ import { map } from "rxjs/operators";
 import { IDiscipline } from "../../interfaces/discipline";
 import { IStudent } from "../../models/student.interface";
 import { StudentsService } from "../../services/students.service";
-import { CreateStudent, GetStudent, UpdateRecordBook, UpdateStudent } from "../../store/actions/student.actions";
+import { GetStudent, UpdateRecordBook, UpdateStudent } from "../../store/actions/student.actions";
 import { getMode, selectSelectedStudent } from "../../store/selectors/students.selectors";
 import { IAppState } from "../../store/state/app.state";
 import { StudentValidatorsService } from "../../validators/student-validators.service";
 
 @Component({
   selector: "app-detail",
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./detail.component.html",
   styleUrls: ["./detail.component.less"]
 })
@@ -122,7 +123,7 @@ export class DetailComponent implements OnInit {
     }
     const discipline = {};
     discipline[this.updateRecordBookForm.value.subject] = this.updateRecordBookForm.value.result;
-    if (this.student.recordBook.find(s => s.period === this.updateRecordBookForm.value.period)){
+    if (this.student.recordBook.find(s => s.period === this.updateRecordBookForm.value.period)) {
        this.student.recordBook.forEach(record => {
         if (record.period === this.updateRecordBookForm.value.period) {
           record.discipline = {
