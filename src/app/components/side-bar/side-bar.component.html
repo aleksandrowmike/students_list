@@ -4,7 +4,7 @@
   </div>
   <div class="profile" *ngFor="let user of users | async">
     <div class="profile-avatar">
-      <img src="http://localhost:3000/students{{user.avatar}}" alt="">
+      <img src="https://backend-students.herokuapp.com/students{{user.avatar}}" alt="">
     </div>
     <div class="profile-info">
       <span class="profile-info__name">{{user.name}}</span>
