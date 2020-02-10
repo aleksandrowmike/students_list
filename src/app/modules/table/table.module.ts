@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
+import { AngularFontAwesomeModule } from "angular-font-awesome";
 import { TableComponent } from "./components/table.component";
 
 
@@ -11,6 +12,7 @@ import { TableComponent } from "./components/table.component";
     imports: [
         CommonModule,
         RouterModule,
+        AngularFontAwesomeModule,
     ],
   exports: [
     TableComponent,

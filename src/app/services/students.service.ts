@@ -15,7 +15,7 @@ export interface IFile {
   providedIn: "root"
 })
 export class StudentsService {
-  public apiUri: string  = environment.apiUrl;
+  public apiUri: string  = environment.apiUrl + "students/";
   constructor(private notificationService: NotificationService, private http: HttpClient) {
   }
   public getStudents(): Observable<IStudent[]> {

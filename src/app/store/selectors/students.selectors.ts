@@ -28,3 +28,11 @@ export const getLoggedUser = createSelector(
   tokenUser,
   (state: IAuthState) => state.isLogged,
 );
+export const getAuthData = createSelector(
+  tokenUser,
+  (state: IAuthState) => state,
+);
+export const getUserInfo = createSelector(
+  tokenUser,
+  (state: IAuthState) => [state.user],
+);

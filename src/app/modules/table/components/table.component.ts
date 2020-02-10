@@ -20,7 +20,7 @@ enum Sort {
   styleUrls: ["./table.component.less"],
 })
 
-export class TableComponent implements OnInit, AfterContentChecked {
+export class TableComponent implements OnInit {
   @Input() data: IStudent[];
   public page: IPagination = {
     totalItems: 0,
@@ -80,8 +80,7 @@ export class TableComponent implements OnInit, AfterContentChecked {
     this._paginationService.setPageSize(+pageSize);
     this.setPage(this.page.currentPage);
   }
-  ngOnInit(): void {}
-  ngAfterContentChecked(): void {
+  ngOnInit(): void {
     if (this.data) {
       this.setPage(1);
     }

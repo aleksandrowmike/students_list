@@ -1,4 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { GetDataUser } from "../../store/actions/auth.actions";
+import { IAppState } from "../../store/state/app.state";
 
 @Component({
   selector: "students-root",

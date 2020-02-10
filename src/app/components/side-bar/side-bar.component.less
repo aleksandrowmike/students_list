@@ -20,6 +20,13 @@
     justify-content: space-evenly;
     margin-top: 20px;
     margin-bottom: 20px;
+    position: relative;
+    cursor: pointer;
+    flex-wrap: wrap;
+    &__icon{
+      font-size: 20px;
+      color: fade(@black, 25%);
+    }
     &-avatar {
       width: 46px;
       height: 46px;
@@ -47,15 +54,47 @@
         letter-spacing: 0.01em;
       }
     }
+    &-content {
+      display: flex;
+      width: 100%;
+      border-top: 1px solid fade(@black, 10%);
+      margin-top: 10px;
+      &__icon{
+        color: fade(@black, 25%);
+        margin-right: 10px;
+        font-weight: normal;
+        font-size: 14px;
+      }
+      ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        li{
+          padding: 10px 20px;
+          display: flex;
+          &:hover{
+            background-color: fade(@black, 5%);
+          }
+          a{
+            display: block;
+            font-size: 13px;
+            color: #334D6E;
+          }
+        }
+      }
+    }
   }
   .menu{
     display: flex;
     margin-top: 40px;
     margin-bottom: 40px;
     &-list{
-      margin-left: 25px;
+      width: 100%;
       &__item{
-        margin-bottom: 15px;
+        display: flex;
+        height: 100%;
+        padding: 10px 20px;
         a{
           font-style: normal;
           font-weight: 500;
@@ -63,10 +102,13 @@
           line-height: 19px;
           letter-spacing: 0.01em;
           color: @dark-blue-text;
+          display: block;
         }
         .icon{
-          vertical-align: text-bottom;
           margin-right: 10px;
+          color: fade(@black, 25%);
+          font-size: 16px;
+          vertical-align: top;
         }
       }
     }

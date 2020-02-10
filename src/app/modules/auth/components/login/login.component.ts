@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { AuthUser } from "../../../../store/actions/auth.actions";
+import { AuthUser, GetDataUser } from "../../../../store/actions/auth.actions";
 import { IAppState } from "../../../../store/state/app.state";
 
 @Component({
@@ -10,7 +10,7 @@ import { IAppState } from "../../../../store/state/app.state";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.less"]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public authForm: FormGroup;
   constructor(private fb: FormBuilder, private _store: Store<IAppState>, private router: Router) {}
   public initAuthFrom(): void {
@@ -31,5 +31,8 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
     this.initAuthFrom();
+  }
+  ngOnDestroy(): void {
+    this._store.dispatch(new GetDataUser());
   }
 }
