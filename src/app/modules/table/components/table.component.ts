@@ -20,7 +20,7 @@ enum Sort {
   styleUrls: ["./table.component.less"],
 })
 
-export class TableComponent implements OnInit {
+export class TableComponent implements OnChanges {
   @Input() data: IStudent[];
   public page: IPagination = {
     totalItems: 0,
@@ -38,7 +38,8 @@ export class TableComponent implements OnInit {
   private _numberOfClicks: number = 0;
   constructor(private _router: Router,
               private _store: Store<IAppState>,
-              private _paginationService: PaginationService) {}
+              private _paginationService: PaginationService,
+              private _ref: ChangeDetectorRef) {}
   public applySearch(search: string): void {
     search === "" ? this.selectedStudents = null :  this.selectedStudents = search;
   }
@@ -80,8 +81,8 @@ export class TableComponent implements OnInit {
     this._paginationService.setPageSize(+pageSize);
     this.setPage(this.page.currentPage);
   }
-  ngOnInit(): void {
-    if (this.data) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.data.currentValue) {
       this.setPage(1);
     }
   }
