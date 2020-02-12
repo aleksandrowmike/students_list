@@ -30,7 +30,6 @@
     "@ngrx/router-store": "^8.6.0",
     "@ngrx/store": "^8.6.0",
     "@ngrx/store-devtools": "^8.6.0",
-    "angular-font-awesome": "^3.1.2",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "ngrx-store-localstorage": "^8.0.0",

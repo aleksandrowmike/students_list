@@ -7,7 +7,6 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreRouterConnectingModule } from "@ngrx/router-store";
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { AngularFontAwesomeModule } from "angular-font-awesome";
 import { environment } from "../environments/environment";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { DetailComponent } from "./components/detail/detail.component";
@@ -57,8 +56,7 @@ import { StudentRoutingModule } from "./student-routing.module";
     NotificationsModule,
     ReactiveFormsModule,
     AuthModule,
-    AngularFontAwesomeModule,
-    ],
+  ],
   bootstrap: [StudentsRootComponent]
 })
 export class StudentsModule {}

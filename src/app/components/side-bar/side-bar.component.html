@@ -10,18 +10,18 @@
       <span class="profile-info__name">{{ user.name }}</span>
       <span class="profile-info__email">{{user.email}}</span>
     </div>
-    <fa class="profile__icon" name="sort-down" (click)="changeShow()"></fa>
+    <i class="fas fa-sort-down profile__icon" (click)="changeShow()"></i>
     <div class="profile-content" *ngIf="showContent">
       <ul>
-        <li><fa class="profile-content__icon" name="sliders-h"></fa><a class="btn-tertiary">Settings</a></li>
-        <li (click)="logOut()"><fa class="profile-content__icon" name="sign-out-alt"></fa><a class="btn-tertiary">Log out</a></li>
+        <li><i class="fas fa-sliders-h profile-content__icon"></i><a class="btn-tertiary">Settings</a></li>
+        <li (click)="logOut()"><i class="fas fa-sign-out-alt profile-content__icon"></i><a class="btn-tertiary">Log out</a></li>
       </ul>
     </div>
   </div>
   <div class="menu">
     <ul class="menu-list">
       <li class="menu-list__item">
-        <a routerLink="/dashboard"><fa class="icon" name="table"></fa>Student list</a>
+        <a routerLink="/dashboard"><i class="fas fa-table icon"></i>Student list</a>
       </li>
     </ul>
   </div>
