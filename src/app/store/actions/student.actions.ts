@@ -9,17 +9,15 @@ export enum EStudentActions {
   GetStudentSuccess = "[Student] Get student success",
   CreateStudent = "[Create/Edit Student] Create student",
   CreateStudentsSuccess = "[Create/Edit Student] Create student success",
-  CreateStudentsError = "[Create/Edit Student] Create student error",
   UpdateStudent = "[Create/Edit Student] Update student",
   UpdateStudentSuccess = "[Create/Edit Student] Update student success",
-  UpdateStudentError = "[Create/Edit Student] Update student error",
   DeleteStudent = "[Student List] Delete student",
   DeleteStudentSuccess = "[Student List] Delete student success",
-  DeleteStudentError = "[Student List] Delete student success",
   UpdateRecordBook = "[Create/Edit Student record book]",
   UpdateRecordBookSuccess = "[Create/Edit Student record book success]",
   UpdateRecordBookError = "[Create/Edit Student record book error]",
-  GetCountStudents = "[Student] Get count students"
+  GetCountStudents = "[Student] Get count students",
+  ResetDataStudents = "[Student] Reset data student"
 }
 export class GetStudents implements Action {
   public readonly type = EStudentActions.GetStudents;
@@ -46,9 +44,6 @@ export class CreateStudentSuccess implements Action {
   public readonly type = EStudentActions.CreateStudentsSuccess;
   constructor(public payload: IStudent) {}
 }
-export class CreateStudentError implements Action {
-  public readonly type = EStudentActions.CreateStudentsError;
-}
 
 export class UpdateStudent implements Action {
   public readonly type = EStudentActions.UpdateStudent;
@@ -58,10 +53,6 @@ export class UpdateStudentSuccess implements Action {
   public readonly type = EStudentActions.UpdateStudentSuccess;
   constructor(public payload: {_id: string, data: IStudent}) {}
 }
-export class UpdateStudentError implements Action {
-  public readonly type = EStudentActions.UpdateStudentError;
-}
-
 export class DeleteStudent implements Action {
   public readonly type = EStudentActions.DeleteStudent;
   constructor(public payload: string) {}
@@ -70,7 +61,6 @@ export class DeleteStudentSuccess implements Action {
   public readonly type = EStudentActions.DeleteStudentSuccess;
   constructor(public payload: string) {}
 }
-
 export class UpdateRecordBook implements Action {
   public readonly type = EStudentActions.UpdateRecordBook;
   constructor(public payload: {_id: string, data: IRecordBook[]}) {}
@@ -82,9 +72,12 @@ export class UpdateRecordBookSuccess implements Action {
 export class UpdateRecordBookError implements Action {
   public readonly type = EStudentActions.UpdateRecordBookError;
 }
+export class ResetDataStudent implements Action {
+  public readonly type = EStudentActions.ResetDataStudents;
+}
 export type StudentActions =
   GetStudents | GetStudent | GetStudentsSuccess | GetStudentSuccess |
-  CreateStudent | CreateStudentSuccess | CreateStudentError |
+  CreateStudent | CreateStudentSuccess |
   DeleteStudent | DeleteStudentSuccess | UpdateStudent |
-  UpdateStudentSuccess | UpdateStudentError | UpdateRecordBook |
-  UpdateRecordBookSuccess | UpdateRecordBookError;
+  UpdateStudentSuccess | UpdateRecordBook |
+  UpdateRecordBookSuccess | UpdateRecordBookError | ResetDataStudent;

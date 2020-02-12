@@ -34,5 +34,5 @@ export const getAuthData = createSelector(
 );
 export const getUserInfo = createSelector(
   tokenUser,
-  (state: IAuthState) => [state.user],
+  (state: IAuthState) => state.user,
 );

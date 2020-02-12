@@ -50,6 +50,13 @@ export function studentReducers (state: IStudentState = initialStudentState, act
         ...state
       };
     }
+    case EStudentActions.ResetDataStudents: {
+      return {
+        students: null,
+        selectedStudent: null,
+        count: null
+      };
+    }
     default: {
       return state;
     }

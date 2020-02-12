@@ -2,19 +2,19 @@
   <div class="logo">
     <a href="/"><h1>SaaS Kit</h1></a> <small>{{ editMode | async | textLabelMode }}</small>
   </div>
-  <div class="profile" *ngFor="let user of users | async">
+  <div class="profile" *ngIf="dataLoaded">
     <div class="profile-avatar">
-      <img src="https://backend-students.herokuapp.com/students{{user.avatar}}" alt="">
+      <img src="https://backend-students.herokuapp.com/students{{ user.avatar }}" alt="">
     </div>
     <div class="profile-info">
-      <span class="profile-info__name">{{user.name}}</span>
+      <span class="profile-info__name">{{ user.name }}</span>
       <span class="profile-info__email">{{user.email}}</span>
     </div>
     <fa class="profile__icon" name="sort-down" (click)="changeShow()"></fa>
     <div class="profile-content" *ngIf="showContent">
       <ul>
         <li><fa class="profile-content__icon" name="sliders-h"></fa><a class="btn-tertiary">Settings</a></li>
-        <li><fa class="profile-content__icon" name="sign-out-alt"></fa><a class="btn-tertiary" (click)="logOut()">Log out</a></li>
+        <li (click)="logOut()"><fa class="profile-content__icon" name="sign-out-alt"></fa><a class="btn-tertiary">Log out</a></li>
       </ul>
     </div>
   </div>

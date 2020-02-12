@@ -8,6 +8,7 @@ import { IAuth } from "../../models/auth.interface";
 import { IUser, IUserAuth } from "../../models/user.interface";
 import { UserService } from "../../services/user.service";
 import { AuthUser, AuthUserSuccess, EAuthActions, GetDataUser, GetDataUserSuccess, UserLogOut } from "../actions/auth.actions";
+import { ResetDataStudent } from "../actions/student.actions";
 import { getAuthData } from "../selectors/students.selectors";
 import { IAppState } from "../state/app.state";
 import { IAuthState } from "../state/auth.state";
@@ -34,8 +35,7 @@ export class AuthEffects {
   @Effect()
   userLogOut$ = this._actions$.pipe(
     ofType<UserLogOut>(EAuthActions.UserLogOut),
-    switchMap(() => of(new UserLogOut())),
-    tap(() => this.router.navigate(["/"])),
+    switchMap(() => of(new ResetDataStudent())),
   );
   constructor(
     private _userService: UserService,

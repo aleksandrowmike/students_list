@@ -1,5 +1,5 @@
 <div class="container">
-  <side-bar class="side-bar"></side-bar>
+  <side-bar class="side-bar" [user]="user | async"></side-bar>
   <div class="content">
     <router-outlet></router-outlet>
   </div>
