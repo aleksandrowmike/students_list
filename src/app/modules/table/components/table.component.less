@@ -79,20 +79,16 @@ button{
   font-weight: 500;
   cursor: pointer;
 }
-
-.selectdiv {
+.select {
   position: relative;
   /*Don't really need this just for demo styling*/
   float: left;
   min-width: 100px;
 }
-
-/* IE11 hide native button (thanks Matt!) */
 select::-ms-expand {
   display: none;
 }
-
-.selectdiv:after {
+.select:after {
   content: '<>';
   font: 17px "Consolas", monospace;
   color: #333;
@@ -110,11 +106,10 @@ select::-ms-expand {
   pointer-events: none;
 }
 
-.selectdiv select {
+.select select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  /* Add some styling */
   display: block;
   width: 100%;
   max-width: 320px;
@@ -128,7 +123,6 @@ select::-ms-expand {
   background-color: #ffffff;
   background-image: none;
   border: 1px solid #cccccc;
-  -ms-word-break: normal;
   word-break: normal;
 }
 .icon{

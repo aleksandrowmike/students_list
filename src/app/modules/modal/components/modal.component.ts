@@ -46,6 +46,9 @@ export class ModalComponent implements OnInit, OnDestroy {
         const reader = new FileReader();
         reader.readAsDataURL(this.selectedFile);
         reader.onload = () => {
+          const fd = new FormData();
+          fd.append("image", this.selectedFile, this.selectedFile.name);
+          this.studentsService.onUpload(fd).subscribe(dataOut => this.filename = "avatars/" + dataOut.filename);
           this.imagePath = reader.result;
           this._ref.markForCheck();
         };
@@ -81,9 +84,6 @@ export class ModalComponent implements OnInit, OnDestroy {
         .forEach(controlName => controls[controlName].markAsTouched());
       return false;
     }
-    const fd = new FormData();
-    fd.append("image", this.selectedFile, this.selectedFile.name);
-    this.studentsService.onUpload(fd).subscribe(dataOut => this.filename = "avatars/" + dataOut.filename).unsubscribe();
     const data: IStudent = {
       ...this.formStudent.value,
       id: this.id + 1,

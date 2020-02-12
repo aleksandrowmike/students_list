@@ -10,12 +10,6 @@
         <label for="editMode">Edit mode</label>
       </div>
     </div>
-<!--    <div class="form-input">-->
-<!--      <label>-->
-<!--        <input required>-->
-<!--        <span class="placeholder">Text Input</span>-->
-<!--      </label>-->
-<!--    </div>-->
     <button class="btn-default table-elements__add" routerLink="students/add"><i class="fas fa-user-plus icon"></i>Add student</button>
   </div>
   <table class="table-list">
@@ -45,7 +39,7 @@
           <td class="table-list-body__second">{{ student.city }}</td>
           <td *ngIf="mode | async">
             <button class="btn-tertiary" (click)="navigateToStudent(student._id)">
-              <i class="far fa-edit icon"></i>
+              <i class="fas fa-edit icon"></i>
             </button>
             <button class="btn-tertiary" routerLink="students/delete/{{student._id}}">
               <i class="fas fa-trash-alt icon"></i>
@@ -54,7 +48,7 @@
         </tr>
       </table>
   <div class="table-rules">
-    <div class="selectdiv">
+    <div class="select">
       <label>
         <select #pageSizing (click)="setPageSize(pageSizing.value)">
           <option selected> 10 </option>

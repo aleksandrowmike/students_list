@@ -17,7 +17,6 @@ export function studentReducers (state: IStudentState = initialStudentState, act
       };
     }
     case EStudentActions.CreateStudentsSuccess: {
-      state.students.push(action.payload);
       return {
         ...state,
       };
