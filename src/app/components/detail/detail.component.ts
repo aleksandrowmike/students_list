@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { first, map } from "rxjs/operators";
 import { IDiscipline } from "../../interfaces/discipline";
 import { IStudent } from "../../models/student.interface";
 import { StudentsService } from "../../services/students.service";
@@ -22,7 +22,7 @@ export class DetailComponent implements OnInit {
   public student: IStudent;
   public mode: Observable<boolean> = this._store.pipe(select(getMode));
   public selectedFile: File = null;
-  public filename: string = "default.png";
+  public filename: string = this.studentsService.apiUri + "avatars/default.png";
   public imagePath: string | ArrayBuffer;
   public updateForm: FormGroup;
   public updateRecordBookForm: FormGroup;
@@ -57,6 +57,11 @@ export class DetailComponent implements OnInit {
         reader.readAsDataURL(this.selectedFile);
         reader.onload = () => {
           this.imagePath = reader.result;
+          const fd = new FormData();
+          fd.append("image", this.selectedFile, this.selectedFile.name);
+          this.studentsService.onUpload(fd).pipe(first())
+            .subscribe(data => this.filename = this.studentsService.apiUri + "avatars/" + data.filename);
+          this._ref.markForCheck();
         };
       }
       return;
@@ -96,20 +101,17 @@ export class DetailComponent implements OnInit {
         .forEach(controlName => controls[controlName].markAsTouched());
       return false;
     }
-    const fd = new FormData();
-    if (this.selectedFile) {
-      fd.append("image", this.selectedFile, this.selectedFile.name);
-      this.studentsService.onUpload(fd).subscribe(data => this.filename = "avatars/" + data.filename);
+    if (!this.selectedFile) {
+      this.filename = this.student.avatar;
     }
     const dataForm: IStudent = {
       ...this.updateForm.value,
       _id: this._route.snapshot.params.id,
-      avatar: this.studentsService.apiUri + "avatars/" + this.filename,
+      avatar: this.filename,
       recordBook: this.student.recordBook
     };
-    console.log(dataForm);
     this._store.dispatch(new UpdateStudent({_id: this._route.snapshot.params.id, data: dataForm}));
-  }
+ }
   public updateRecordBook(data: {period: string, subject: string, result: number}): void {
     this.updateRecordBookForm.setValue(data);
     this.updateRecordBookButtonName = "Update data";

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { Component } from "@angular/core";
 import { TabComponent } from "./tab/tab.component";
 
 @Component({

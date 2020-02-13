@@ -16,7 +16,6 @@ export interface IPagination {
 })
 export class PaginationService {
   public pageSize: number = 10;
-
   setPageSize(pageSize: number): void {
     this.pageSize = pageSize;
   }
